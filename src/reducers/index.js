@@ -3,8 +3,9 @@ import jobs from './jobs';
 import talents from './talents';
 import status from './status';
 import request from './request';
+import requestTalent from './requestTalent';
 import checkboxDataJob from './checkboxDataJob';
-// import posted from './posted';
+import checkboxDataTalent from './checkboxDataTalent';
 import locations from './locations';
 import languages from './languages';
 
@@ -23,7 +24,9 @@ export default combineReducers({
   talents,
   status,
   request,
+  requestTalent,
   checkboxDataJob,
+  checkboxDataTalent,
   locations,
   languages
   

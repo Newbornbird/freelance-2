@@ -9,6 +9,7 @@ import JobTalentSwitch from './JobTalentSwitch';
 import Panel from './Panel';
 import JobTalentButton from './JobTalentButton';
 import PanelCheckboxJob from './PanelCheckboxJob';
+import PanelCheckboxTalent from './PanelCheckboxTalent';
 import JobList from './JobList';
 import BtnStartNewProject from './BtnStartNewProject';
 import BtnStartNewPromotion from './BtnStartNewPromotion';
@@ -55,7 +56,10 @@ export class SearchMain extends Component {
           </div>
           <div className="row main-content flexbox">
             <div className="col-xs-2 left-sidebar">
-              <PanelCheckboxJob/>
+              <Switch>
+                <Route exact path="/board/search/talent" component={ PanelCheckboxTalent } />
+                <Route exact path="/board/search/job" component={ PanelCheckboxJob } />         
+              </Switch>
             </div>
             <div className="col-xs-10 container-fluid job-boxes--jobs">
               <div className="flexbox row">

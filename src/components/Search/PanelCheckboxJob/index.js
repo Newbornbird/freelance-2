@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { SEND_JOB_REQUEST_ARR, SEND_JOB_REQUEST_POSTED, 
-  SAVE_CHECKBOX_DATA_JOB, SEND_JOB_REQUEST_PAYMENT, 
-  GET_LOCATIONS, GET_LANGUAGES, SEND_JOB_REQUEST_STR } from '../../actions';
+import { SEND_JOB_REQUEST_ARR, 
+  SAVE_CHECKBOX_DATA_JOB, 
+  SEND_JOB_REQUEST_PAYMENT, 
+  GET_LOCATIONS, GET_LANGUAGES, 
+  SEND_JOB_REQUEST_STR } from '../../../actions';
 import Location from './Location';
 import Language from './Language';
 import CheckboxExp from './CheckboxExp';
@@ -87,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SEND_JOB_REQUEST_POSTED: bindActionCreators(SEND_JOB_REQUEST_POSTED, dispatch),
+    // SEND_JOB_REQUEST_POSTED: bindActionCreators(SEND_JOB_REQUEST_POSTED, dispatch),
     SEND_JOB_REQUEST_ARR: bindActionCreators(SEND_JOB_REQUEST_ARR, dispatch),
     SAVE_CHECKBOX_DATA_JOB: bindActionCreators(SAVE_CHECKBOX_DATA_JOB, dispatch),
     SEND_JOB_REQUEST_PAYMENT: bindActionCreators(SEND_JOB_REQUEST_PAYMENT, dispatch),

@@ -32,7 +32,7 @@ export function SEND_JOB_REQUEST_ARR (savedRequest, checkboxDataJob, queryParamK
         queryParamValue.splice(queryParamValue.indexOf(event.target.name), 1);
       }
     
-    // Проверка на случай, если группа чекбоксов окажется пустым
+    // Проверка на случай, если группа чекбоксов окажется пустой
     let expQueryParams;
     let fullQParams;
     
@@ -43,6 +43,17 @@ export function SEND_JOB_REQUEST_ARR (savedRequest, checkboxDataJob, queryParamK
         expQueryParams = queryParamValue.join(',');
         fullQParams = { ...savedRequest, [queryParamKey]: expQueryParams }
       }
+    
+    dispatch({
+      type: 'SAVE_Q_PARAMS',
+      payload: fullQParams
+    })
+    dispatch({
+      type: 'SAVE_CHECKBOX_DATA_JOB',
+      queryParamKey,
+      queryParamValue
+    })
+
 
     // let expQueryParams = queryParamValue.join(',');
     // let fullQParams = { ...savedRequest, [queryParamKey]: expQueryParams }
@@ -59,15 +70,7 @@ export function SEND_JOB_REQUEST_ARR (savedRequest, checkboxDataJob, queryParamK
           type: 'GET_JOBS',
           payload: respond.data.jobs
         });
-        dispatch({
-          type: 'SAVE_Q_PARAMS',
-          payload: fullQParams
-        })
-        dispatch({
-          type: 'SAVE_CHECKBOX_DATA_JOB',
-          queryParamKey,
-          queryParamValue
-        })
+        
       })
       .catch( (error) => {
         console.log(error);
@@ -131,6 +134,11 @@ export function SEND_JOB_REQUEST_STR (savedRequest, queryParamKey, event) {
         fullQParams = { ...savedRequest };
       }
     
+    dispatch({
+      type: 'SAVE_Q_PARAMS',
+      payload: fullQParams
+    })
+
     let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
 
     axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/jobs/search',
@@ -143,11 +151,6 @@ export function SEND_JOB_REQUEST_STR (savedRequest, queryParamKey, event) {
           type: 'GET_JOBS',
           payload: respond.data.jobs
         });
-        
-        dispatch({
-          type: 'SAVE_Q_PARAMS',
-          payload: fullQParams
-        })
       })
       .catch( (error) => {
         console.log(error);
@@ -156,40 +159,40 @@ export function SEND_JOB_REQUEST_STR (savedRequest, queryParamKey, event) {
 }
 
 
-export function SEND_JOB_REQUEST_POSTED (savedRequest, event) {
-  return dispatch => {
+// export function SEND_JOB_REQUEST_POSTED (savedRequest, event) {
+//   return dispatch => {
 
-    let fullQParams;
+//     let fullQParams;
     
-    if(event.target.checked) {
-      fullQParams = { ...savedRequest, 'post': event.target.name };
-    } else {
-      fullQParams = { ...savedRequest };
-      }
+//     if(event.target.checked) {
+//       fullQParams = { ...savedRequest, 'post': event.target.name };
+//     } else {
+//       fullQParams = { ...savedRequest };
+//       }
     
-    let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
+//     let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
 
-    axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/jobs/search',
-      { params: { q: fullQParams },
-        headers: { 'access-token': token }
-      }
-      )
-      .then(respond => {
-        dispatch({
-          type: 'GET_JOBS',
-          payload: respond.data.jobs
-        });
+//     axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/jobs/search',
+//       { params: { q: fullQParams },
+//         headers: { 'access-token': token }
+//       }
+//       )
+//       .then(respond => {
+//         dispatch({
+//           type: 'GET_JOBS',
+//           payload: respond.data.jobs
+//         });
         
-        dispatch({
-          type: 'SAVE_Q_PARAMS',
-          payload: fullQParams
-        })
-      })
-      .catch( (error) => {
-        console.log(error);
-      } )
-  }   
-}
+//         dispatch({
+//           type: 'SAVE_Q_PARAMS',
+//           payload: fullQParams
+//         })
+//       })
+//       .catch( (error) => {
+//         console.log(error);
+//       } )
+//   }   
+// }
 
 export function GET_TALENTS () {
   return dispatch => {
@@ -230,7 +233,6 @@ export function GET_LOCATIONS() {
       { headers: { 'access-token': token } }
     )
       .then(respond => {
-        console.log(respond.data);
         dispatch({
           type: 'GET_LOCATIONS',
           payload: respond.data
@@ -249,7 +251,6 @@ export function GET_LANGUAGES() {
       { headers: { 'access-token': token } }
     )
       .then(respond => {
-        console.log(respond.data.languages);
         dispatch({
           type: 'GET_LANGUAGES',
           payload: respond.data.languages
@@ -259,6 +260,104 @@ export function GET_LANGUAGES() {
         console.log(error);
       })
   }
+}
+
+export function SEND_TALENT_REQUEST_STR (savedRequest, queryParamKey, event) {
+  return dispatch => {
+
+    let fullQParams;
+    
+    if(event.target.checked) {
+      fullQParams = { ...savedRequest, [queryParamKey]: event.target.name };
+    } else {
+        delete savedRequest[queryParamKey]
+        fullQParams = { ...savedRequest };
+      }
+    
+    dispatch({
+      type: 'SAVE_TALENT_Q_PARAMS',
+      payload: fullQParams
+    })
+    
+    let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
+
+    axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/tellents/search',
+      { params: { q: fullQParams },
+        headers: { 'access-token': token }
+      }
+      )
+      .then(respond => {
+        dispatch({
+          type: 'GET_TALENT',
+          payload: respond.data.users
+        });
+        
+        
+      })
+      .catch( (error) => {
+        console.log(error);
+      } )
+  }   
+}
+
+export function SEND_TALENT_REQUEST_ARR (savedRequest, checkboxDataTalent, queryParamKey, event) {
+  return dispatch => {
+    // console.log(checkboxDataJob);
+    let queryParamValue = checkboxDataTalent[queryParamKey].concat();
+   
+    if(event.target.checked) {
+      queryParamValue.push(event.target.name);
+    } else if(!event.target.checked) {
+        queryParamValue.splice(queryParamValue.indexOf(event.target.name), 1);
+      }
+    
+    // Проверка на случай, если группа чекбоксов окажется пустой
+    let expQueryParams;
+    let fullQParams;
+    
+    if(queryParamValue[0]===undefined) {
+      delete savedRequest[queryParamKey];
+      fullQParams = { ...savedRequest };
+    } else {
+        expQueryParams = queryParamValue.join(',');
+        fullQParams = { ...savedRequest, [queryParamKey]: expQueryParams }
+      }
+    
+    dispatch({
+      type: 'SAVE_TALENT_Q_PARAMS',
+      payload: fullQParams
+    })
+    
+    dispatch({
+      type: 'SAVE_CHECKBOX_DATA_TALENT',
+      queryParamKey,
+      queryParamValue
+    })
+
+    // let expQueryParams = queryParamValue.join(',');
+    // let fullQParams = { ...savedRequest, [queryParamKey]: expQueryParams }
+    
+    let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
+
+    axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/tellents/search',
+      { params: { q: fullQParams },
+        headers: { 'access-token': token }
+      }
+      )
+      .then(respond => {
+        console.log(respond.data);
+        dispatch({
+          type: 'GET_TALENT',
+          payload: respond.data.users
+        });
+        
+      })
+      .catch( (error) => {
+        console.log(error);
+      } )
+
+    
+  }   
 }
 
 
