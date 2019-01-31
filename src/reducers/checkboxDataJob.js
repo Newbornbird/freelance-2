@@ -6,7 +6,7 @@ const checkboxDataJob = handleActions(
     
   }
   ,
-  { 'lang': [], 'loc': [], 'exp': [], 'avl': [], 'payment': [], 'p_from': '',  'p_to': '' }
+  { 'lang': [], 'loc': [], 'exp': [], 'avl': [], 'payment': [], 'p_from': '',  'p_to': '', 'q': '' }
 )
 
 export default checkboxDataJob;

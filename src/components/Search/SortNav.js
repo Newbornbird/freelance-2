@@ -4,12 +4,19 @@ class SortNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      activeCheckbox: 'Revelance',
+      queryParamKey: 'sort'
     }
   }
 
   openCloseFilter = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  }
+
+  changeCheckbox = (event) => {
+    this.setState({ activeCheckbox: event.target.id });
+    
   }
 
   render() {
@@ -19,7 +26,7 @@ class SortNav extends Component {
         <button onClick = { this.openCloseFilter } className="btn button">
           <div className= { this.state.isOpen ? "my-select-box open" : "my-select-box" }>
             <span className="my-select-result">
-              <span className="text">Relevance</span> 
+              <span className="text">{ this.state.activeCheckbox }</span> 
               <span className="icon icon-down-arrow"></span>
             </span>
             <div className="my-select-options">
@@ -28,31 +35,76 @@ class SortNav extends Component {
               </div>
               <div className="radio-block">
                 <div className="radio">
-                  <input type="radio" name="jobs-sort-option" id="jobs-sort-option-1" value="jobs-sort-option-1" checked=""></input>
-                  <label for="jobs-sort-option-1">
+                  <input 
+                    type="radio" 
+                    name="jobs-sort-option" 
+                    id="Newest" 
+                    value="newest" 
+                    checked=""
+                    onChange={ (event) => { 
+                      this.changeCheckbox(event);
+                      this.props.searchTalentIsActive ? 
+                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
+                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
+                      } }>
+                  </input>
+                  <label for="Newest">
+                    <span className="check-mark icon icon-check-mark"></span>
+                    <span className="radio-text">Newest</span>
+                  </label>
+                </div>
+                <div className="radio">
+                  <input 
+                    type="radio" 
+                    name="jobs-sort-option" 
+                    id="Highest budget" 
+                    value="budget"
+                    onChange={ (event) => { 
+                      this.changeCheckbox(event);
+                      this.props.searchTalentIsActive ? 
+                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
+                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
+                      } }>
+                  </input>
+                  <label for="Highest budget">
+                    <span className="check-mark icon icon-check-mark"></span>
+                    <span className="radio-text">Highest budget</span>
+                  </label>
+                </div>
+                <div className="radio">
+                  <input 
+                    type="radio" 
+                    name="jobs-sort-option" 
+                    id="Relevance" 
+                    value="relevance"
+                    onChange={ (event) => { 
+                      this.changeCheckbox(event);
+                      this.props.searchTalentIsActive ? 
+                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
+                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
+                      } }>
+                  </input>
+                  <label for="Relevance">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Relevance</span>
                   </label>
                 </div>
                 <div className="radio">
-                  <input type="radio" name="jobs-sort-option" id="jobs-sort-option-2" value="jobs-sort-option-2"></input>
-                  <label for="jobs-sort-option-2">
+                  <input 
+                    type="radio" 
+                    name="jobs-sort-option" 
+                    id="Long term" 
+                    value="longterm"
+                    onChange={ (event) => { 
+                      this.changeCheckbox(event);
+                      this.props.searchTalentIsActive ? 
+                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
+                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
+                      } }>
+                  </input>
+                  <label for="Long term">
                     <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Most saved</span>
-                  </label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="jobs-sort-option" id="jobs-sort-option-3" value="jobs-sort-option-3"></input>
-                  <label for="jobs-sort-option-3">
-                    <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Highest Score</span>
-                  </label>
-                </div>
-                <div className="radio">
-                  <input type="radio" name="jobs-sort-option" id="jobs-sort-option-4" value="jobs-sort-option-4"></input>
-                  <label for="jobs-sort-option-4">
-                    <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Most Hired</span>
+                    <span className="radio-text">Long term</span>
                   </label>
                 </div>
               </div>	
@@ -61,7 +113,7 @@ class SortNav extends Component {
         </button>
         <span className="sort-result">
           Result: 
-          <span className="sort-result-numb">25</span>
+        <span className="sort-result-numb">{ this.props.meta.total_count }</span>
         </span>
       </div>
     )

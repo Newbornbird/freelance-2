@@ -16,7 +16,11 @@ import BtnStartNewPromotion from './BtnStartNewPromotion';
 import BtnTellOthers from './BtnTellOthers';
 import JobListFooter from './JobListFooter';
 import TalentList from './TalentList';
-import { SWITCH_SEARCH } from '../../actions';
+import { SWITCH_SEARCH, 
+  GET_MORE_JOBS, SORT_JOBS, 
+  SORT_TALENTS, SAVE_CHECKBOX_DATA_JOB,
+  SAVE_CHECKBOX_DATA_TALENT,SEND_JOB_REQUEST_NAME,
+  SEND_TALENT_REQUEST_NAME } from '../../actions';
     
 export class SearchMain extends Component {
   constructor(props) {
@@ -31,14 +35,25 @@ export class SearchMain extends Component {
   render() {
     return (
       <div className="content">
-      
+        <button onClick = { console.log(this.props) }>
+          Клик
+        </button>
         <div className="container-fluid">
           <div className="row content-header flexbox">
             <div className="col-xs-2 left-sidebar">
               <Hello />
             </div>
             <div className="col-xs-10">
-              <Form />
+              <Form 
+                checkboxDataTalent = { this.props.checkboxDataTalent }
+                checkboxDataJob = { this.props.checkboxDataJob }
+                SAVE_CHECKBOX_DATA_JOB = { this.props.SAVE_CHECKBOX_DATA_JOB }
+                SAVE_CHECKBOX_DATA_TALENT = { this.props.SAVE_CHECKBOX_DATA_TALENT }
+                searchTalentIsActive = { this.props.searchTalentIsActive }
+                SEND_JOB_REQUEST_NAME = { this.props.SEND_JOB_REQUEST_NAME }
+                SEND_TALENT_REQUEST_NAME = { this.props.SEND_TALENT_REQUEST_NAME }
+                request = { this.props.request }
+                requestTalent = { this.props.requestTalent  } />
               <JobPostStatus />
             </div>
           </div>
@@ -51,7 +66,13 @@ export class SearchMain extends Component {
               <JobTalentButton/>
             </div>
             <div className="col-xs-10">
-              <Panel />
+              <Panel 
+                meta = { this.props.meta }
+                SORT_JOBS = { this.props.SORT_JOBS }
+                request = { this.props.request }
+                SORT_TALENTS = { this.props.SORT_TALENTS }
+                searchTalentIsActive = { this.props.searchTalentIsActive }
+              />
             </div>
           </div>
           <div className="row main-content flexbox">
@@ -69,7 +90,12 @@ export class SearchMain extends Component {
                     <Route exact path="/board/search/talent" component={ TalentList } />
                     <Route exact path="/board/search/job" component={ JobList } />         
                   </Switch>
-                    <JobListFooter/>
+                    <JobListFooter
+                      meta={this.props.meta}
+                      request={ this.props.request }
+                      GET_MORE_JOBS = { this.props.GET_MORE_JOBS }
+                      SORT_JOBS = { this.props.SORT_JOBS }
+                    />
                 </div>
                 <div className="col-xs-3">
                   <BtnStartNewProject/>
@@ -88,13 +114,26 @@ export class SearchMain extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchTalentIsActive: state.status.searchTalentIsActive
+    searchTalentIsActive: state.status.searchTalentIsActive,
+    checkboxDataTalent: state.checkboxDataTalent,
+    checkboxDataJob: state.checkboxDataJob,
+    request: state.request,
+    requestTalent: state.requestTalent,
+    meta: state.meta
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SWITCH_SEARCH: bindActionCreators(SWITCH_SEARCH, dispatch)
+    SWITCH_SEARCH: bindActionCreators(SWITCH_SEARCH, dispatch),
+    GET_MORE_JOBS: bindActionCreators(GET_MORE_JOBS, dispatch),
+    SORT_JOBS: bindActionCreators(SORT_JOBS, dispatch),
+    SORT_TALENTS: bindActionCreators(SORT_TALENTS, dispatch),
+    SAVE_CHECKBOX_DATA_JOB: bindActionCreators(SAVE_CHECKBOX_DATA_JOB, dispatch),
+    SAVE_CHECKBOX_DATA_TALENT: bindActionCreators(SAVE_CHECKBOX_DATA_TALENT, dispatch),
+    SEND_JOB_REQUEST_NAME:  bindActionCreators(SEND_JOB_REQUEST_NAME, dispatch),
+    SEND_TALENT_REQUEST_NAME: bindActionCreators(SEND_TALENT_REQUEST_NAME, dispatch)
+    
       
   }
 

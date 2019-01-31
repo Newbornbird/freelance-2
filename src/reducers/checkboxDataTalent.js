@@ -6,7 +6,7 @@ const checkboxDataTalent = handleActions(
     
   }
   ,
-  { 'lang': [], 'loc': [], 'exp': [], 'avl': [], 'place': [] }
+  { 'lang': [], 'loc': [], 'exp': [], 'avl': [], 'place': [], 'q': '' }
 )
 
 export default checkboxDataTalent;

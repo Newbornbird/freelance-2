@@ -8,6 +8,7 @@ import checkboxDataJob from './checkboxDataJob';
 import checkboxDataTalent from './checkboxDataTalent';
 import locations from './locations';
 import languages from './languages';
+import meta from './meta';
 
 export const initialState = {
   jobs: [],
@@ -25,6 +26,7 @@ export default combineReducers({
   status,
   request,
   requestTalent,
+  meta,
   checkboxDataJob,
   checkboxDataTalent,
   locations,
