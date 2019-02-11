@@ -19,7 +19,7 @@ import JobListFooter from './JobListFooter';
 import TalentList from './TalentList';
 import { SWITCH_SEARCH, 
   GET_MORE, CHANGE_CHECKBOX_DATA_NAME,
-  SORT, BIG_ACTION } from '../../actions';
+  SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE } from '../../actions';
     
 export class SearchMain extends Component {
   constructor(props) {
@@ -58,6 +58,8 @@ export class SearchMain extends Component {
               <Form 
                 inputData = { this.props.inputData }
                 CHANGE_CHECKBOX_DATA_NAME = { this.props.CHANGE_CHECKBOX_DATA_NAME } 
+                CHANGE_INPUT_STRING_VALUE = { this.props.CHANGE_INPUT_STRING_VALUE }
+                q = { this.props.inputStringValue['q'] }
               />
               <JobPostStatus />
             </div>
@@ -120,7 +122,8 @@ const mapStateToProps = (state) => {
     pathName: state.status.pathName,
     inputData: state.inputData,
     redirectIsActive: state.status.redirectIsActive,
-    meta: state.meta
+    meta: state.meta,
+    inputStringValue: state.inputStringValue
   }
 }
 
@@ -129,14 +132,9 @@ const mapDispatchToProps = (dispatch) => {
     SWITCH_SEARCH: bindActionCreators(SWITCH_SEARCH, dispatch),
     GET_MORE: bindActionCreators(GET_MORE, dispatch),
     SORT: bindActionCreators(SORT, dispatch),
-    // SORT_TALENTS: bindActionCreators(SORT_TALENTS, dispatch),
     CHANGE_CHECKBOX_DATA_NAME: bindActionCreators(CHANGE_CHECKBOX_DATA_NAME, dispatch),
-    // SAVE_CHECKBOX_DATA_JOB: bindActionCreators(SAVE_CHECKBOX_DATA_JOB, dispatch),
-    // SAVE_CHECKBOX_DATA_TALENT: bindActionCreators(SAVE_CHECKBOX_DATA_TALENT, dispatch),
-    // SEND_JOB_REQUEST_NAME:  bindActionCreators(SEND_JOB_REQUEST_NAME, dispatch),
-    // SEND_TALENT_REQUEST_NAME: bindActionCreators(SEND_TALENT_REQUEST_NAME, dispatch),
-    BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch)
-    // NEW_ACTION: bindActionCreators(NEW_ACTION, dispatch)
+    BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch),
+    CHANGE_INPUT_STRING_VALUE: bindActionCreators(CHANGE_INPUT_STRING_VALUE, dispatch)
   }
 }
 

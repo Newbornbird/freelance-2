@@ -3,6 +3,7 @@ import jobs from './jobs';
 import talents from './talents';
 import status from './status';
 import inputData from './inputData';
+import inputStringValue from './inputStringValue';
 import locations from './locations';
 import languages from './languages';
 import meta from './meta';
@@ -23,6 +24,7 @@ export default combineReducers({
   status,
   meta,
   inputData,
+  inputStringValue,
   locations,
   languages
 })

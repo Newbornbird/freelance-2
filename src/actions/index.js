@@ -137,6 +137,11 @@ export function BIG_ACTION(parseString, pathName) {
   return dispatch => {
     
     dispatch({
+      type: 'CHANGE_INPUT_STRING_VALUE',
+      payload: { 'q': parseString['q'] }
+    })
+
+    dispatch({
       type: 'CHANGE_INPUT_DATA',
       payload: parseString
     })
@@ -317,6 +322,15 @@ export function SORT (inputData, queryParamKey, event) {
 
     dispatch({
       type: 'MAKE_REDIRECT_ACTIVE'
+    })
+  }
+}
+
+export function CHANGE_INPUT_STRING_VALUE(event) {
+  return dispatch => {
+    dispatch({
+      type: 'CHANGE_INPUT_STRING_VALUE',
+      payload: { [event.target.name]: event.target.value }
     })
   }
 }

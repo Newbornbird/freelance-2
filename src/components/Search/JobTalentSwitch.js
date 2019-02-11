@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class JobTalentSwitch extends Component {
 
@@ -13,7 +14,7 @@ class JobTalentSwitch extends Component {
           <div className="radio">
             <input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter" checked=""/>
             <label htmlFor="jobs-filter-2">
-              <span className="radio-text">Jobs</span>
+              <span className="radio-text"><Link to="/board/search/job">Jobs</Link></span>
             </label>
           </div>
           <button 
@@ -29,7 +30,7 @@ class JobTalentSwitch extends Component {
           <div className="radio">
             <input type="radio" name="job-boxes-filter" id="talents-filter-2" value="talents-filter"/>
             <label htmlFor="talents-filter-2">
-              <span className="radio-text">Talents</span>
+              <span className="radio-text"><Link to="/board/search/talent">Talents</Link></span>
             </label>
           </div>
         </div>
