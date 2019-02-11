@@ -20,7 +20,8 @@ export class TalentBox extends Component {
             </div>
             <div className="job-box-title">
               <div className="job-box-name blue-color">{ this.props.full_name }</div>
-              <div className="job-box-prof">{ this.props.profession }</div>
+              <div className="job-box-prof">{ 'this.props.profession' }</div>
+              {/* Разобраться с дивом выше. */}
             </div>
             <div className="job-box-rate">
               <span className="icon icon-star-full"></span>

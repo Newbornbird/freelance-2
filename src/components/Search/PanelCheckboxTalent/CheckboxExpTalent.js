@@ -16,10 +16,12 @@ class CheckboxExpTalent extends Component {
         </div>
         <div className="checkbox-list-block clearfix">
           <div className="checkbox-block">
-            <input 
+            <input
+              checked = { this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('intern') >= 0 ? true : false) : false } 
               onClick = { (event) => {
-                this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event)} 
-              } 
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+              }} 
               name="intern" 
               type="checkbox" 
               id="checkbox-1.1"
@@ -34,9 +36,11 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input 
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('junior') >= 0 ? true : false) : false }
               onClick = { (event) => { 
-                this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event) } 
-                }
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+              }}
               name="junior" 
               type="checkbox" 
               id="checkbox-1.2"></input>
@@ -49,9 +53,11 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input
-              onClick = { (event) => {
-                this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event) } 
-                } 
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('senior') >= 0 ? true : false) : false }
+              onClick = { (event) => { 
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+              }}
               name="senior" 
               type="checkbox" 
               id="checkbox-1.3">
@@ -65,9 +71,11 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              onClick = { (event) => 
-                { this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event) } 
-              }
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('expert') >= 0 ? true : false) : false }
+              onClick = { (event) => { 
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+              }}
               name="expert" 
               type="checkbox" 
               id="checkbox-1.4">

@@ -21,8 +21,10 @@ class CheckboxPlaceTalent extends Component {
               type="checkbox" 
               id="checkbox-8.1"
               onClick={ (event) => {
-                this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event);
-              } }>
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+              } }
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('online') >= 0 ? true : false) : false }>
 
             </input>
             <label for="checkbox-8.1">
@@ -38,8 +40,10 @@ class CheckboxPlaceTalent extends Component {
               type="checkbox" 
               id="checkbox-8.2"
               onClick={ (event) => {
-                this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event);
-              } }>
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+              } }
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('onsite') >= 0 ? true : false) : false }>
             </input>
             <label for="checkbox-8.2">
               <span className="filter-checkbox">

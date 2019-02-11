@@ -40,12 +40,14 @@ class LanguageTalent extends Component {
                     return (
                       <div className="checkbox-block">
                         <input 
-                            name={ language.name } 
-                            type="checkbox" 
-                            id={ "checkbox-6." + (index + 1) }
-                            onClick={ (event) => { 
-                              this.props.SEND_TALENT_REQUEST_ARR(this.props.requestTalent, this.props.checkboxDataTalent, this.state.queryParamKey, event);
-                            } }>
+                          name={ language.name } 
+                          type="checkbox" 
+                          id={ "checkbox-6." + (index + 1) }
+                          onClick={ (event) => { 
+                            this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                          } }
+                          checked={ this.props.inputData[this.state.queryParamKey] ? 
+                                    (this.props.inputData[this.state.queryParamKey].indexOf(language.name) >= 0 ? true : false) : false }>
                         </input>
                           <label for={ "checkbox-6." + (index + 1) }>
                             <span className="filter-checkbox">

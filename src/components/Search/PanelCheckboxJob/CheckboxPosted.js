@@ -4,13 +4,8 @@ class CheckboxPosted extends Component {
   constructor() {
     super();
     this.state = {
-      queryParamKey: 'post',
-      activeCheckbox: {}
+      queryParamKey: 'post'
     }
-  }
-
-  changeCheckbox = (event) => {
-    this.setState( { activeCheckbox: { [event.target.name]: event.target.checked } } );
   }
 
   render() {
@@ -25,10 +20,12 @@ class CheckboxPosted extends Component {
               name='i24' 
               type="checkbox" 
               id="checkbox-2.1" 
-              checked={ this.state.activeCheckbox['i24'] ? true : false  } 
+              // checked={ this.state.activeCheckbox['i24'] ? true : false  }
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i24') >= 0 ? true : false) : false } 
               onClick={ (event) => { 
-                this.changeCheckbox(event);
-                this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event) } }>
+                // this.changeCheckbox(event);
+                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
               </input>
             <label for="checkbox-2.1">
               <span className="filter-checkbox">
@@ -42,10 +39,12 @@ class CheckboxPosted extends Component {
               name='i1w' 
               type="checkbox" 
               id="checkbox-2.2" 
-              checked={ this.state.activeCheckbox['i1w'] ? true : false  }
+              // checked={ this.state.activeCheckbox['i1w'] ? true : false  }
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i1w') >= 0 ? true : false) : false }
               onClick={ (event) => { 
-                this.changeCheckbox(event);
-                this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event) } }>
+                // this.changeCheckbox(event);
+                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
             <label for="checkbox-2.2">
               <span className="filter-checkbox">
@@ -59,10 +58,11 @@ class CheckboxPosted extends Component {
               name='i3d' 
               type="checkbox" 
               id="checkbox-2.3" 
-              checked={ this.state.activeCheckbox['i3d'] ? true : false  } 
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i3d') >= 0 ? true : false) : false } 
               onClick={ (event) => { 
-                this.changeCheckbox(event);
-                this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event) } }>
+                // this.changeCheckbox(event);
+                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
             <label for="checkbox-2.3">
               <span className="filter-checkbox">
@@ -76,10 +76,11 @@ class CheckboxPosted extends Component {
               name='m_1w' 
               type="checkbox" 
               id="checkbox-2.4" 
-              checked={ this.state.activeCheckbox['m_1w'] ? true : false  } 
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('m_1w') >= 0 ? true : false) : false } 
               onClick={ (event) => { 
-                this.changeCheckbox(event);
-                this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event) } }>
+                // this.changeCheckbox(event);
+                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
             <label for="checkbox-2.4">
               <span className="filter-checkbox">

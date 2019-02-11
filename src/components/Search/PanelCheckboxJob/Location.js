@@ -41,14 +41,17 @@ class Location extends Component {
 
               { this.props.locations.map( (location, index) => {
                   return(
-                    <div className="checkbox-block">
-                      <input 
+                    <div className="checkbox-block" key={ index + 'a' }>
+                      <input
                         name={ location.name } 
                         type="checkbox" 
                         id={"checkbox-4." + (index + 1)}
                         onClick={ (event) => { 
-                          this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
-                        } }>
+                          this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                        } }
+                        checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf(location.name) >= 0 ? true : false) : false }
+                        >
                       </input>
                       <label for={"checkbox-4." + (index + 1)}>
                         <span className="filter-checkbox">

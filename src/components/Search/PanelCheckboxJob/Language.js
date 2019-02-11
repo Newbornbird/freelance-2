@@ -38,14 +38,16 @@ class Language extends Component {
               <div className="checkbox-list-block">
                 { this.props.languages.map( (language, index) => {
                     return (
-                      <div className="checkbox-block">
-                        <input 
-                            name={ language.name } 
-                            type="checkbox" 
-                            id={ "checkbox-5." + (index + 1) }
-                            onClick={ (event) => { 
-                              this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
-                            } }>
+                      <div className="checkbox-block" key={ index + 'b' }>
+                        <input
+                          name={ language.name } 
+                          type="checkbox" 
+                          id={ "checkbox-5." + (index + 1) }
+                          onClick={ (event) => { 
+                            this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event);
+                          } }
+                          checked={ this.props.inputData[this.state.queryParamKey] ? 
+                                      (this.props.inputData[this.state.queryParamKey].indexOf(language.name) >= 0 ? true : false) : false }>
                         </input>
                           <label for={ "checkbox-5." + (index + 1) }>
                             <span className="filter-checkbox">

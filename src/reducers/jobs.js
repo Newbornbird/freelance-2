@@ -1,4 +1,4 @@
-import { initialState } from './index';
+// import { initialState } from './index';
 import { handleActions } from 'redux-actions';
 
 const jobs = handleActions(

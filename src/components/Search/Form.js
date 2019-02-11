@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 
 class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      queryParamKey: 'q',
+      queryParamValue: ''
+    }
+  }
+
+  changeQueryParamValue = (event) => {
+    this.setState( { queryParamValue: event.target.value } );
+  }
+
   render() {
     return(
       <div className="search-form">
-        {/* <button onClick = { () => { console.log(this.props) } }> КЛИК
-        </button> */}
         <form className="my-search-form" role="search">
           <input 
             name="q" 
             type="text" 
             className="form-control" 
             placeholder="Search"
-            onChange={ this.props.searchTalentIsActive ? 
-              (event => { this.props.SAVE_CHECKBOX_DATA_TALENT(event.target.name, event.target.value) } ) :
-              (event => { this.props.SAVE_CHECKBOX_DATA_JOB(event.target.name, event.target.value) } )
-            }
-            value={ this.props.searchTalentIsActive ? this.props.checkboxDataTalent['q'] : this.props.checkboxDataJob['q']}  
+            onChange={ (event) => { this.changeQueryParamValue(event) } }
+            value={ this.state.queryParamValue }  
             />
           <div className="search-filter radio-block">
           <div className="radio">
@@ -36,10 +43,7 @@ class Form extends Component {
           href="#" 
           type="submit" 
           className="btn-search"
-          onClick = { this.props.searchTalentIsActive ?
-            (() => { this.props.SEND_TALENT_REQUEST_NAME(this.props.requestTalent, this.props.checkboxDataTalent) } ) :
-            (() => { this.props.SEND_JOB_REQUEST_NAME(this.props.request, this.props.checkboxDataJob) } )
-          }>
+          onClick = { () => { this.props.CHANGE_CHECKBOX_DATA_NAME(this.props.inputData, this.state.queryParamValue) } }>
           <i className="icon icon-loupe">
           </i>
         </a>

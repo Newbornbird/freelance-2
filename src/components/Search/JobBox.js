@@ -29,14 +29,14 @@ class JobBox extends Component {
                   </div>
                 </div>
                 <div className="award">
-                  <span className="icon icon-badge-flat"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span class="path7"></span><span className="path8"></span><span className="path9"></span><span className="path10"></span></span>
+                  <span className="icon icon-badge-flat"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span className="path7"></span><span className="path8"></span><span className="path9"></span><span className="path10"></span></span>
                 </div>
                 <div className="job-box-rate">
                   <span className="icon icon-star-full"></span>
                   <span className="rate-result">5.8</span>
                 </div>
               </div>
-              <div className="blue-color">Clifford Love</div>
+              <div className="blue-color">{ this.props.user.full_name }</div>
             </div>
           </div>
           <div className="job-box-body">
@@ -82,7 +82,8 @@ class JobBox extends Component {
             </div>
           </div>
           <div className="job-box-footer flexbox justify-space-between">
-            <div className="additional-info blue-color">Math  Home Tutoring</div>
+            <div className="additional-info blue-color">{this.props.promotion_title}</div>
+            {/* <div>{this.props.promotion_description}</div> */}
             <button className="btn btn-blue btn-bold">Free</button>
           </div>
         </div>
@@ -91,7 +92,7 @@ class JobBox extends Component {
           <span className="caret-top"></span>
         </div>
         <div className="panel panel-default job-box-details">
-          <button className="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
+          <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
           <div className="flexbox justify-space-between">
             <div className="about-block-wrapper">
                 <div className="photo-block">

@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { GET_JOBS } from '../../actions';
+// import { GET_JOBS } from '../../actions';
 import JobBox from './JobBox';
 
 class JobList extends Component {
-  
-  componentDidMount() {
-    this.props.GET_JOBS();
-    
-  }
 
   render() {
     return (
@@ -58,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    GET_JOBS: bindActionCreators(GET_JOBS, dispatch),  
+    // GET_JOBS: bindActionCreators(GET_JOBS, dispatch),  
   }
 
 }

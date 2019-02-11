@@ -14,9 +14,8 @@ class SortNav extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  changeCheckbox = (event) => {
-    this.setState({ activeCheckbox: event.target.id });
-    
+  closeFilter = (event) => {
+    this.setState({ isOpen: false, activeCheckbox: event.target.id  });
   }
 
   render() {
@@ -42,11 +41,9 @@ class SortNav extends Component {
                     value="newest" 
                     checked=""
                     onChange={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.searchTalentIsActive ? 
-                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
-                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
-                      } }>
+                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      this.closeFilter(event); 
+                    } }>
                   </input>
                   <label for="Newest">
                     <span className="check-mark icon icon-check-mark"></span>
@@ -60,11 +57,9 @@ class SortNav extends Component {
                     id="Highest budget" 
                     value="budget"
                     onChange={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.searchTalentIsActive ? 
-                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
-                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
-                      } }>
+                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      this.closeFilter(event); 
+                    } }>
                   </input>
                   <label for="Highest budget">
                     <span className="check-mark icon icon-check-mark"></span>
@@ -78,11 +73,9 @@ class SortNav extends Component {
                     id="Relevance" 
                     value="relevance"
                     onChange={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.searchTalentIsActive ? 
-                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
-                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
-                      } }>
+                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      this.closeFilter(event); 
+                    } }>
                   </input>
                   <label for="Relevance">
                     <span className="check-mark icon icon-check-mark"></span>
@@ -96,11 +89,9 @@ class SortNav extends Component {
                     id="Long term" 
                     value="longterm"
                     onChange={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.searchTalentIsActive ? 
-                        this.props.SORT_TALENTS(this.props.request, this.state.queryParamKey, event) :
-                        this.props.SORT_JOBS(this.props.request, this.state.queryParamKey, event)
-                      } }>
+                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      this.closeFilter(event); 
+                    } }>
                   </input>
                   <label for="Long term">
                     <span className="check-mark icon icon-check-mark"></span>

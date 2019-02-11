@@ -19,11 +19,14 @@ class CheckboxExp extends Component {
           <div className="checkbox-block">
             <input 
               onClick = { (event) => {
-                this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event)} 
-              } 
+                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                // this.props.changeLocation(event, this.state.queryParamKey)
+              } }
               name="intern" 
               type="checkbox" 
               id="checkbox-1.1"
+              checked = { this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('intern') >= 0 ? true : false) : false }
               >
             </input>
             <label htmlFor="checkbox-1.1">
@@ -35,10 +38,17 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              onClick = { (event) => this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event) }
+              onClick = { ( event ) => {
+                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                // this.props.changeLocation(event, this.state.queryParamKey)
+              } }
               name="junior" 
               type="checkbox" 
-              id="checkbox-1.2"></input>
+              id="checkbox-1.2"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('junior') >= 0 ? true : false) : false }
+            >
+            </input>
             <label for="checkbox-1.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
@@ -48,10 +58,16 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input
-              onClick = { (event) => this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event) } 
+              onClick = { ( event ) => {
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                // this.props.changeLocation(event, this.state.queryParamKey)
+              } }
               name="senior" 
               type="checkbox" 
-              id="checkbox-1.3">
+              id="checkbox-1.3"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('senior') >= 0 ? true : false) : false }
+            >
             </input>
             <label for="checkbox-1.3">
               <span className="filter-checkbox">
@@ -62,10 +78,16 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              onClick = { (event) => this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event) }
+              onClick = { ( event ) => {
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                // this.props.changeLocation(event, this.state.queryParamKey)
+              } }
               name="expert" 
               type="checkbox" 
-              id="checkbox-1.4">
+              id="checkbox-1.4"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('expert') >= 0 ? true : false) : false }
+            >
             </input>
             <label for="checkbox-1.4">
               <span className="filter-checkbox">

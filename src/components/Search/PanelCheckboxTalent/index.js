@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { GET_LANGUAGES, GET_LOCATIONS, 
-  SEND_TALENT_REQUEST_STR,
-  SEND_TALENT_REQUEST_ARR } from '../../../actions';
+import { CHANGE_CHECKBOX_DATA_ARR, 
+  CHANGE_CHECKBOX_DATA_SINGLE,  BIG_ACTION, 
+  GET_LANGUAGES, GET_LOCATIONS } from '../../../actions';
 import CheckboxExpTalent from './CheckboxExpTalent';
 import CheckboxJDSTalent from './CheckboxJDSTalent';
 import CheckboxSTSTalent from './CheckboxSTSTalent';
@@ -15,12 +15,9 @@ import CheckboxAvailabilityTalent from './CheckboxAvailabilityTalent';
 import CheckboxPlaceTalent from './CheckboxPlaceTalent';
 
 class PanelCheckboxTalent extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      intern: false
-    }
+  constructor(props) {
+    super(props);
+    
   }
 
   render() {
@@ -28,38 +25,33 @@ class PanelCheckboxTalent extends Component {
       <div className="panel panel-default">
         <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
         <CheckboxExpTalent 
-          SEND_TALENT_REQUEST_ARR = { this.props.SEND_TALENT_REQUEST_ARR }
-          requestTalent = { this.props.requestTalent } 
-          checkboxDataTalent = { this.props.checkboxDataTalent } />
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          inputData = { this.props.inputData } />
         <CheckboxJDSTalent
-          SEND_TALENT_REQUEST_STR = { this.props.SEND_TALENT_REQUEST_STR }
-          requestTalent = { this.props.requestTalent } />
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = { this.props.inputData } />
         <CheckboxSTSTalent
-          SEND_TALENT_REQUEST_STR = { this.props.SEND_TALENT_REQUEST_STR }
-          requestTalent = { this.props.requestTalent } />
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = { this.props.inputData } />
         <CheckboxFRTalent
-          SEND_TALENT_REQUEST_STR = { this.props.SEND_TALENT_REQUEST_STR }
-          requestTalent = { this.props.requestTalent } />
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = { this.props.inputData } />
         <LocationTalent
-          SEND_TALENT_REQUEST_ARR = { this.props.SEND_TALENT_REQUEST_ARR }
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
           GET_LOCATIONS = { this.props.GET_LOCATIONS }
           locations = { this.props.locations }
-          checkboxDataTalent = {this.props.checkboxDataTalent}
-          requestTalent = { this.props.requestTalent } />
+          inputData = { this.props.inputData } />
         <LanguageTalent
-          SEND_TALENT_REQUEST_ARR = { this.props.SEND_TALENT_REQUEST_ARR }
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
           GET_LANGUAGES = { this.props.GET_LANGUAGES }
           languages = { this.props.languages }
-          checkboxDataTalent = { this.props.checkboxDataTalent }
-          requestTalent = { this.props.requestTalent } />
+          inputData = { this.props.inputData } />
         <CheckboxAvailabilityTalent
-          SEND_TALENT_REQUEST_ARR = { this.props.SEND_TALENT_REQUEST_ARR }
-          checkboxDataTalent = { this.props.checkboxDataTalent }
-          requestTalent = { this.props.requestTalent } />
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          inputData = { this.props.inputData } />
         <CheckboxPlaceTalent
-          SEND_TALENT_REQUEST_ARR = { this.props.SEND_TALENT_REQUEST_ARR }
-          requestTalent = { this.props.requestTalent } 
-          checkboxDataTalent = { this.props.checkboxDataTalent } />
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          inputData = { this.props.inputData } />
         
       </div>
     )
@@ -68,8 +60,7 @@ class PanelCheckboxTalent extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    requestTalent: state.requestTalent,
-    checkboxDataTalent: state.checkboxDataTalent,
+    inputData: state.inputData,
     locations: state.locations,
     languages: state.languages
   }
@@ -77,12 +68,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SEND_TALENT_REQUEST_STR: bindActionCreators(SEND_TALENT_REQUEST_STR, dispatch),
-    SEND_TALENT_REQUEST_ARR: bindActionCreators(SEND_TALENT_REQUEST_ARR, dispatch),
+    // SEND_TALENT_REQUEST_STR: bindActionCreators(SEND_TALENT_REQUEST_STR, dispatch),
+    // SEND_TALENT_REQUEST_ARR: bindActionCreators(SEND_TALENT_REQUEST_ARR, dispatch),
     GET_LOCATIONS:  bindActionCreators(GET_LOCATIONS, dispatch),
-    GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch)
+    GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch),
+    CHANGE_CHECKBOX_DATA_ARR:  bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch), 
+    CHANGE_CHECKBOX_DATA_SINGLE:  bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
+    // CHANGE_CHECKBOX_DATA_PAYMENT:  bindActionCreators(CHANGE_CHECKBOX_DATA_PAYMENT, dispatch),
+    BIG_ACTION:  bindActionCreators(BIG_ACTION, dispatch)
   }
-
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PanelCheckboxTalent));

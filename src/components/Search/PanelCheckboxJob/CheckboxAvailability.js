@@ -20,8 +20,10 @@ class CheckboxAvailability extends Component {
               name='per_week_10'  
               type="checkbox" 
               id="checkbox-6.1"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_10') >= 0 ? true : false) : false }
               onClick={ (event) => { 
-                this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
 
             </input>
@@ -37,8 +39,10 @@ class CheckboxAvailability extends Component {
               name='per_week_up_to_30' 
               type="checkbox" 
               id="checkbox-6.2"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_up_to_30') >= 0 ? true : false) : false }
               onClick={ (event) => { 
-                this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
             <label for="checkbox-6.2">
@@ -52,8 +56,10 @@ class CheckboxAvailability extends Component {
             <input 
               name='per_week_more_than_30' 
               type="checkbox" id="checkbox-6.3"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
               onClick={ (event) => { 
-                this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
             <label for="checkbox-6.3">
@@ -68,8 +74,10 @@ class CheckboxAvailability extends Component {
               name='decide_later' 
               type="checkbox" 
               id="checkbox-6.4"
+              checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('decide_later') >= 0 ? true : false) : false }
               onClick={ (event) => { 
-                this.props.SEND_JOB_REQUEST_ARR(this.props.request, this.props.checkboxDataJob, this.state.queryParamKey, event);
+                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
             <label for="checkbox-6.4">

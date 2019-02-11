@@ -5,18 +5,14 @@ class CheckboxBudget extends Component {
     super();
     this.state = {
       isOpen: false,
-      queryParamKey: 'bud',
-      activeCheckbox: {}
+      queryParamKey: 'bud'
+      // activeCheckbox: {}
       
     }
   }
 
   openCloseFilter = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
-
-  changeCheckbox = (event) => {
-    this.setState( { activeCheckbox: { [event.target.name]: event.target.checked } } );
   }
 
   render() {
@@ -40,14 +36,13 @@ class CheckboxBudget extends Component {
               <div className="checkbox-list-block">
                 <div className="checkbox-block">
                   <input
-                    checked={ this.state.activeCheckbox['i0_100'] ? true : false  } 
+                    checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i0_100') >= 0 ? true : false) : false } 
                     name='i0_100' 
                     type="checkbox" 
                     id="checkbox-8.1"
-                    onClick={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event);
-                    } }>
+                    onClick={ (event) => {  
+                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } } >
                   </input>
                     <label for="checkbox-8.1">
                       <span className="filter-checkbox">
@@ -58,13 +53,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.state.activeCheckbox['i100_300'] ? true : false  }  
+                    checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i100_300') >= 0 ? true : false) : false }  
                     name="i100_300" 
                     type="checkbox" 
                     id="checkbox-8.2"
                     onClick={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event);
+                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
                     <label for="checkbox-8.2">
@@ -76,13 +71,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.state.activeCheckbox['i300_1000'] ? true : false  }  
+                    checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('i300_1000') >= 0 ? true : false) : false } 
                     name="i300_1000" 
                     type="checkbox" 
                     id="checkbox-8.3"
-                    onClick={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event);
+                    onClick={ (event) => {  
+                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
                     <label for="checkbox-8.3">
@@ -94,13 +89,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.state.activeCheckbox['more_1000'] ? true : false  } 
+                    checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('more_1000') >= 0 ? true : false) : false } 
                     name="more_1000" 
                     type="checkbox" 
                     id="checkbox-8.4"
-                    onClick={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event);
+                    onClick={ (event) => {  
+                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
                     <label for="checkbox-8.4">
@@ -112,13 +107,13 @@ class CheckboxBudget extends Component {
                 </div> 
                 <div className="checkbox-block">
                   <input
-                    checked={ this.state.activeCheckbox['undefined'] ? true : false  }  
+                    checked={ this.props.inputData[this.state.queryParamKey] ? 
+                          (this.props.inputData[this.state.queryParamKey].indexOf('undefined') >= 0 ? true : false) : false }  
                     name="undefined" 
                     type="checkbox" 
                     id="checkbox-8.5"
                     onClick={ (event) => { 
-                      this.changeCheckbox(event);
-                      this.props.SEND_JOB_REQUEST_STR(this.props.request, this.state.queryParamKey, event);
+                      this.props.CHANGE_CHECKBOX_DATA_JOB_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
                     <label for="checkbox-8.5">

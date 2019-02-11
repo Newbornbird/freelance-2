@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { SEND_JOB_REQUEST_ARR, 
-  SAVE_CHECKBOX_DATA_JOB, 
-  SEND_JOB_REQUEST_PAYMENT, 
-  GET_LOCATIONS, GET_LANGUAGES, 
-  SEND_JOB_REQUEST_STR } from '../../../actions';
+import { CHANGE_CHECKBOX_DATA_ARR, 
+  CHANGE_CHECKBOX_DATA_SINGLE,
+  CHANGE_INPUT_DATA_PAYMENT,
+  BIG_ACTION, GET_LOCATIONS, GET_LANGUAGES } from '../../../actions';
 import Location from './Location';
 import Language from './Language';
 import CheckboxExp from './CheckboxExp';
@@ -19,60 +19,53 @@ import CheckboxProposal from './CheckboxProposal';
 import CheckboxJobDelivery from './CheckboxJobDelivery';
 
 class PanelCheckboxJob extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      intern: false
-    }
+  constructor(props) {
+    super(props); 
+    
   }
 
+  // componentDidUpdate(prevProps) {
+  //   if(prevProps.location.search !== this.props.location.search) {
+  //     let parseString = queryString.parse(window.location.search);
+  //     this.props.BIG_ACTION(parseString, window.location.pathname);
+  //   }
+  // }
+  
   render() {
     return (
       <div className="panel panel-default">
         <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
-        <CheckboxExp 
-          SEND_JOB_REQUEST_ARR = { this.props.SEND_JOB_REQUEST_ARR }
-          request = { this.props.request } 
-          checkboxDataJob = { this.props.checkboxDataJob }
-          />
+        <CheckboxExp
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
+          inputData = { this.props.inputData } />
         <CheckboxPosted
-          SEND_JOB_REQUEST_STR = { this.props.SEND_JOB_REQUEST_STR }
-          request = { this.props.request } />
-        <CheckboxPlace
-          // SEND_JOB_REQUEST = { this.props.SEND_JOB_REQUEST }
-          request = { this.props.request } />
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = { this.props.inputData } />
+        <CheckboxPlace />
         <Location
-          SEND_JOB_REQUEST_ARR = { this.props.SEND_JOB_REQUEST_ARR }
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
           GET_LOCATIONS = { this.props.GET_LOCATIONS }
           locations = { this.props.locations }
-          checkboxDataJob = {this.props.checkboxDataJob}
-          request = { this.props.request } />
+          inputData = {this.props.inputData} />
         <Language
-          SEND_JOB_REQUEST_ARR = { this.props.SEND_JOB_REQUEST_ARR }
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
           GET_LANGUAGES = { this.props.GET_LANGUAGES }
           languages = { this.props.languages }
-          checkboxDataJob = {this.props.checkboxDataJob}
-          request = { this.props.request } />
+          inputData = {this.props.inputData} />
         <CheckboxAvailability
-          SEND_JOB_REQUEST_ARR = { this.props.SEND_JOB_REQUEST_ARR }
-          checkboxDataJob = { this.props.checkboxDataJob }
-          request = { this.props.request } />
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
+          inputData = {this.props.inputData} />
         <CheckboxPayment
-          SEND_JOB_REQUEST_ARR = { this.props.SEND_JOB_REQUEST_ARR }
-          SAVE_CHECKBOX_DATA_JOB = { this.props.SAVE_CHECKBOX_DATA_JOB }
-          SEND_JOB_REQUEST_PAYMENT = { this.props.SEND_JOB_REQUEST_PAYMENT }
-          checkboxDataJob = { this.props.checkboxDataJob }
-          request = { this.props.request } />
+          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
+          CHANGE_INPUT_DATA_PAYMENT = { this.props.CHANGE_INPUT_DATA_PAYMENT }
+          inputData = {this.props.inputData} />
         <CheckboxBudget
-          SEND_JOB_REQUEST_STR = { this.props.SEND_JOB_REQUEST_STR }
-          request = { this.props.request } />
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = {this.props.inputData} />
         <CheckboxProposal
-          SEND_JOB_REQUEST_STR = { this.props.SEND_JOB_REQUEST_STR }
-          request = { this.props.request } />
-        <CheckboxJobDelivery
-          // SEND_JOB_REQUEST = { this.props.SEND_JOB_REQUEST }
-          request = { this.props.request } />  
+          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          inputData = { this.props.inputData } />
+        <CheckboxJobDelivery />  
       </div>
     )
   }
@@ -80,20 +73,19 @@ class PanelCheckboxJob extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    request: state.request,
-    checkboxDataJob: state.checkboxDataJob,
+    inputData: state.inputData,
     locations: state.locations,
-    languages: state.languages
+    languages: state.languages,
+    // redirectJob: state.status.redirectJob
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // SEND_JOB_REQUEST_POSTED: bindActionCreators(SEND_JOB_REQUEST_POSTED, dispatch),
-    SEND_JOB_REQUEST_ARR: bindActionCreators(SEND_JOB_REQUEST_ARR, dispatch),
-    SAVE_CHECKBOX_DATA_JOB: bindActionCreators(SAVE_CHECKBOX_DATA_JOB, dispatch),
-    SEND_JOB_REQUEST_PAYMENT: bindActionCreators(SEND_JOB_REQUEST_PAYMENT, dispatch),
-    SEND_JOB_REQUEST_STR: bindActionCreators(SEND_JOB_REQUEST_STR, dispatch),
+    CHANGE_CHECKBOX_DATA_ARR: bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch),
+    CHANGE_CHECKBOX_DATA_SINGLE: bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
+    CHANGE_INPUT_DATA_PAYMENT: bindActionCreators(CHANGE_INPUT_DATA_PAYMENT, dispatch),
+    BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch),
     GET_LOCATIONS:  bindActionCreators(GET_LOCATIONS, dispatch),
     GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch)
   }

@@ -18,11 +18,11 @@ class Panel extends Component {
           </div>
           <SortNav 
             meta = { this.props.meta }
-            request={ this.props.request }
-            GET_MORE_JOBS = { this.props.GET_MORE_JOBS }
-            SORT_JOBS = { this.props.SORT_JOBS }
-            SORT_TALENTS = { this.props.SORT_TALENTS }
-            searchTalentIsActive = { this.props.searchTalentIsActive }
+            // request={ this.props.request }
+            // GET_MORE_JOBS = { this.props.GET_MORE_JOBS }
+            SORT = { this.props.SORT }
+            inputData = { this.props.inputData }
+            // searchTalentIsActive = { this.props.searchTalentIsActive }
           />
         </nav>
       </div>

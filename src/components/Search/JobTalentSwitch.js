@@ -6,7 +6,6 @@ class JobTalentSwitch extends Component {
     super(props);
     
   }
-
   render() {
     return (
       <div className="panel panel-default panel-gray job-boxes-filter">
@@ -19,8 +18,10 @@ class JobTalentSwitch extends Component {
           </div>
           <button 
             type="button" 
-            className = {this.props.searchTalentIsActive ? 'btn radio-switcher clearfix right' : 'btn radio-switcher clearfix left'}
-            onClick = { () => {this.props.SWITCH_SEARCH(this.props.searchTalentIsActive)}} >
+            className = {(window.location.pathname === '/board/search/job' ) ? 'btn radio-switcher clearfix left' : 'btn radio-switcher clearfix right'}
+            onClick = { () => {
+              this.props.SWITCH_SEARCH(this.props.pathName)}
+            }>
             <div className="circul-shape">
               <span className="icon icon-check-mark"></span>
             </div>
