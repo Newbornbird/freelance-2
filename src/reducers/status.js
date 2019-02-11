@@ -8,7 +8,7 @@ const status = handleActions(
     
   },
   
-  { pathName: '/board/search/job', redirectIsActive: false }
+  { pathName: '', redirectIsActive: false }
 )
 
 export default status;

@@ -20,7 +20,7 @@ class JobTalentSwitch extends Component {
             type="button" 
             className = {(window.location.pathname === '/board/search/job' ) ? 'btn radio-switcher clearfix left' : 'btn radio-switcher clearfix right'}
             onClick = { () => {
-              this.props.SWITCH_SEARCH(this.props.pathName)}
+              this.props.SWITCH_SEARCH(window.location.pathname)}
             }>
             <div className="circul-shape">
               <span className="icon icon-check-mark"></span>
