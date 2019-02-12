@@ -20,9 +20,10 @@ class TalentList extends Component {
           КЛИК
         </button> */}
         
-        { this.props.talents.map( (user) => (
+        { this.props.talents.map( (user, index) => (
             <TalentBox
               // availability = { user.availability}
+              styleForModal = { index % 2 ? { 'left': '-109%' } : {  } }
               country = { user.country }
               // experience = { user.experience }
               // favorited = { user.favorited }

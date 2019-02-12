@@ -138,7 +138,7 @@ export function BIG_ACTION(parseString, pathName) {
     
     dispatch({
       type: 'CHANGE_INPUT_STRING_VALUE',
-      payload: { 'q': parseString['q'] }
+      payload: { 'q': parseString['q'] ? parseString['q'] : '' }
     })
 
     dispatch({

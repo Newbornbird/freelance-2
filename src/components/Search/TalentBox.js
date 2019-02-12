@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 
 export class TalentBox extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      modalWindowIsOpen: false
+    }
+  }
+
+  openCloseExtraInformation = () => {
+    this.setState({ modalWindowIsOpen: !this.state.modalWindowIsOpen });
+
   }
 
   render() {
     return (
-      <div className="job-box-block">
-        <div className="panel panel-default job-box awarded">
+      <div className="job-box-block" onClick={ this.openCloseExtraInformation }>
+        <div className={ this.state.modalWindowIsOpen ? 
+          "panel panel-default job-box awarded left-details open" :
+          "panel panel-default job-box awarded left-details" }>
           <div className="job-box-header flexbox justify-space-between">
             <div className="job-box-photo-block">
               <div className="job-box-photo bg-cover circul-shape" style={{ 'backgroundImage': 'url' + '(' + this.props.image.url + ')' }}>
@@ -73,7 +83,7 @@ export class TalentBox extends Component {
         <div className="caret-block">
           <span className="caret-top"></span>
         </div>
-        <div className="panel panel-default job-box-details">
+        <div className="panel panel-default job-box-details" style={ this.props.styleForModal }>
           <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
           <div className="flexbox justify-space-between">
             <div className="about-block-wrapper">

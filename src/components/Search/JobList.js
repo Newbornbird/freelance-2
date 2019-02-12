@@ -6,15 +6,33 @@ import { bindActionCreators } from 'redux';
 import JobBox from './JobBox';
 
 class JobList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeModal: ''
+    }
+  }
+
+  closeActiveModal = () => {
+    this.setState({ activeModal: null });
+  }
+
+  makeModalActive = (id) => {
+    this.setState({ activeModal: id });
+  }
 
   render() {
     return (
       <div className="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">
-      {/* <button onClick = { () => console.log(this.props.jobs) }>
-        Показать пропсы
-      </button> */}
-        { this.props.jobs.map( job => (
+       {/* <button onClick={ () => { console.log(this.state) } } >
+
+       </button> */}
+        { this.props.jobs.map( (job, index) => (
           <JobBox
+            closeActiveModal = { this.closeActiveModal }
+            makeModalActive = { this.makeModalActive }
+            activeModal = { this.state.activeModal }
+            styleForModal = { index % 2 ? { 'left': '-109%' } : {  } }
             commitment = { job.commitment } 
             contract_general_notes = { job.contract_general_notes }
             created_at = { job.created_at }

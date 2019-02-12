@@ -88,7 +88,10 @@ export class SearchMain extends Component {
                 <Route path="/board/search/job" component={ PanelCheckboxJob } /> 
               </Switch>
             </div>
-            <div className="col-xs-10 container-fluid job-boxes--jobs">
+            <div className={ 
+              window.location.pathname==='/board/search/job' ? 
+                "col-xs-10 container-fluid job-boxes--jobs" : 
+                "col-xs-10 container-fluid job-boxes--talents"}>
               <div className="flexbox row">
                 <div className="col-xs-12">
                   <Switch>

@@ -8,6 +8,7 @@
     "country-list": "^2.1.0",
     "j-toker": "0.0.10-beta3",
     "language-list": "0.0.3",
+    "moment": "^2.24.0",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

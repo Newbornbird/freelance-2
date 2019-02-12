@@ -47,14 +47,15 @@ class Form extends Component {
             </label>
           </div>
         </div>
-        <a 
-          href="#" 
+        <button
+          style={{ 'border': 'none', 'background': 'none', }} 
+          // href="#" 
           type="submit" 
           className="btn-search"
           onClick = { () => { this.props.CHANGE_CHECKBOX_DATA_NAME(this.props.inputData, this.props.q) } }>
           <i className="icon icon-loupe">
           </i>
-        </a>
+        </button>
         </form>
       </div>
     )
