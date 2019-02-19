@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BtnStartNewProject = (props) => (
-  <div className="panel panel-default panel-btn">
-    <a href="">
-      <i className="icon icon-hand"></i>
-      <span> Start New Project </span>
-    </a>
-  </div>
-)
+
+class BtnStartNewProject extends Component {
+  render () {
+    return(
+      <div className="panel panel-default panel-btn" onClick={ this.props.openModal }>
+        <a >
+          <i className="icon icon-hand"></i>
+          <span> Start New Project </span>
+        </a>
+      </div>
+    )
+  }
+}
+
+
 
 export default BtnStartNewProject;

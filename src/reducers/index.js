@@ -6,6 +6,9 @@ import inputData from './inputData';
 import inputStringValue from './inputStringValue';
 import locations from './locations';
 import languages from './languages';
+import promotions from './promotions';
+import skills from './skills';
+import requestForPostJob from './requestForPostJob';
 import meta from './meta';
 
 // export const initialState = {
@@ -26,5 +29,8 @@ export default combineReducers({
   inputData,
   inputStringValue,
   locations,
-  languages
+  languages,
+  skills,
+  promotions,
+  requestForPostJob
 })

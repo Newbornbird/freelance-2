@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import * as moment from 'moment';
-import 'moment/locale/pt-br';
+// import 'moment/locale/pt-br';
 
 
 class JobBox extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      extraInformationIsOpen: false
-    }
-  }
-
-  // openCloseExtraInformation = () => {
-  //   this.setState({ extraInformationIsOpen: !this.state.extraInformationIsOpen });
-
-  // }
-
-  componentDidUpdate = () => {
-    console.log('job udated')
+    
   }
 
   render() {
@@ -92,15 +81,15 @@ class JobBox extends Component {
                   <span className="text">{ this.props.time_type ? this.props.time_type : 'N/A' }</span>
                 </div>
             </div>
-            <div className="job-box-deskr">
+            <div className="job-box-deskr" style={{ 'height': '100px' }}>
               <div className="text">
                 { this.props.description.substring(0,173) + '...' }
               </div>
               <div className="skill-tags-block clearfix">
-                <div className="skill-tag">HTML5</div>
+                {/* <div className="skill-tag">HTML5</div>f
                 <div className="skill-tag">Node.js</div>
                 <div className="skill-tag">CSS3</div>
-                <div className="skill-tag">PHP</div>
+                <div className="skill-tag">PHP</div> */}
               </div>
             </div>
           </div>
@@ -133,7 +122,7 @@ class JobBox extends Component {
                     <div className="award">
                       <span className="icon icon-badge-solid"></span>
                     </div>
-                    <div className="job-box-photo bg-cover circul-shape">
+                    <div className="job-box-photo bg-cover circul-shape" style={{ 'backgroundImage': 'url' + '(' + this.props.user.image.url + ')' }} >
                     </div>
                     <div className="job-box-rate">
                       <span className="icon icon-star-full"></span>
@@ -147,12 +136,12 @@ class JobBox extends Component {
               
               <div className="info-block">
                 <div className="title">
-                  $7,832 Total Spent 
+                  $0,00 Total Spent 
                 </div>
               </div>
               <div className="info-block">
                 <div className="title">
-                  30  Samples  / 20 jobs
+                  { this.props.user.skill_test_send + ' Skill test / ' + this.props.user.total_jobs + ' jobs' }
                 </div>
               </div>
               <div className="info-block">
@@ -160,8 +149,10 @@ class JobBox extends Component {
                   Languages 
                 </div>
                 <div className="text">
-                  English: <span>fluent</span>;
-                  Russian: <span>native</span>
+                  { this.props.user.languages.length ? 
+                    this.props.user.languages.map( ( lang ) => { return lang } ) : '' }
+                  {/* English: <span>fluent</span>
+                  Russian: <span>native</span> */}
                 </div>
               </div>
               <div className="info-block">
@@ -169,39 +160,41 @@ class JobBox extends Component {
                   Place of Work 
                 </div>
                 <div className="text">
-                  Online
+                  { this.props.user.place_to_work ?  this.props.user.place_to_work : ''}
                 </div>
               </div>
               <div className="info-block info-block--btns">
-                <button className="btn btn-blue-border btn-bold btn-blue-hover btn-with-icon" type="button">
+                {/* <button className="btn btn-blue-border btn-bold btn-blue-hover btn-with-icon" type="button">
                   <div className="button-content">
                     <span className="icon icon-clipboard"></span>
                     <span className="btn-text">Send a bid</span>
                   </div>
-                </button>
+                </button> */}
                 <button className="btn btn-blue-border btn-bold btn-blue-hover btn-with-icon" type="button">
                   <div className="button-content">
                     <span className="icon icon-output"></span>
                     <span className="btn-text">More Info</span>
                   </div>
                 </button>
-                <button className="btn btn-blue-border btn-bold btn-blue-hover btn-with-icon" type="button">
+                {/* <button className="btn btn-blue-border btn-bold btn-blue-hover btn-with-icon" type="button">
                   <div className="button-content">
                     <span className="icon icon-comment"></span>
                     <span className="btn-text">Message</span>
                   </div>
-                </button>	
+                </button>	 */}
               </div>
             </div>
             <div className="job-details-right">
               <div className="job-details-right-header flexbox">
                 <div className="likes flexbox">
                   <span className="icon icon-shape"></span>
+                    
                   <ul className="likes-list list-unstyled">
-                    <li className="like-item like-item--1 bg-cover circul-shape"></li>
-                    <li className="like-item like-item--2 bg-cover circul-shape"></li>
+                    No recommendation yet
+                    {/* <li className="like-item like-item--1 bg-cover circul-shape"></li> */}
+                    {/* <li className="like-item like-item--2 bg-cover circul-shape"></li>
                     <li className="like-item like-item--3 bg-cover circul-shape"></li>
-                    <li className="like-item like-item--1 bg-cover circul-shape"></li>
+                    <li className="like-item like-item--1 bg-cover circul-shape"></li> */}
                   </ul>
                 </div>
                 <div className="stat flexbox justify-space-center flex-wrap">
@@ -231,7 +224,7 @@ class JobBox extends Component {
                 </div>
               </div>
               <div className="job-details-right-body">
-                <div className="job-details-descr">
+                <div className="job-details-descr" >
                   <div className="job-title">
                     { this.props.title }
                   </div>
@@ -245,9 +238,14 @@ class JobBox extends Component {
                 </div>
                 
               </div>
-              <div className="other-details">
+              <div className="other-details" style={{  }}>
                 <div className="panel flexbox justify-space-between panel-blue">
-                  <div className="other-title">Math  Home Tutoring</div>
+                  <div className="other-title">{this.props.promotion_title}
+                    <br/>
+                    <span style={{ 'fontSize': '13px', 'color': '#4b5053', 'fontWeight': 'normal' }}>
+                      { this.props.promotion_description }
+                    </span>    
+                  </div>
                   <span className="btn btn-blue-border btn-bold">Free</span>
                 </div>
               </div>

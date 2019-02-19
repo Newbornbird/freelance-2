@@ -6,14 +6,22 @@ import { GET_TALENTS } from '../../actions';
 import { withRouter } from 'react-router-dom';
 
 class TalentList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeModal: ''
+    }
+  }
 
-  componentDidMount() {
-    
-    
+  closeActiveModal = () => {
+    this.setState({ activeModal: null });
+  }
+
+  makeModalActive = (id) => {
+    this.setState({ activeModal: id });
   }
 
   render() {
-    
     return (
       <div className="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">
         {/* <button onClick={ () => {console.log(this.props)} }>
@@ -22,23 +30,26 @@ class TalentList extends Component {
         
         { this.props.talents.map( (user, index) => (
             <TalentBox
+              closeActiveModal = { this.closeActiveModal }
+              makeModalActive = { this.makeModalActive }
+              activeModal = { this.state.activeModal }
               // availability = { user.availability}
               styleForModal = { index % 2 ? { 'left': '-109%' } : {  } }
               country = { user.country }
               // experience = { user.experience }
               // favorited = { user.favorited }
               full_name = { user.full_name }
-              // id = { user.id }
+              id = { user.id }
               image = { user.image }
-              // languages = { user.languages }
-              // last_seen_at = { user.last_seen_at }
+              languages = { user.languages }
+              last_seen_at = { user.last_seen_at }
               // media = { user.media }
-              // offers = { user.offers }
+              offers = { user.offers }
               // owner = { user.owner }
-              // place_to_work = { user.place_to_work }
+              place_to_work = { user.place_to_work }
               price = { user.price }
               profession = { user.profession }
-              // promotions = { user.promotions }
+              promotions = { user.promotions }
               // saved_count = { user.saved_count }
               skill_tags = { user.skill_tags }
               // length = { user.length }
@@ -48,7 +59,7 @@ class TalentList extends Component {
               key = { user.id }
               />
               
-            ) ) }
+        ) ) }
       </div>
     )
   }

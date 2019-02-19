@@ -17,6 +17,8 @@ import BtnStartNewPromotion from './BtnStartNewPromotion';
 import BtnTellOthers from './BtnTellOthers';
 import JobListFooter from './JobListFooter';
 import TalentList from './TalentList';
+import PostJob from '../PostJob.js/PostJob';
+// import TestModal from '../TestModal';
 import { SWITCH_SEARCH, 
   GET_MORE, CHANGE_CHECKBOX_DATA_NAME,
   SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE } from '../../actions';
@@ -25,9 +27,14 @@ export class SearchMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      queryParams: { }
+      queryParams: { },
+      modalIsOpen: true
 
     }
+  }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: !this.state.modalIsOpen });
   }
 
   componentDidUpdate(prevProps) {
@@ -49,10 +56,12 @@ export class SearchMain extends Component {
               pathname: this.props.pathName,
               search: queryString.stringify(this.props.inputData, { encode: false })
         }} /> : ''}
+        <PostJob isOpen={ this.state.modalIsOpen } openModal={ this.openModal }  />
         <div className="container-fluid">
           <div className="row content-header flexbox">
             <div className="col-xs-2 left-sidebar">
               <Hello />
+              
             </div>
             <div className="col-xs-10">
               <Form 
@@ -106,12 +115,11 @@ export class SearchMain extends Component {
                     />
                 </div>
                 <div className="col-xs-3">
-                  <BtnStartNewProject/>
+                  <BtnStartNewProject openModal={ this.openModal }/>
                   <BtnStartNewPromotion />
                   <BtnTellOthers />
                 </div>
               </div>
-
             </div>
           </div>
         </div>
