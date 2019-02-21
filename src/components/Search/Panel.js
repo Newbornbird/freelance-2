@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import SortNav from './SortNav';
+import SortNavTalent from './SortNavTalent';
 
 class Panel extends Component {
   render() {
@@ -16,14 +18,31 @@ class Panel extends Component {
               </li>
             </ul>
           </div>
-          <SortNav 
+          <Switch>
+            <Route 
+              path="/board/search/talent" 
+              render={ props => 
+                <SortNavTalent 
+                  meta = { this.props.meta } 
+                  SORT = { this.props.SORT } 
+                  inputData = { this.props.inputData } /> } />
+            <Route 
+              path="/board/search/job" 
+              render={ props => 
+                <SortNav 
+                  meta = { this.props.meta } 
+                  SORT = { this.props.SORT } 
+                  inputData = { this.props.inputData } /> } />
+            
+          </Switch>
+          {/* <SortNav 
             meta = { this.props.meta }
             // request={ this.props.request }
             // GET_MORE_JOBS = { this.props.GET_MORE_JOBS }
             SORT = { this.props.SORT }
             inputData = { this.props.inputData }
-            // searchTalentIsActive = { this.props.searchTalentIsActive }
-          />
+            // searchTalentIsActive = { this.props.searchTalentIsActive } /> */}
+          
         </nav>
       </div>
     )

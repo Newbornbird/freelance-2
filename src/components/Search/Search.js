@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigation } from '../Navigation';
+import Navigation  from '../Navigation';
 import  SearchMain from './SearchMain';
 
 class Search extends Component {

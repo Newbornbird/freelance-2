@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SortNav extends Component {
+class SortNavTalent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class SortNav extends Component {
 
   render() {
     return (
-      <div className="sort-nav" key='job'>
+      <div className="sort-nav" key='talent'>
         <span className="sort-nav-title">Sort By</span>
         <button onClick = { this.openCloseFilter } className="btn button">
           <div className= { this.state.isOpen ? "my-select-box open" : "my-select-box" }>
@@ -37,65 +37,65 @@ class SortNav extends Component {
                   <input 
                     type="radio" 
                     name="jobs-sort-option" 
-                    id="Newest" 
-                    value="newest" 
+                    id="Revelance" 
+                    value="revelance" 
                     checked=""
-                    onChange={ (event) => { 
+                    onChange={ (event) => {
                       this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Newest">
+                  <label for="Revelance">
                     <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Newest</span>
+                    <span className="radio-text">Revelance</span>
                   </label>
                 </div>
                 <div className="radio">
                   <input 
                     type="radio" 
                     name="jobs-sort-option" 
-                    id="Highest budget" 
-                    value="budget"
-                    onChange={ (event) => { 
+                    id="Most saved" 
+                    value="saved"
+                    onChange={ (event) => {
                       this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Highest budget">
+                  <label for="Most saved">
                     <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Highest budget</span>
+                    <span className="radio-text">Most saved</span>
                   </label>
                 </div>
                 <div className="radio">
                   <input 
                     type="radio" 
                     name="jobs-sort-option" 
-                    id="Relevance" 
-                    value="relevance"
-                    onChange={ (event) => { 
+                    id="Highest score" 
+                    value="rate"
+                    onChange={ (event) => {
                       this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Relevance">
+                  <label for="Highest score">
                     <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Relevance</span>
+                    <span className="radio-text">Highest score</span>
                   </label>
                 </div>
                 <div className="radio">
                   <input 
                     type="radio" 
                     name="jobs-sort-option" 
-                    id="Long term" 
-                    value="longterm"
+                    id="Most hired" 
+                    value="hired"
                     onChange={ (event) => { 
                       this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Long term">
+                  <label for="Most hired">
                     <span className="check-mark icon icon-check-mark"></span>
-                    <span className="radio-text">Long term</span>
+                    <span className="radio-text">Most hired</span>
                   </label>
                 </div>
               </div>	
@@ -111,4 +111,4 @@ class SortNav extends Component {
   }
 }
 
-export default SortNav;
+export default SortNavTalent;

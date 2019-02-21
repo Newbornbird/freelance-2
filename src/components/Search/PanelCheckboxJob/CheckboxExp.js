@@ -11,7 +11,6 @@ class CheckboxExp extends Component {
   render() {
     return (
       <div className="filter-block">
-        
         <div className="filter-title">
           Experience:
         </div>

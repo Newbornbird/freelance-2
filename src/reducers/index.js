@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import authorization from './authorization';
 import jobs from './jobs';
 import talents from './talents';
 import status from './status';
@@ -10,6 +11,7 @@ import promotions from './promotions';
 import skills from './skills';
 import requestForPostJob from './requestForPostJob';
 import meta from './meta';
+import statusPostJob from './statusPostJob';
 
 // export const initialState = {
 //   jobs: [],
@@ -22,6 +24,7 @@ import meta from './meta';
 // }
 
 export default combineReducers({
+  authorization,
   jobs,
   talents,
   status,
@@ -32,5 +35,6 @@ export default combineReducers({
   languages,
   skills,
   promotions,
-  requestForPostJob
+  requestForPostJob,
+  statusPostJob
 })

@@ -31,7 +31,9 @@ export class TalentBox extends Component {
             </div>
             <div className="job-box-title">
               <div className="job-box-name blue-color">{ this.props.full_name }</div>
-              <div className="job-box-prof">{ this.props.profession ? this.props.profession : '' }</div>
+              <div className="job-box-prof">
+                {/* { this.props.profession ? this.props.profession : '' } */}
+              </div>
               {/* Разобраться с дивом выше. */}
             </div>
             <div className="job-box-rate">
@@ -112,7 +114,9 @@ export class TalentBox extends Component {
                 </div>
                 <div className="job-box-title">
                   <div className="job-box-name blue-color">{ this.props.full_name }</div>
-                  <div className="job-box-prof">{ this.props.profession ? this.props.profession : ''}</div>
+                  <div className="job-box-prof">
+                    { this.props.profession ? this.props.profession.title  : ''}
+                  </div>
                 </div>
               </div>
               {/* <div className="progress-box">
@@ -129,7 +133,6 @@ export class TalentBox extends Component {
               <div className="info-block">
                 <div className="title">
                   Available 
-                  
                 </div>
                 <div className="text">
                   { this.props.availability ?  this.props.availability : ''}
@@ -146,8 +149,8 @@ export class TalentBox extends Component {
                 </div>
                 <div className="text">
                 { this.props.languages[0] ? 
-                  this.props.languages.map( (lang) => { 
-                    return <span>lang<span>fluent</span></span> } ) : '' }
+                  this.props.languages.map( (lang, index) => { 
+                    return <span key={ index }>lang<span>fluent</span></span> } ) : '' }
                 </div>
               </div>
               <div className="info-block">
@@ -218,8 +221,8 @@ export class TalentBox extends Component {
               </div>
               <div className="job-details-right-body">
                 { this.props.offers[0] ?
-                    this.props.offers.map( offer => (
-                      <div className="feedback-item flexbox">
+                    this.props.offers.map( (offer, index) => (
+                      <div className="feedback-item flexbox" key={ index }>
                         <div className="left-col">
                           <div className="item-header">
                             <div className="item-photo circul-shape bg-cover item-photo--1"
@@ -298,7 +301,7 @@ export class TalentBox extends Component {
                 { this.props.promotions[0] ? 
                 this.props.promotions.map( 
                     (prom, index) => (
-                    <div className="panel flexbox justify-space-between panel-blue" 
+                    <div className="panel flexbox justify-space-between panel-blue" key={ index } 
                       style={ index % 2 === 0 ? {  } : { 'backgroundColor': '#ffeecd' } }>
                       <div className="other-title" >
                         { prom.title }

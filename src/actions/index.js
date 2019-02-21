@@ -1,5 +1,44 @@
 import axios from 'axios';
+import Auth from 'j-toker';
 import queryString from 'query-string';
+
+// AUTHORIZATION
+
+export function CHANGE_USERNAME_OR_PASSWORD (event) {
+  return dispatch => {
+    dispatch({
+      type: 'CHANGE_USERNAME_OR_PASSWORD',
+      payload: { [event.target.name]: event.target.value }
+    })
+  }
+}
+
+
+export function SIGN_IN (email, password) {
+  return dispatch => {
+    Auth.emailSignIn({
+      email: email,
+      password: password
+    })
+    .then( (respond) =>  {
+      console.log(respond);
+      dispatch({
+        type: 'SAVE_USER_DATA',
+        payload: { userData: respond.data, isLogin: true } 
+      })
+
+      dispatch({
+        type: 'CHANGE_USERNAME_OR_PASSWORD',
+        payload: { email: '', password: '' } 
+      })
+    })
+    .catch( (resp) => {
+      console.log(resp);
+    });
+  }
+}
+
+// SEARCH
 
 export function CHANGE_CHECKBOX_DATA_ARR (queryParamKey, inputData, event) {
   return dispatch => {
@@ -155,7 +194,7 @@ export function BIG_ACTION(parseString, pathName) {
         }
       )
       .then(respond => {
-        console.log(respond.data.jobs);
+        
         dispatch({
           type: 'GET_JOBS',
           payload: respond.data.jobs
@@ -176,7 +215,7 @@ export function BIG_ACTION(parseString, pathName) {
         }
       )
       .then(respond => {
-        console.log(respond.data);
+        console.log(respond.data.users);
         dispatch({
           type: 'GET_TALENTS',
           payload: respond.data.users
@@ -312,7 +351,7 @@ export function GET_LANGUAGES() {
 
 export function SORT (inputData, queryParamKey, event) {
   return dispatch => {
-
+    console.log(SORT);
     let fullQParams = { ...inputData, [queryParamKey]: event.target.value };
     
     dispatch({
@@ -343,7 +382,7 @@ export function GET_SKILLS() {
       { headers: { 'access-token': token } }
     )
       .then(respond => {
-        console.log(respond);
+        // console.log(respond);
         dispatch({
           type: 'GET_SKILLS',
           payload: respond.data.profession_categories
@@ -377,9 +416,24 @@ export function GET_PROMOTIONS() {
 // Post Job
 export function CHOOSE_CATEGORY (category) {
   return dispatch => {
+    
     dispatch({
       type: 'CHOOSE_CATEGORY',
       payload: category
+    })
+
+    dispatch({
+      type: 'CHANGE_ACTIVE_PROMOTION_CATEGORY',
+      payload: category.name
+    })
+  }
+}
+
+export function CHANGE_ACTIVE_PROMOTION_CATEGORY(name) {
+  return dispatch => {
+    dispatch({
+      type: 'CHANGE_ACTIVE_PROMOTION_CATEGORY',
+      payload: name
     })
   }
 }
@@ -416,17 +470,80 @@ export function CHANGE_CHECKBOX_FOR_POSTJOB(event, queryParamKey) {
   }
 }
 
-export function CHOOSE_PROMOTION(id, promotions) {
+export function MAKE_ACTIVE_CREATING_SKILL_TEST() {
   return dispatch => {
-
-    let promotion = promotions.find( (prom) => prom.id == id );
-
-    console.log(promotion);
+    dispatch({
+      type: 'MAKE_ACTIVE_CREATING_SKILL_TEST',
+      payload: true
+    })
 
     dispatch({
       type: 'CHOOSE_PROMOTION',
-      payload: promotion
+      payload: {  }
     })
+
+    dispatch({
+      type: 'CHANGE_STR_INP_FOR_POSTJOB',
+      payload: { 
+        promotion_title: '', 
+        promotion_description: ''  
+      }
+    })
+
+  }
+}
+
+export function MAKE_INACTIVE_CREATING_SKILL_TEST() {
+  return dispatch => {
+    dispatch({
+      type: 'MAKE_ACTIVE_CREATING_SKILL_TEST',
+      payload: false
+    })
+
+    dispatch({
+      type: 'CHANGE_STR_INP_FOR_POSTJOB',
+      payload: { 
+        promotion_title: '', 
+        promotion_description: ''  
+      }
+    })
+  }
+}
+
+export function CHOOSE_PROMOTION(selectId, currentId, promotions) {
+  return dispatch => {
+
+    if ( selectId === currentId ) {
+      dispatch({
+        type: 'CHOOSE_PROMOTION',
+        payload: {  }
+      })
+  
+      dispatch({
+        type: 'CHANGE_STR_INP_FOR_POSTJOB',
+        payload: { 
+          promotion_title: '', 
+          promotion_description: ''  
+        }
+      })
+    } else {
+      let promotion = promotions.find( (prom) => prom.id == selectId );
+
+      dispatch({
+        type: 'CHOOSE_PROMOTION',
+        payload: promotion
+      })
+  
+      dispatch({
+        type: 'CHANGE_STR_INP_FOR_POSTJOB',
+        payload: { 
+          promotion_title: promotion.title, 
+          promotion_description: promotion.description  
+        }
+      })
+    }
+
+    
   }
 }
 
@@ -441,26 +558,55 @@ export function POST_JOB( request ) {
       'https://floating-atoll-63112.herokuapp.com/api/v1/client_jobs',  
       request, 
       { headers: { 'access-token': token, 'client': client, 'expiry': expiry, 'token-type': tokenType, 'uid': uid } } )
-      // .then(respond => {
-        
-      //   dispatch({
-      //     type: 'CLOSE_MODAL_WINDOW',
-      //   });
+      .then(respond => {
+        console.log(respond);
+        dispatch({
+          type: 'CLOSE_MODAL',
+        });
 
-      //   dispatch({
-      //     type: 'CLEAR_REQUEST_DATA',
-      //   });
+        dispatch({
+          type: 'CLEAR_REQUEST_DATA',
+        });
         
-      //   dispatch({
-      //     type: 'SHOW_SUCCESS_MESSAGE',
-      //     payload: respond.data
-      //   });
-      // })
-      // .catch( (error) => {
-      //   console.log(error);
-      // })
+        dispatch({
+          type: 'SHOW_MESSAGE_SUCCESS_POSTING'          
+        });
+      })
+      .catch( (error) => {
+        console.log(error);
+      })
   }
 }
+
+export function CLOSE_MODAL() {
+  return dispatch => {
+    dispatch({
+      type: 'CLOSE_MODAL',
+    });
+
+    dispatch({
+      type: 'CLEAR_REQUEST_DATA',
+    });
+  }
+}
+
+export function OPEN_MODAL() {
+  return dispatch => {
+    dispatch({
+      type: 'OPEN_MODAL',
+    });
+  }
+}
+
+export function HIDE_MESSAGE_SUCCESS_POSTING() {
+  return dispatch => {
+    dispatch({
+      type: 'HIDE_MESSAGE_SUCCESS_POSTING',
+    });
+  }
+}
+
+
 
 export function GET_BONUS_SKILLS() {
   return dispatch => {

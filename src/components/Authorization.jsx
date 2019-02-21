@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'; 
 import Auth from 'j-toker';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { SIGN_IN, CHANGE_USERNAME_OR_PASSWORD } from '../actions'; 
 
 export const authConfig = Auth.configure({
   apiUrl: 'https://floating-atoll-63112.herokuapp.com/api',
@@ -25,7 +29,7 @@ class Authorization extends Component {
   handleChange = (event) => {
     this.setState(
         {
-            [event.target.name]: event.target.value
+          [event.target.name]: event.target.value
         }
     )
     
@@ -69,12 +73,14 @@ class Authorization extends Component {
       password: this.state.password
     })
     .then( (data) =>  {
+      console.log(data);
+
       this.setState({
         email: '',
         password: '',
         isLogin: true
       });
-      // console.log(data);
+      
     })
     .catch( (resp) => {
       this.setState({
@@ -191,9 +197,9 @@ class Authorization extends Component {
                 type="email" 
                 name="email" 
                 id="loginEmail" 
-                value = { this.state.email }
+                value = { this.props.authorization.email } 
                 onChange = { (event) => {
-                  this.handleChange(event) 
+                  this.props.CHANGE_USERNAME_OR_PASSWORD(event) 
                 }} />
             </FormGroup>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -201,16 +207,17 @@ class Authorization extends Component {
               <Input 
                 type="password" 
                 name="password" 
-                id="examplePassword"
-                value = { this.state.password } 
+                id="exmPassword"
+                value = { this.props.authorization.password } 
                 onChange = { (event) => {
-                  this.handleChange(event) 
+                  this.props.CHANGE_USERNAME_OR_PASSWORD(event) 
                 }} />
             </FormGroup>
             
             <Button
               className='mt-4'
-              onClick = { this.handleSighIn }
+              onClick = { 
+                () => { this.props.SIGN_IN(this.props.authorization.email, this.props.authorization.password)  } }
               >Войти
             </Button>
           </Form>
@@ -220,7 +227,7 @@ class Authorization extends Component {
           {/* { this.isLogin ? <Button onClick = { this.handleSighOut }>Выйти</Button> : <div></div>} */}
           <Button onClick = { this.getJobs }>Get</Button>
         </div>
-        { this.state.isLogin ? (<Redirect to="/board"/>) : <div>Нужно залогиниться</div> }
+        { this.props.authorization.isLogin ? (<Redirect to="/board"/>) : <div>Нужно залогиниться</div> }
         {/* { this.state.isLogin ? (<Redirect to={{ pathname: "/login", search: "?utm=your+face", state: { referrer: 1 } }}/>) : <div>Нужно залогиниться</div> } */}
         {/* { !this.state.isLogin ? <Redirect to="/"/> : <div></div> }  */}
       </div>
@@ -229,4 +236,17 @@ class Authorization extends Component {
   }
 }
 
-export default Authorization;
+const mapStateToProps = (state) => {
+  return {
+    authorization: state.authorization
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    CHANGE_USERNAME_OR_PASSWORD: bindActionCreators(CHANGE_USERNAME_OR_PASSWORD, dispatch), 
+    SIGN_IN: bindActionCreators(SIGN_IN, dispatch) 
+  }
+}
+
+export default withRouter (connect(mapStateToProps, mapDispatchToProps)(Authorization));

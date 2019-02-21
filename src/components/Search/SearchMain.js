@@ -21,20 +21,15 @@ import PostJob from '../PostJob.js/PostJob';
 // import TestModal from '../TestModal';
 import { SWITCH_SEARCH, 
   GET_MORE, CHANGE_CHECKBOX_DATA_NAME,
-  SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE } from '../../actions';
+  SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE, 
+  OPEN_MODAL, HIDE_MESSAGE_SUCCESS_POSTING } from '../../actions';
     
 export class SearchMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      queryParams: { },
-      modalIsOpen: true
-
+      queryParams: { }
     }
-  }
-
-  openModal = () => {
-    this.setState({ modalIsOpen: !this.state.modalIsOpen });
   }
 
   componentDidUpdate(prevProps) {
@@ -56,11 +51,11 @@ export class SearchMain extends Component {
               pathname: this.props.pathName,
               search: queryString.stringify(this.props.inputData, { encode: false })
         }} /> : ''}
-        <PostJob isOpen={ this.state.modalIsOpen } openModal={ this.openModal }  />
+        <PostJob />
         <div className="container-fluid">
           <div className="row content-header flexbox">
             <div className="col-xs-2 left-sidebar">
-              <Hello />
+              <Hello userName = { this.props.authorization.userData.first_name } />
               
             </div>
             <div className="col-xs-10">
@@ -70,7 +65,10 @@ export class SearchMain extends Component {
                 CHANGE_INPUT_STRING_VALUE = { this.props.CHANGE_INPUT_STRING_VALUE }
                 q = { this.props.inputStringValue['q'] }
               />
-              <JobPostStatus />
+              <JobPostStatus 
+                HIDE_MESSAGE_SUCCESS_POSTING = { this.props.HIDE_MESSAGE_SUCCESS_POSTING }
+                successMessage = { this.props.inputStringValue.successMessage }
+                />
             </div>
           </div>
           <div className="row job-boxes-header flexbox">
@@ -103,10 +101,19 @@ export class SearchMain extends Component {
                 "col-xs-10 container-fluid job-boxes--talents"}>
               <div className="flexbox row">
                 <div className="col-xs-12">
-                  <Switch>
-                    <Route path="/board/search/talent" component={ TalentList } />
-                    <Route path="/board/search/job" component={ JobList } />         
-                  </Switch>
+                  { (this.props.talents.length && window.location.pathname === '/board/search/talent') || 
+                    (this.props.jobs.length && window.location.pathname === '/board/search/job') ?
+                    (<Switch>
+                      <Route path="/board/search/talent" component={ TalentList } />
+                      <Route path="/board/search/job" component={ JobList } />         
+                    </Switch>) :
+                    (<div className="noresults noresults--tallents">
+                      <img src="../../images/tallents@2x.png" />
+                      <h2 className="blue-color">We didn’t find anybody</h2>
+                      <p>Please try modifying your search to get more results.</p>
+                    </div>)
+                  }
+                  
                     <JobListFooter
                       meta={this.props.meta}
                       inputData={ this.props.inputData }
@@ -115,7 +122,7 @@ export class SearchMain extends Component {
                     />
                 </div>
                 <div className="col-xs-3">
-                  <BtnStartNewProject openModal={ this.openModal }/>
+                  <BtnStartNewProject OPEN_MODAL={ this.props.OPEN_MODAL }/>
                   <BtnStartNewPromotion />
                   <BtnTellOthers />
                 </div>
@@ -134,7 +141,10 @@ const mapStateToProps = (state) => {
     inputData: state.inputData,
     redirectIsActive: state.status.redirectIsActive,
     meta: state.meta,
-    inputStringValue: state.inputStringValue
+    inputStringValue: state.inputStringValue,
+    jobs: state.jobs,
+    talents: state.talents,
+    authorization: state.authorization
   }
 }
 
@@ -145,7 +155,9 @@ const mapDispatchToProps = (dispatch) => {
     SORT: bindActionCreators(SORT, dispatch),
     CHANGE_CHECKBOX_DATA_NAME: bindActionCreators(CHANGE_CHECKBOX_DATA_NAME, dispatch),
     BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch),
-    CHANGE_INPUT_STRING_VALUE: bindActionCreators(CHANGE_INPUT_STRING_VALUE, dispatch)
+    CHANGE_INPUT_STRING_VALUE: bindActionCreators(CHANGE_INPUT_STRING_VALUE, dispatch),
+    OPEN_MODAL: bindActionCreators(OPEN_MODAL, dispatch),
+    HIDE_MESSAGE_SUCCESS_POSTING: bindActionCreators(HIDE_MESSAGE_SUCCESS_POSTING, dispatch)
   }
 }
 

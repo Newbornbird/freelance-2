@@ -23,11 +23,7 @@ class TalentList extends Component {
 
   render() {
     return (
-      <div className="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">
-        {/* <button onClick={ () => {console.log(this.props)} }>
-          КЛИК
-        </button> */}
-        
+      <div className="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">       
         { this.props.talents.map( (user, index) => (
             <TalentBox
               closeActiveModal = { this.closeActiveModal }
