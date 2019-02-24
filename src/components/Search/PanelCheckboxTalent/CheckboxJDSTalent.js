@@ -26,7 +26,7 @@ class CheckboxJDSTalent extends Component {
               type="checkbox" 
               id="checkbox-2.1" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i_100') >= 0 ? true : false) : false }
+                          (this.props.inputData[this.state.queryParamKey] === 'i_100' ? true : false) : false }
               onClick = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
@@ -44,7 +44,7 @@ class CheckboxJDSTalent extends Component {
               type="checkbox" 
               id="checkbox-2.2" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('m_95') >= 0 ? true : false) : false }
+                          (this.props.inputData[this.state.queryParamKey] === 'm_95' ? true : false) : false }
               onClick = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
@@ -62,7 +62,7 @@ class CheckboxJDSTalent extends Component {
               type="checkbox" 
               id="checkbox-2.3" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i_85_95') >= 0 ? true : false) : false }
+                          (this.props.inputData[this.state.queryParamKey] === 'i_85_95' ? true : false) : false }
               onClick = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
@@ -80,7 +80,7 @@ class CheckboxJDSTalent extends Component {
               type="checkbox" 
               id="checkbox-2.4" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('l_85') >= 0 ? true : false) : false }
+                          (this.props.inputData[this.state.queryParamKey] === 'l_85' ? true : false) : false }
               onClick = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>

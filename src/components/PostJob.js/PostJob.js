@@ -5,39 +5,36 @@ import Modal from 'react-responsive-modal';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import SkillTagItem from './SkillTagItem';
 import { GET_SKILLS, GET_PROMOTIONS, 
   CHOOSE_CATEGORY, CHOOSE_SKILL_CATEGORY, 
   CHOOSE_PROMOTION, CHANGE_STR_INP_FOR_POSTJOB, 
-  GET_BONUS_SKILLS, CHANGE_CHECKBOX_FOR_POSTJOB, POST_JOB,
+  GET_SKILL_TAGS, CHANGE_CHECKBOX_FOR_POSTJOB, POST_JOB,
   CLOSE_MODAL, OPEN_MODAL, 
   CHANGE_ACTIVE_PROMOTION_CATEGORY,
   MAKE_ACTIVE_CREATING_SKILL_TEST,
-  MAKE_INACTIVE_CREATING_SKILL_TEST } from '../../actions'
+  MAKE_INACTIVE_CREATING_SKILL_TEST,
+  ADD_SKILL_TAG, DELETE_SKILL_TAG,
+  OPEN_SKILL_TAGS_LIST } from '../../actions'
 
 
 class PostJob extends Component {
   constructor() {
     super();
     this.state = {
-      // createSkillTest: true,
       promotionList: false,
       subCategoryList: false,
-      // activeCategory: '',
       activeSubCategory: '',
       hourlyPriceIsDisabled: false,
       periodTypeIsOpened: false,
       consent: false,
-      chosenPromotion: ''
+      chosenPromotion: '',
     }
   }
 
   makeCreateSkillTestActive = () => {
     this.setState({ createSkillTest: !this.state.createSkillTest });
   }
-
-  // makeCreateSkillTestUnActive = () => {
-  //   this.setState({ createSkillTest: false });
-  // }
 
   togglePromotionList = () => { 
     this.setState({ promotionList: !this.state.promotionList });
@@ -104,15 +101,14 @@ class PostJob extends Component {
           open={ this.props.statusPostJob.modal } 
           onClose={ this.props.CLOSE_MODAL } 
           styles={ { modal: { 'border-radius': '5px' } } }> 
-          <button onClick={ () => { console.log(this.props) } }>
-            Props
-          </button>
-          <button onClick={ () => { console.log(this.state) } }>
-            State
-          </button>
+          {/* <button onClick={ () => { this.props.GET_SKILL_TAGS() } }>
+            Get skills
+          </button> */}
 
           <div className="post-job-title blue-color">Post a Job</div>
-          <div className="post-job-form panel panel-default" style={ { 'overflow': 'visible' } }>
+          <div className="post-job-form panel panel-default" 
+            style={ { 'overflow': 'visible' } } 
+            onClick={ () => {  } }>
             <div className="form-block">
               <div className="post-job-inputs form-block-wrapper">
                 
@@ -192,24 +188,59 @@ class PostJob extends Component {
                             </div>
                         ) ) : '' }
                       </form>
+                      
                     </div>
                   </div>
                   <div className="skill-sub-block">
                     <form className="form-group">
-                      <input type="text" className="form-control" placeholder="Write new skill" />
-                      <button className="add-btn btn btn-blue">
+                      <input 
+                        type="text" 
+                        className="form-control" 
+                        placeholder="Write new skill" 
+                        onChange={ (event) => { this.props.GET_SKILL_TAGS(event) } }
+                        onFocus={ () => { this.props.OPEN_SKILL_TAGS_LIST() } }
+                      />
+                      {/* <button className="add-btn btn btn-blue">
                         <span className="icon icon-add"></span>
-                      </button>
+                      </button> */}
                     </form>
+                    <ul style={ this.props.skill_tags.skill_tags.length && this.props.skill_tags.dropDownMenu ? 
+                    {
+                      boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+                      width: '250px', 
+                      maxHeight: '250px', 
+                      backgroundColor: 'white', 
+                      marginTop: '-10px',
+                      border: 'solid 1px blue',
+                      overflow: 'auto',
+                      listStyleType: 'none',
+                      position: 'absolute'
+                    } :
+                    {
+                      display: 'none'
+                    }
+                     }>
+                      { this.props.skill_tags.skill_tags.length ? 
+                          this.props.skill_tags.skill_tags.map( (skill_tag, index) => ( 
+                            <SkillTagItem  
+                              ADD_SKILL_TAG = { this.props.ADD_SKILL_TAG }
+                              key={ index }
+                              requestForPostJob = { this.props.requestForPostJob }
+                              skill_tags = { this.props.skill_tags }
+                              name = { skill_tag.name }
+                              index = { index } />
+                             
+                        ) ) : ''}
+                    </ul>
                     <div className="skill-tags-block clearfix">
-                      {/* <div class="skill-tag">Math</div>
-                      <div class="skill-tag">Trigonometry</div>
-                      <div class="skill-tag">Calculus</div>
-                      <div class="skill-tag">Trigonometry</div>
-                      <div class="skill-tag">Calculus</div>
-                      <div class="skill-tag">Trigonometry</div>
-                      <div class="skill-tag">Calculus</div>
-                      <div class="skill-tag">Math</div> */}
+                      { this.props.requestForPostJob.skill_tags[0] ? this.props.requestForPostJob.skill_tags.map( (skill_tag, index) => (
+                        <div 
+                          className="skill-tag"
+                          key={ index }
+                          onClick={ () => { this.props.DELETE_SKILL_TAG( this.props.requestForPostJob.skill_tags, index ) } }>
+                          { skill_tag.name }
+                        </div>
+                      ) ) : ''}
                     </div>
                   </div>
                 </div>
@@ -657,16 +688,16 @@ class PostJob extends Component {
                         'float': 'left', 
                         'width': '78px', 
                         'height': '33px', 
-                        'border-right': '0',
-                        'text-align': 'center',
-                        'border-color': '#cccccc',
-                        'box-shadow': 'none',
+                        'borderRight': '0',
+                        'textAlign': 'center',
+                        'borderColor': '#cccccc',
+                        'boxShadow': 'none',
                         'padding': '6px 12px',
-                        'font-size': '14px',
-                        'background-color': '#fff',
-                        'background-image': 'none',
+                        'fontSize': '14px',
+                        'backgroundColor': '#fff',
+                        'backgroundImage': 'none',
                         'border': '1px solid #d9dada',
-                        'border-radius': '30px',
+                        'borderRadius': '30px',
                         'borderBottomRightRadius': '0',
                         'borderTopRightRadius': '0' } }
                         value={ this.props.requestForPostJob.period }
@@ -1043,7 +1074,8 @@ const mapStateToProps = (state) => {
     skills: state.skills,
     promotions: state.promotions,
     requestForPostJob: state.requestForPostJob,
-    statusPostJob: state.statusPostJob
+    statusPostJob: state.statusPostJob,
+    skill_tags: state.skill_tags
   }
 }
 
@@ -1059,10 +1091,13 @@ const mapDispatchToProps = (dispatch) => {
     CHANGE_CHECKBOX_FOR_POSTJOB: bindActionCreators(CHANGE_CHECKBOX_FOR_POSTJOB, dispatch),
     MAKE_ACTIVE_CREATING_SKILL_TEST: bindActionCreators(MAKE_ACTIVE_CREATING_SKILL_TEST, dispatch),
     MAKE_INACTIVE_CREATING_SKILL_TEST: bindActionCreators(MAKE_INACTIVE_CREATING_SKILL_TEST, dispatch),
-    GET_BONUS_SKILLS: bindActionCreators(GET_BONUS_SKILLS, dispatch),
+    GET_SKILL_TAGS: bindActionCreators(GET_SKILL_TAGS, dispatch),
+    ADD_SKILL_TAG: bindActionCreators(ADD_SKILL_TAG, dispatch),
+    DELETE_SKILL_TAG: bindActionCreators(DELETE_SKILL_TAG, dispatch),
     POST_JOB: bindActionCreators(POST_JOB, dispatch),
     CLOSE_MODAL: bindActionCreators(CLOSE_MODAL, dispatch),
-    OPEN_MODAL: bindActionCreators(OPEN_MODAL, dispatch)
+    OPEN_MODAL: bindActionCreators(OPEN_MODAL, dispatch),
+    OPEN_SKILL_TAGS_LIST: bindActionCreators(OPEN_SKILL_TAGS_LIST, dispatch)
   }
 }
 

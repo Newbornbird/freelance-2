@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Auth from 'j-toker';
 import queryString from 'query-string';
+import JobBox from '../components/Search/JobBox';
 
 // AUTHORIZATION
 
@@ -12,7 +13,6 @@ export function CHANGE_USERNAME_OR_PASSWORD (event) {
     })
   }
 }
-
 
 export function SIGN_IN (email, password) {
   return dispatch => {
@@ -35,6 +35,39 @@ export function SIGN_IN (email, password) {
     .catch( (resp) => {
       console.log(resp);
     });
+  }
+}
+
+export function SIGN_OUT() {
+  return dispatch => {
+    Auth.signOut();
+    
+
+    dispatch({
+      type: 'SWITCH_SEARCH',
+      payload: '/'
+    })
+
+    dispatch({
+      type: 'MAKE_LOGIN_FALSE'
+    })
+
+    dispatch({
+      type: 'MAKE_REDIRECT_ACTIVE',
+      payload: true
+    })
+
+    localStorage.clear();
+  }
+  
+}
+
+export function MAKE_REDIRECT_UNACTIVE() {
+  return dispatch => {
+    dispatch({
+      type: 'MAKE_REDIRECT_UNACTIVE',
+      payload: false
+    })
   }
 }
 
@@ -541,6 +574,11 @@ export function CHOOSE_PROMOTION(selectId, currentId, promotions) {
           promotion_description: promotion.description  
         }
       })
+
+      dispatch({
+        type: 'MAKE_ACTIVE_CREATING_SKILL_TEST',
+        payload: false
+      })
     }
 
     
@@ -606,29 +644,79 @@ export function HIDE_MESSAGE_SUCCESS_POSTING() {
   }
 }
 
+// POST JOB, ADD SKILL TAG
 
-
-export function GET_BONUS_SKILLS() {
+export function GET_SKILL_TAGS (event) {
   return dispatch => {
+
+    dispatch({
+      type: 'CHANGE_SKILL_TAGS_INPUT_VALUE',
+      payload: event.target.value
+    })
 
     let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
     axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills/search',
-    { params: { q: 'c' },
+    { params: { q: event.target.value },
       headers: { 'access-token': token }
     }
     )
       .then(respond => {
         console.log(respond);
-        // dispatch({
-        //   type: 'GET_BONUS_SKILLS',
-        //   payload: respond.data.categories
-        // })
+        dispatch({
+          type: 'GET_SKILL_TAGS',
+          payload: respond.data.skills
+        })
+
+        dispatch({
+          type: 'TOGGLE_DROP_DOWN_MENU',
+          payload: true
+        })
       })
       .catch( (error) => {
         console.log(error);
       })
   }
+}
 
+export function OPEN_SKILL_TAGS_LIST() {
+  return dispatch => {
+    dispatch({
+      type: 'TOGGLE_DROP_DOWN_MENU',
+      payload: true
+    })
+  }
+}
+
+export function ADD_SKILL_TAG(skillTagArr, skillTag) {
+  return dispatch => {
+
+    let arr = [ ...skillTagArr ];
+    arr.push( skillTag );
+
+    dispatch( {
+      type: 'ADD_SKILL_TAG',
+      payload: arr
+    } )
+
+    dispatch({
+      type: 'TOGGLE_DROP_DOWN_MENU',
+      payload: false
+    })
+  }
+}
+
+export function DELETE_SKILL_TAG(skillTagArr, index) {
+  return dispatch => {
+
+    let arr = [ ...skillTagArr ];
+    arr.splice( index, 1 );
+
+    console.log(arr);
+    dispatch( {
+      type: 'ADD_SKILL_TAG',
+      payload: arr
+    } )
+  }
 }
 
 

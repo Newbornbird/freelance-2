@@ -28,7 +28,10 @@ class LocationTalent extends Component {
         <div className={ this.state.isOpen ? "filter-dropdown-block clearfix open" : "filter-dropdown-block clearfix" } >
           <button onClick={this.openCloseFilter} type="button" className="btn btn-default dropdown-toggle">
             <div className="flexbox justify-space-between">
-              <span className="text">Country</span>
+              <span className="text">{'Country ' + '(' + 
+                (this.props.inputData[this.state.queryParamKey] ?
+                this.props.inputData[this.state.queryParamKey].split(',').length : 'All')  
+                + ')'}</span>
               <span className="icon icon-down-arrow"></span>
             </div>
           </button>

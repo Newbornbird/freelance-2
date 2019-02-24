@@ -3,8 +3,20 @@ import logo from '../images/logo.png';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { SIGN_OUT } from '../actions'
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuIsOpen: false
+    }
+  }
+
+  toggleMenu = () => {
+    this.setState({ menuIsOpen: !this.state.menuIsOpen })
+  }
+  
   render() {
     return(
       <nav className="main-top-nav flexbox justify-space-between">
@@ -53,11 +65,11 @@ class Navigation extends Component {
               </ul>
             </div>
           </section>
-          <div className="user-box">
+          <div className="user-box" onClick={ this.toggleMenu }>
             <div 
               className="user-photo" 
-              // style={ this.props.authorization.userData ? 
-              //           { 'backgroundImage': 'url(' + this.props.authorization.userData.image.url + ')' } : {  } }
+              style={ this.props.authorization.userData ? 
+                        { 'backgroundImage': 'url(' + this.props.authorization.userData.image.url + ')' } : {  } }
             >
               <i className="notif"></i>
             </div>
@@ -67,11 +79,15 @@ class Navigation extends Component {
               <span className="caret">
               </span>
             </a>
-            <ul className="dropdown-menu">
-              <li><a href="#" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#massege-dialogs-modal">Messages</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">One more separated link</a></li>
+            <ul className="dropdown-menu" style={ this.state.menuIsOpen ? { 'display': 'block' } : {  } }>
+              <li><a data-toggle="modal" data-target="#sign-up-modal" style={ { 'cursor': 'pointer' } }>USER SETTINGS</a></li>
+              <li><a data-toggle="modal" data-target="#massege-dialogs-modal" style={ { 'cursor': 'pointer' } }>PAYMENT ACCOUNT</a></li>
+              <li onClick={ this.props.SIGN_OUT } >
+                <a style={ { 'cursor': 'pointer' } }>
+                  LOG OUT
+                </a>
+              </li>
+              
             </ul>
           </div>
           </div>
@@ -89,7 +105,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // SWITCH_SEARCH: bindActionCreators(SWITCH_SEARCH, dispatch)
+    SIGN_OUT: bindActionCreators(SIGN_OUT, dispatch)
   }
 }
 

@@ -149,8 +149,8 @@ class JobBox extends Component {
                   Languages 
                 </div>
                 <div className="text">
-                  { this.props.user.languages.length ? 
-                    this.props.user.languages.map( ( lang ) => { return lang } ) : '' }
+                  {/* { this.props.user.languages.length ? 
+                    this.props.user.languages.map( ( lang ) => { return lang } ) : '' } */}
                   {/* English: <span>fluent</span>
                   Russian: <span>native</span> */}
                 </div>

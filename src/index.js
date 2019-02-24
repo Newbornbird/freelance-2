@@ -10,15 +10,28 @@ import rootReducer from './reducers';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
-import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  // stateReconciler: hardSet,
+  whitelist: [ 'authorization' ]
+}
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+// const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+let store = createStore(persistedReducer, applyMiddleware(thunk));
+
+let persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>    
   </Provider>,
     document.getElementById('root'));

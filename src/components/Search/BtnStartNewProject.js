@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class BtnStartNewProject extends Component {
   render () {
     return(
-      <div className="panel panel-default panel-btn" onClick={ this.props.OPEN_MODAL }>
+      <div className="panel panel-default panel-btn" onClick={ this.props.OPEN_MODAL } style={{ cursor: 'pointer' }}>
         <a >
           <i className="icon icon-hand"></i>
           <span> Start New Project </span>

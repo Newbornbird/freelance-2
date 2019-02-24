@@ -18,7 +18,6 @@ import BtnTellOthers from './BtnTellOthers';
 import JobListFooter from './JobListFooter';
 import TalentList from './TalentList';
 import PostJob from '../PostJob.js/PostJob';
-// import TestModal from '../TestModal';
 import { SWITCH_SEARCH, 
   GET_MORE, CHANGE_CHECKBOX_DATA_NAME,
   SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE, 

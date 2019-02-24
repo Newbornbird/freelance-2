@@ -12,6 +12,7 @@ import skills from './skills';
 import requestForPostJob from './requestForPostJob';
 import meta from './meta';
 import statusPostJob from './statusPostJob';
+import skill_tags from './skill_tags';
 
 // export const initialState = {
 //   jobs: [],
@@ -35,6 +36,7 @@ export default combineReducers({
   languages,
   skills,
   promotions,
+  skill_tags,
   requestForPostJob,
   statusPostJob
 })

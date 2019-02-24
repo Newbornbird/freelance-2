@@ -6,7 +6,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import Auth from 'j-toker';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { SIGN_IN, CHANGE_USERNAME_OR_PASSWORD } from '../actions'; 
+import { SIGN_IN, CHANGE_USERNAME_OR_PASSWORD,
+  MAKE_REDIRECT_UNACTIVE } from '../actions'; 
 
 export const authConfig = Auth.configure({
   apiUrl: 'https://floating-atoll-63112.herokuapp.com/api',
@@ -67,68 +68,9 @@ class Authorization extends Component {
       });
   };
 
-  handleSighIn = () => {
-    Auth.emailSignIn({
-      email: this.state.email,
-      password: this.state.password
-    })
-    .then( (data) =>  {
-      console.log(data);
-
-      this.setState({
-        email: '',
-        password: '',
-        isLogin: true
-      });
-      
-    })
-    .catch( (resp) => {
-      this.setState({
-        email: '',
-        password: '',
-        errors: resp.data.errors
-      });
-      
-    });
-  };
-
-  handleSighOut = () => {
-    Auth.signOut();
+  componentDidMount() {
+    this.props.MAKE_REDIRECT_UNACTIVE();
   }
-
-  getJobs = () => {
-    let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
-    axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/jobs/search',
-      { params: { q: {'exp':'junior,expert'} },
-        headers: { 'access-token': token }
-      }
-    )
-      .then(res => {
-        const jobs = res.data;
-        console.log(jobs)
-      })
-      .catch( (error) => {
-        console.log(error);
-      } )
-  }
-
-  getTalents = () => {
-    let token = JSON.parse(localStorage.getItem('authHeaders'))['access-token'];
-    axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/tellents/search',
-      { params: { q: {} },
-        headers: { 'access-token': token }
-      }
-    )
-      .then(respond => {
-        console.log(respond);
-        
-      })
-      .catch( (error) => {
-        console.log(error);
-      } )
-  }
-
-
 
   render() {
     return (
@@ -245,7 +187,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     CHANGE_USERNAME_OR_PASSWORD: bindActionCreators(CHANGE_USERNAME_OR_PASSWORD, dispatch), 
-    SIGN_IN: bindActionCreators(SIGN_IN, dispatch) 
+    SIGN_IN: bindActionCreators(SIGN_IN, dispatch),
+    MAKE_REDIRECT_UNACTIVE: bindActionCreators(MAKE_REDIRECT_UNACTIVE, dispatch)
   }
 }
 
