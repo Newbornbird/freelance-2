@@ -4,11 +4,6 @@ import * as moment from 'moment';
 
 
 class JobBox extends Component {
-  constructor(props) {
-    super(props);
-
-    
-  }
 
   render() {
     return (
@@ -83,7 +78,7 @@ class JobBox extends Component {
             </div>
             <div className="job-box-deskr" style={{ 'height': '100px' }}>
               <div className="text">
-                { this.props.description.substring(0,173) + '...' }
+                { this.props.description.length > 172 ? this.props.description.substring(0,173) + '...' : this.props.description}
               </div>
               <div className="skill-tags-block clearfix">
                 {/* <div className="skill-tag">HTML5</div>f

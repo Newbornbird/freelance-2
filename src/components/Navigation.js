@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.png';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { SIGN_OUT } from '../actions'
@@ -24,7 +24,10 @@ class Navigation extends Component {
           <a className="logo-link" href="index.html"><img src={logo} height="39" width="auto" alt='logo'/></a>
         </div>
         <div type="button" className="humburger-icon">
-          <button type="button" className="btn btn-bg-transparent"><span className="icon icon-menu"></span></button>
+          <button type="button" className="btn btn-bg-transparent">
+            <span className="icon icon-menu">
+            </span>
+          </button>
         </div>
         <section className="nav-mobile flexbox justify-space-between">
           <section className="nav-tablet flexbox justify-space-center">
@@ -50,17 +53,19 @@ class Navigation extends Component {
             </div>
             <div className="nav-list">
               <ul className="flexbox justify-space-between">
-                <li className="active">
-                    <a href="#">FIND <div className="caret"></div></a>
+                <li className={ window.location.pathname === '/board/search/job' ? "active" : ""}>
+                  <Link to='/board/search/job'>FIND <div className="caret"></div></Link>
+                    {/* <a ></a> */}
+                </li>
+                <li className={ window.location.pathname === '/board/skills' ? "active" : ""}>
+                  <Link to='/board/skills'>YOUR OFFICE <div className="caret"></div></Link>    
+                    {/* <a >YOUR OFFICE <div className="caret"></div></a> */}
                 </li>
                 <li>
-                    <a href="profile.html">YOUR OFFICE <div className="caret"></div></a>
+                    <a >HOW IT WORKS <div className="caret"></div></a>
                 </li>
                 <li>
-                    <a href="#">HOW IT WORKS <div className="caret"></div></a>
-                </li>
-                <li>
-                    <a href="#">ASK US <div className="caret"></div></a>
+                    <a >ASK US <div className="caret"></div></a>
                 </li>
               </ul>
             </div>

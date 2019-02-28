@@ -13,6 +13,8 @@ import requestForPostJob from './requestForPostJob';
 import meta from './meta';
 import statusPostJob from './statusPostJob';
 import skill_tags from './skill_tags';
+import usersSkills from './usersSkills';
+import addingSkillsStatus from './addingSkillsStatus'
 
 // export const initialState = {
 //   jobs: [],
@@ -38,5 +40,7 @@ export default combineReducers({
   promotions,
   skill_tags,
   requestForPostJob,
-  statusPostJob
+  statusPostJob,
+  usersSkills,
+  addingSkillsStatus
 })

@@ -10,7 +10,7 @@ const requestForPostJob = handleActions(
     ADD_SKILL_TAG: (state, action) => ( { ...state, skill_tags: [ ...action.payload ] } ),
     CLEAR_REQUEST_DATA: (state, action) => ( { category: {  }, title: '', commitment: '', contract_general_notes: '', description: '', hourly_price: '', level: '', payment: '',
     period: '1', period_type: 'week', price: '', promotion: {  }, promotion_description: '', promotion_title: '', skill_tags: [], time_type: '',
-    hourly_price: '' } )
+    } )
   }
   ,
   { category: {  }, title: '', commitment: '', contract_general_notes: '', description: '', level: '', payment: '',
