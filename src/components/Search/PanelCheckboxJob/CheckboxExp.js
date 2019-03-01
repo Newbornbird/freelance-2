@@ -19,7 +19,6 @@ class CheckboxExp extends Component {
             <input 
               onClick = { (event) => {
                  this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
-                // this.props.changeLocation(event, this.state.queryParamKey)
               } }
               name="intern" 
               type="checkbox" 
@@ -39,7 +38,6 @@ class CheckboxExp extends Component {
             <input 
               onClick = { ( event ) => {
                  this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
-                // this.props.changeLocation(event, this.state.queryParamKey)
               } }
               name="junior" 
               type="checkbox" 
@@ -59,7 +57,6 @@ class CheckboxExp extends Component {
             <input
               onClick = { ( event ) => {
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
-                // this.props.changeLocation(event, this.state.queryParamKey)
               } }
               name="senior" 
               type="checkbox" 
@@ -79,7 +76,6 @@ class CheckboxExp extends Component {
             <input 
               onClick = { ( event ) => {
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
-                // this.props.changeLocation(event, this.state.queryParamKey)
               } }
               name="expert" 
               type="checkbox" 

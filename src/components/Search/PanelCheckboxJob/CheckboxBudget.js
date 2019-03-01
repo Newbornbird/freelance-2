@@ -6,8 +6,6 @@ class CheckboxBudget extends Component {
     this.state = {
       isOpen: false,
       queryParamKey: 'bud'
-      // activeCheckbox: {}
-      
     }
   }
 

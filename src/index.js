@@ -17,8 +17,6 @@ const persistConfig = {
   whitelist: [ 'authorization' ]
 }
 
-// const store = createStore(rootReducer, applyMiddleware(thunk));
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 let store = createStore(persistedReducer, applyMiddleware(thunk));

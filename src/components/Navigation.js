@@ -55,11 +55,9 @@ class Navigation extends Component {
               <ul className="flexbox justify-space-between">
                 <li className={ window.location.pathname === '/board/search/job' ? "active" : ""}>
                   <Link to='/board/search/job'>FIND <div className="caret"></div></Link>
-                    {/* <a ></a> */}
                 </li>
                 <li className={ window.location.pathname === '/board/skills' ? "active" : ""}>
                   <Link to='/board/skills'>YOUR OFFICE <div className="caret"></div></Link>    
-                    {/* <a >YOUR OFFICE <div className="caret"></div></a> */}
                 </li>
                 <li>
                     <a >HOW IT WORKS <div className="caret"></div></a>

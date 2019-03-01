@@ -3,12 +3,10 @@ import SkillTagItemForSkills from './SkillTagItemForSkills';
 
 
 class Step2 extends Component {
+  
   render() {
     return (
       <div className="step-2">
-      {/* <button onClick={ () => { console.log(this.props) } }>
-       prp step2
-      </button> */}
         <div className="skill-subcat">
           <div className="flexbox justify-space-between">
             <div className="skill-block">

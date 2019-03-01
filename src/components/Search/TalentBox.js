@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import * as moment from 'moment';
 export class TalentBox extends Component {
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   modalWindowIsOpen: false
-    // }
-  }
-
+  
   render() {
     return (
       <div className="job-box-block" onClick={ () => { this.props.makeModalActive(this.props.id) } }>
-        {/* <button onClick={ () => {console.log(this.props)} }>
-          КЛИК
-        </button> */}
         <div className={ this.props.activeModal === this.props.id ? 
           "panel panel-default job-box awarded left-details open" :
           "panel panel-default job-box awarded left-details" }>
@@ -73,10 +64,6 @@ export class TalentBox extends Component {
               </div>
               <div className="skill-tags-block clearfix">
                 { this.props.skill_tags.map( tag => (<div key={ tag.id } className="skill-tag">{ tag.name }</div>) ) }
-
-                {/* <div className="skill-tag">Math</div>
-                <div className="skill-tag">Trigonometry</div>
-                <div className="skill-tag">Calculus</div> */}
               </div>
             </div>
           </div>
@@ -119,17 +106,6 @@ export class TalentBox extends Component {
                   </div>
                 </div>
               </div>
-              {/* <div className="progress-box">
-                <div className="progress-info">
-                  <span className="progress-perc">90%</span> job success
-                </div>
-                <a href="#" className="progress-title">
-                  <div className="progress">
-                    <div className="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style={{"width": "90%"}}>
-                    </div>
-                  </div>
-                </a>
-              </div> */}
               <div className="info-block">
                 <div className="title">
                   Available 
@@ -320,18 +296,6 @@ export class TalentBox extends Component {
                         Free
                       </span>
                     </div> ) }
-                {/* <div className="panel flexbox justify-space-between panel-blue">
-                  <div className="other-title">Math  Home Tutoring</div>
-                  <span className="btn btn-blue-border btn-bold">Free</span>
-                </div>
-                <div className="panel flexbox justify-space-between panel-orange">
-                  <div className="other-title">Math  Home Tutoring</div>
-                  <span className="btn btn-blue-border btn-bold">Free</span>
-                </div>
-                <div className="panel flexbox justify-space-between panel-pink">
-                  <div className="other-title">Math  Home Tutoring</div>
-                  <span className="btn btn-blue-border btn-bold">Free</span>
-                </div> */}
               </div>
             </div>
           </div>

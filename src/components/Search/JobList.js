@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { GET_JOBS } from '../../actions';
 import JobBox from './JobBox';
 
 class JobList extends Component {
@@ -24,9 +23,6 @@ class JobList extends Component {
   render() {
     return (
       <div className="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">
-       {/* <button onClick={ () => { console.log(this.state) } } >
-
-       </button> */}
         { this.props.jobs.map( (job, index) => (
           <JobBox
             closeActiveModal = { this.closeActiveModal }
@@ -71,7 +67,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // GET_JOBS: bindActionCreators(GET_JOBS, dispatch),  
+    
   }
 
 }

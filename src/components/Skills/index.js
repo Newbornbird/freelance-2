@@ -11,7 +11,8 @@ import { GET_USERS_SKILLS, GET_SKILLS,
 	OPEN_SKILL_TAGS_LIST, ADD_USERS_SKILLS,
 	GO_TO_THE_NEXT_STEP, GO_TO_THE_PREVIOUS_STEP,
 	DELETE_USERS_SKILLS, CHOOSE_CATEGORY_FOR_SKILLS,
-	EDIT_USERS_SKILLS, DELETE_SKILL_TAG_FOR_SKILLS } from '../../actions';
+	EDIT_USERS_SKILLS, DELETE_SKILL_TAG_FOR_SKILLS,
+	CLOSE_SKILL_TAGS_LIST } from '../../actions';
 
 class Skills extends Component {
 	constructor(props) {
@@ -21,15 +22,6 @@ class Skills extends Component {
   render() {
     return (
       <div className='wrapper'>
-				{/* <button onClick={ this.props.GET_USERS_SKILLS }>
-					user's skills
-				</button>
-				<button onClick={ this.props.GET_SKILLS }>
-					skills
-				</button>
-				<button onClick={ this.props.GET_PROMOTIONS }>
-					promotions
-				</button> */}
 				<Navigation/>
 				<div className="content">
 					<div className="container-fluid">
@@ -56,6 +48,7 @@ class Skills extends Component {
 										CHOOSE_CATEGORY_FOR_SKILLS = { this.props.CHOOSE_CATEGORY_FOR_SKILLS }
 										EDIT_USERS_SKILLS = { this.props.EDIT_USERS_SKILLS }
 										DELETE_SKILL_TAG_FOR_SKILLS = { this.props.DELETE_SKILL_TAG_FOR_SKILLS }
+										CLOSE_SKILL_TAGS_LIST = { this.props.CLOSE_SKILL_TAGS_LIST }
 									/>
 								</div> 
 							</div>
@@ -91,7 +84,8 @@ const mapDispatchToProps = (dispatch) => {
 		DELETE_USERS_SKILLS: bindActionCreators(DELETE_USERS_SKILLS, dispatch),
 		CHOOSE_CATEGORY_FOR_SKILLS: bindActionCreators(CHOOSE_CATEGORY_FOR_SKILLS, dispatch),
 		EDIT_USERS_SKILLS: bindActionCreators(EDIT_USERS_SKILLS, dispatch),
-		DELETE_SKILL_TAG_FOR_SKILLS: bindActionCreators(DELETE_SKILL_TAG_FOR_SKILLS, dispatch)
+		DELETE_SKILL_TAG_FOR_SKILLS: bindActionCreators(DELETE_SKILL_TAG_FOR_SKILLS, dispatch),
+		CLOSE_SKILL_TAGS_LIST: bindActionCreators(CLOSE_SKILL_TAGS_LIST, dispatch)
   }
 }
 

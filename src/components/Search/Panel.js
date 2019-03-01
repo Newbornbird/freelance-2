@@ -35,14 +35,6 @@ class Panel extends Component {
                   inputData = { this.props.inputData } /> } />
             
           </Switch>
-          {/* <SortNav 
-            meta = { this.props.meta }
-            // request={ this.props.request }
-            // GET_MORE_JOBS = { this.props.GET_MORE_JOBS }
-            SORT = { this.props.SORT }
-            inputData = { this.props.inputData }
-            // searchTalentIsActive = { this.props.searchTalentIsActive } /> */}
-          
         </nav>
       </div>
     )

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'; 
 import Auth from 'j-toker';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { SIGN_IN, CHANGE_USERNAME_OR_PASSWORD,
   MAKE_REDIRECT_UNACTIVE } from '../actions'; 

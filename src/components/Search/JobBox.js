@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as moment from 'moment';
-// import 'moment/locale/pt-br';
+
 
 
 class JobBox extends Component {
@@ -8,8 +8,6 @@ class JobBox extends Component {
   render() {
     return (
       <div className="job-box-block" onClick={ () => { this.props.makeModalActive(this.props.id) } }>
-        {/* <div style={{ 'width': '10px', 'height': '10px', 'background-color': 'black' }}> 
-        </div> */}
         <div 
           className={ this.props.activeModal === this.props.id ? 
             "panel panel-default job-box left-details open" : 
@@ -18,7 +16,6 @@ class JobBox extends Component {
             <div className="job-box-title">
               <div className="post-date">
                 { moment(this.props.created_at).fromNow() }
-                {/* { Math.floor((Date.now() - Date.parse(this.props.created_at)) / 1000 / 60 / 60) + ' hours ago' } */}
               </div> 
               <div className="job-title">
                 { this.props.title }
@@ -78,13 +75,10 @@ class JobBox extends Component {
             </div>
             <div className="job-box-deskr" style={{ 'height': '100px' }}>
               <div className="text">
-                { this.props.description.length > 172 ? this.props.description.substring(0,173) + '...' : this.props.description}
+                { this.props.description.length > 172 ? this.props.description.substring(0,173) + '...' : this.props.description }
               </div>
               <div className="skill-tags-block clearfix">
-                {/* <div className="skill-tag">HTML5</div>f
-                <div className="skill-tag">Node.js</div>
-                <div className="skill-tag">CSS3</div>
-                <div className="skill-tag">PHP</div> */}
+                {/* <div className="skill-tag">HTML5</div> */}
               </div>
             </div>
           </div>
@@ -93,7 +87,6 @@ class JobBox extends Component {
               <br/>
               <span style={{ 'fontSize': '13px', 'color': '#4b5053' }}>{ this.props.promotion_description }</span>
             </div>
-            {/* <div>{this.props.promotion_description}</div> */}
             <button className="btn btn-blue btn-bold">Free</button>
           </div>
         </div>
@@ -225,13 +218,8 @@ class JobBox extends Component {
                   </div>
                   <div className="job-descr-text">
                     <p>{ this.props.description }</p>
-                    {/* <p>Must be excellent at design/frontend/backend programming in the popular programming languages. You will combine elements from our current with a modified theme site on the Wordpress platform.</p>
-                    <p>The new site will be responsive/mobile.</p>
-                    <p>The new site should load quickly and be user friendly on Mac, PC, Android phone/tablet, Apple phone/tablet and Windows phone/tablet, Chrome, IE, Windows, Opera and Firefox browsers. Once these items are complete, if things go well we will hire your company as a site administrator on an hourly basis (performing changes when required). Your company should have excellent and excellent rating and feedback. You should be able to quickly complete assignments. Please submit your website portfolio (links of sites you have created).</p>
-                    <p>Make sure all links you submit are working links (not dead links). IMPORTANT: Please DO NOT submit websites you have not created. This will disqualify you. Please be prepared to show us proof of the work you have performed on all websites you have created.</p> */}
                   </div>
                 </div>
-                
               </div>
               <div className="other-details" style={{  }}>
                 <div className="panel flexbox justify-space-between panel-blue">

@@ -10,10 +10,6 @@ class Form extends Component {
     }
   }
 
-  // changeQueryParamValue = (event) => {
-  //   this.setState( { queryParamValue: event.target.value } );
-  // }
-
   render() {
     return(
       <div className="search-form">
@@ -29,7 +25,6 @@ class Form extends Component {
             type="text" 
             className="form-control" 
             placeholder="Search"
-            // onChange={ (event) => { this.changeQueryParamValue(event) } }
             onChange={ (event) => { this.props.CHANGE_INPUT_STRING_VALUE(event) } }
             value={ this.props.q }  
             />
@@ -49,7 +44,6 @@ class Form extends Component {
         </div>
         <button
           style={{ 'border': 'none', 'background': 'none', }} 
-          // href="#" 
           type="submit" 
           className="btn-search"
           onClick = { () => { this.props.CHANGE_CHECKBOX_DATA_NAME(this.props.inputData, this.props.q) } }>

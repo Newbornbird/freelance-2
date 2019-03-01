@@ -112,12 +112,11 @@ export class SearchMain extends Component {
                       <p>Please try modifying your search to get more results.</p>
                     </div>)
                   }
-                  
                     <JobListFooter
                       meta={this.props.meta}
                       inputData={ this.props.inputData }
                       GET_MORE = { this.props.GET_MORE }
-                      // SORT_JOBS = { this.props.SORT_JOBS }
+                      
                     />
                 </div>
                 <div className="col-xs-3">

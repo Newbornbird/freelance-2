@@ -68,13 +68,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // SEND_TALENT_REQUEST_STR: bindActionCreators(SEND_TALENT_REQUEST_STR, dispatch),
-    // SEND_TALENT_REQUEST_ARR: bindActionCreators(SEND_TALENT_REQUEST_ARR, dispatch),
     GET_LOCATIONS:  bindActionCreators(GET_LOCATIONS, dispatch),
     GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch),
     CHANGE_CHECKBOX_DATA_ARR:  bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch), 
     CHANGE_CHECKBOX_DATA_SINGLE:  bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
-    // CHANGE_CHECKBOX_DATA_PAYMENT:  bindActionCreators(CHANGE_CHECKBOX_DATA_PAYMENT, dispatch),
     BIG_ACTION:  bindActionCreators(BIG_ACTION, dispatch)
   }
 }

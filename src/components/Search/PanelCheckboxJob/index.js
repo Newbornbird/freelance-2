@@ -23,13 +23,6 @@ class PanelCheckboxJob extends Component {
     super(props); 
     
   }
-
-  // componentDidUpdate(prevProps) {
-  //   if(prevProps.location.search !== this.props.location.search) {
-  //     let parseString = queryString.parse(window.location.search);
-  //     this.props.BIG_ACTION(parseString, window.location.pathname);
-  //   }
-  // }
   
   render() {
     return (
@@ -76,7 +69,6 @@ const mapStateToProps = (state) => {
     inputData: state.inputData,
     locations: state.locations,
     languages: state.languages,
-    // redirectJob: state.status.redirectJob
   }
 }
 

@@ -54,7 +54,6 @@ class TalentList extends Component {
               total_rate = { user.total_rate }
               key = { user.id }
               />
-              
         ) ) }
       </div>
     )
@@ -66,13 +65,6 @@ const mapStateToProps = (state) => {
     talents: state.talents
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     GET_TALENTS: bindActionCreators(GET_TALENTS, dispatch),  
-//   }
-
-// }
 
 export default withRouter (connect(mapStateToProps)(TalentList));
 

@@ -5,39 +5,6 @@ import Step3 from './Step3';
 
 
 class RightCol extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // currentStep: 3,
-      chosenCategory: ''
-    }
-  }
-
-  chooseCategory = (event, id) => {
-    this.setState({ chosenCategory: 
-      { 
-        name: event.target.name, 
-        id 
-      } 
-    })
-  }
-
-  // goToTheNextStep = () => {
-  //   if ( this.state.currentStep === 3 ) {
-  //     this.setState( { currentStep: 1 } );
-  //   } else {
-  //       this.setState( { currentStep: this.state.currentStep + 1 } );
-  //   }
-  // }
-
-  // goToThePreviousStep = () => {
-  //   if ( this.state.currentStep === 1 ) {
-  //     this.setState( { currentStep: 3});
-  //   } else {
-  //       this.setState( { currentStep: this.state.currentStep - 1 });
-  //   }
-  // }
 
   render() {
     return (
@@ -95,6 +62,7 @@ class RightCol extends Component {
                                                 GET_SKILL_TAGS = { this.props.GET_SKILL_TAGS }
                                                 OPEN_SKILL_TAGS_LIST = { this.props.OPEN_SKILL_TAGS_LIST }
                                                 DELETE_SKILL_TAG_FOR_SKILLS = { this.props.DELETE_SKILL_TAG_FOR_SKILLS }
+                                                CLOSE_SKILL_TAGS_LIST = {this.props.CLOSE_SKILL_TAGS_LIST }
                                                 
                                                 /> :
             (this.props.addingSkillsStatus.step === 3) ? <Step3 

@@ -688,6 +688,15 @@ export function OPEN_SKILL_TAGS_LIST() {
   }
 }
 
+export function CLOSE_SKILL_TAGS_LIST() {
+  return dispatch => {
+    dispatch({
+      type: 'TOGGLE_DROP_DOWN_MENU',
+      payload: false
+    })
+  }
+}
+
 export function ADD_SKILL_TAG(skillTagArr, skillTag) {
   return dispatch => {
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './bootstrap/css/bootstrap.min.css';
 import './styles/media.css'
 import './styles/styles.css';
 import './App.css';

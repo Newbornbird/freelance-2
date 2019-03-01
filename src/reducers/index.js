@@ -16,16 +16,6 @@ import skill_tags from './skill_tags';
 import usersSkills from './usersSkills';
 import addingSkillsStatus from './addingSkillsStatus'
 
-// export const initialState = {
-//   jobs: [],
-//   talents: [],
-//   status: { searchTalentIsActive: true },
-//   checkboxDataJob: {exp: [], loc: [] },
-//   locations: [],
-//   languages: []
-  
-// }
-
 export default combineReducers({
   authorization,
   jobs,

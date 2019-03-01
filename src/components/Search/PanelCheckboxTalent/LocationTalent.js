@@ -64,10 +64,8 @@ class LocationTalent extends Component {
                     </div>
                   )   
                 } ) }
-                
               </div>
             </div>
-            
           </div>
         </div>
       </div>

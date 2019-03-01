@@ -22,7 +22,6 @@ class SkillTagItemForSkills extends Component {
   render() {
     return (
         <li 
-          // key={ index }
           style={ this.state.isActive ? 
             {
               backgroundColor: '#f5f5f5', 

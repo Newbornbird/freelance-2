@@ -61,7 +61,6 @@ class LanguageTalent extends Component {
                       </div>
                     )
                   } ) }
-                
               </div>
             </div>
           </div>
