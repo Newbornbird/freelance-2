@@ -45,7 +45,7 @@ class SortNavTalent extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Revelance">
+                  <label htmlFor="Revelance">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Revelance</span>
                   </label>
@@ -61,7 +61,7 @@ class SortNavTalent extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Most saved">
+                  <label htmlFor="Most saved">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Most saved</span>
                   </label>
@@ -77,7 +77,7 @@ class SortNavTalent extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Highest score">
+                  <label htmlFor="Highest score">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Highest score</span>
                   </label>
@@ -93,7 +93,7 @@ class SortNavTalent extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Most hired">
+                  <label htmlFor="Most hired">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Most hired</span>
                   </label>

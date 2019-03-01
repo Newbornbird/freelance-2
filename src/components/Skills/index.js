@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Navigation from '../Navigation';
@@ -15,10 +15,6 @@ import { GET_USERS_SKILLS, GET_SKILLS,
 	CLOSE_SKILL_TAGS_LIST } from '../../actions';
 
 class Skills extends Component {
-	constructor(props) {
-		super(props);
-	}
-
   render() {
     return (
       <div className='wrapper'>

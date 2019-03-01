@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom';
 
 class JobTalentSwitch extends Component {
 
-  constructor(props) {
-    super(props);
-    
-  }
   render() {
     return (
       <div className="panel panel-default panel-gray job-boxes-filter">
         <div className="search-filter radio-block flexbox justify-space-center">
           <div className="radio">
-            <input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter" checked=""/>
+            <input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter"/>
             <label htmlFor="jobs-filter-2">
               <span className="radio-text"><Link to="/board/search/job">Jobs</Link></span>
             </label>

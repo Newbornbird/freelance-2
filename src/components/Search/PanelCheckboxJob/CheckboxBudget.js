@@ -39,10 +39,10 @@ class CheckboxBudget extends Component {
                     name='i0_100' 
                     type="checkbox" 
                     id="checkbox-8.1"
-                    onClick={ (event) => {  
+                    onChange={ (event) => {  
                       this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } } >
                   </input>
-                    <label for="checkbox-8.1">
+                    <label htmlFor="checkbox-8.1">
                       <span className="filter-checkbox">
                         <span className="icon icon-check-mark"></span>
                       </span>
@@ -56,11 +56,11 @@ class CheckboxBudget extends Component {
                     name="i100_300" 
                     type="checkbox" 
                     id="checkbox-8.2"
-                    onClick={ (event) => { 
+                    onChange={ (event) => { 
                       this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
-                    <label for="checkbox-8.2">
+                    <label htmlFor="checkbox-8.2">
                       <span className="filter-checkbox">
                         <span className="icon icon-check-mark"></span>
                       </span>
@@ -74,11 +74,11 @@ class CheckboxBudget extends Component {
                     name="i300_1000" 
                     type="checkbox" 
                     id="checkbox-8.3"
-                    onClick={ (event) => {  
+                    onChange={ (event) => {  
                       this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
-                    <label for="checkbox-8.3">
+                    <label htmlFor="checkbox-8.3">
                       <span className="filter-checkbox">
                         <span className="icon icon-check-mark"></span>
                       </span>
@@ -92,11 +92,11 @@ class CheckboxBudget extends Component {
                     name="more_1000" 
                     type="checkbox" 
                     id="checkbox-8.4"
-                    onClick={ (event) => {  
+                    onChange={ (event) => {  
                       this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
-                    <label for="checkbox-8.4">
+                    <label htmlFor="checkbox-8.4">
                       <span className="filter-checkbox">
                         <span className="icon icon-check-mark"></span>
                       </span>
@@ -110,11 +110,11 @@ class CheckboxBudget extends Component {
                     name="undefined" 
                     type="checkbox" 
                     id="checkbox-8.5"
-                    onClick={ (event) => { 
+                    onChange={ (event) => { 
                       this.props.CHANGE_CHECKBOX_DATA_JOB_SINGLE(this.state.queryParamKey, this.props.inputData, event)
                     } }>
                   </input>
-                    <label for="checkbox-8.5">
+                    <label htmlFor="checkbox-8.5">
                       <span className="filter-checkbox">
                         <span className="icon icon-check-mark"></span>
                       </span>

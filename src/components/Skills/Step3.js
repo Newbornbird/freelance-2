@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Step3 extends Component {
 
   componentDidMount() {
@@ -12,7 +11,7 @@ class Step3 extends Component {
       <div className="step-3">
         { this.props.usersSkills
           .filter( ( skill ) => skill.selected === true )
-          .map( (skill, index) => (
+          .map( (skill) => (
             <div className="skill-subcat skill-subcat--item" key={ skill.id }>
               <div className="flexbox justify-space-between">
                 <div className="skill-block">
@@ -23,7 +22,7 @@ class Step3 extends Component {
                           .filter( skill_category => skill_category.selected === true )
                           .map( (skill_category, index) => (
                             <div className="checkbox-block" key={ skill_category.id }>
-                              <input type="checkbox" id={"math-" + index} checked={ true }/>
+                              <input type="checkbox" id={"math-" + index} defaultChecked/>
                               <label htmlFor={"math-" + index}>
                                 <span className="checkbox-circle">
                                   <span className="icon icon-check-mark"></span>
@@ -43,13 +42,17 @@ class Step3 extends Component {
                   </div>
                 </div>
               </div>
-              <div className="skill-block-footer">
-                <a style={ { cursor: 'pointer' } } onClick = { () => { this.props.DELETE_USERS_SKILLS(skill.id, this.props.usersSkills) } }>
+              <div className="skill-block-footer" style={ { fontSize: '13px', color: '#15a4fa' } }>
+                <button 
+                  style={ { background: 'none', border: 'none' } } 
+                  onClick = { () => { this.props.DELETE_USERS_SKILLS(skill.id, this.props.usersSkills) } }>
                   Delete
-                </a>
-                <a style={ { cursor: 'pointer' } } onClick = { () => { this.props.EDIT_USERS_SKILLS(skill.name, skill.id) } }>
+                </button>
+                <button 
+                  style={ { background: 'none', border: 'none' } } 
+                  onClick = { () => { this.props.EDIT_USERS_SKILLS(skill.name, skill.id) } }>
                   Edit
-                </a>
+                </button>
               </div>
             </div>
           ) ) }

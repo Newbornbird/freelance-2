@@ -36,7 +36,7 @@ class Navigation extends Component {
                 <input type="text" className="form-control" placeholder="Search"/>
                 <div className="search-filter radio-block">
                 <div className="radio">
-                  <input type="radio" name="optionsRadios" id="option-jobs" value="option1" checked/>
+                  <input type="radio" name="optionsRadios" id="option-jobs" value="option1" defaultChecked/>
                   <label htmlFor="option-jobs">
                     <span className="radio-text">Jobs</span>
                   </label>
@@ -48,7 +48,7 @@ class Navigation extends Component {
                   </label>
                 </div>
               </div>
-              <a href="" type="submit" className="btn-search"><i className="icon icon-loupe"></i></a>
+              <a href={ window.location.pathname } type="submit" className="btn-search"><i className="icon icon-loupe"></i></a>
             </form>
             </div>
             <div className="nav-list">
@@ -60,10 +60,10 @@ class Navigation extends Component {
                   <Link to='/board/skills'>YOUR OFFICE <div className="caret"></div></Link>    
                 </li>
                 <li>
-                    <a >HOW IT WORKS <div className="caret"></div></a>
+                    <a href={ window.location.pathname }>HOW IT WORKS <div className="caret"></div></a>
                 </li>
                 <li>
-                    <a >ASK US <div className="caret"></div></a>
+                    <a href={ window.location.pathname }>ASK US <div className="caret"></div></a>
                 </li>
               </ul>
             </div>
@@ -77,11 +77,11 @@ class Navigation extends Component {
               <i className="notif"></i>
             </div>
             <div className="user-box-nav dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               { this.props.authorization.userData.full_name }
               <span className="caret">
               </span>
-            </a>
+            </span>
             <ul className="dropdown-menu" style={ this.state.menuIsOpen ? { 'display': 'block' } : {  } }>
               <li><a data-toggle="modal" data-target="#sign-up-modal" style={ { 'cursor': 'pointer' } }>USER SETTINGS</a></li>
               <li><a data-toggle="modal" data-target="#massege-dialogs-modal" style={ { 'cursor': 'pointer' } }>PAYMENT ACCOUNT</a></li>

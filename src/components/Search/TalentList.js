@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import TalentBox from './TalentBox';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { GET_TALENTS } from '../../actions';
 import { withRouter } from 'react-router-dom';
 
 class TalentList extends Component {

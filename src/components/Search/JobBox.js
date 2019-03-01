@@ -26,7 +26,7 @@ class JobBox extends Component {
                 <div className="job-box-photo-block">
                   <div 
                     className="job-box-photo bg-cover circul-shape" 
-                    style={{ 'backgroundImage': 'url' + '(' + this.props.user.image.url + ')' }}>
+                    style={{ 'backgroundImage': `url( ${this.props.user.image.url} )` }}>
                     <i className="notif"></i>
                   </div>
                 </div>
@@ -110,7 +110,9 @@ class JobBox extends Component {
                     <div className="award">
                       <span className="icon icon-badge-solid"></span>
                     </div>
-                    <div className="job-box-photo bg-cover circul-shape" style={{ 'backgroundImage': 'url' + '(' + this.props.user.image.url + ')' }} >
+                    <div 
+                      className="job-box-photo bg-cover circul-shape" 
+                      style={{ 'backgroundImage': `url( ${this.props.user.image.url} )` }} >
                     </div>
                     <div className="job-box-rate">
                       <span className="icon icon-star-full"></span>

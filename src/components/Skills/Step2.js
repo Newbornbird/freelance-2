@@ -82,8 +82,8 @@ class Step2 extends Component {
               </ul>
               <div className="skill-tags-block clearfix">
                 { this.props.usersSkills[this.props.addingSkillsStatus.chosenCategory.id - 1].skill_tags.length ? 
-                    this.props.usersSkills[this.props.addingSkillsStatus.chosenCategory.id - 1].skill_tags.map( skill_tag => (
-                  <div className="skill-tag" 
+                    this.props.usersSkills[this.props.addingSkillsStatus.chosenCategory.id - 1].skill_tags.map( (skill_tag, index) => (
+                  <div className="skill-tag" key={index}
                     onClick={ () => { this.props.DELETE_SKILL_TAG_FOR_SKILLS(
                       this.props.addingSkillsStatus.chosenCategory.id, 
                       this.props.usersSkills, 

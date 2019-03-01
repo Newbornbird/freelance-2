@@ -12,7 +12,7 @@ export class TalentBox extends Component {
             <div className="job-box-photo-block">
               <div 
                 className="job-box-photo bg-cover circul-shape" 
-                style={ this.props.image.url ? { 'backgroundImage': 'url' + '(' + this.props.image.url + ')' } : { } }
+                style={ this.props.image.url ? { 'backgroundImage': `url(${this.props.image.url})` } : { } }
                 >
                 <i className="notif"></i>
                 <i className="award">
@@ -67,7 +67,7 @@ export class TalentBox extends Component {
               </div>
             </div>
           </div>
-          <div className="job-box-footer flexbox justify-space-between" style={{ 'min-height': '80px' }}>
+          <div className="job-box-footer flexbox justify-space-between" style={{ 'minHeight': '80px' }}>
             <div className="additional-info blue-color"> 
               { this.props.promotions[0] ? this.props.promotions[0].title : 'The user has not promoted himself yet' }
               <br/>
@@ -96,7 +96,7 @@ export class TalentBox extends Component {
             <div className="about-block-wrapper">
               <div className="photo-block">
                 <div className="job-box-photo bg-cover circul-shape" 
-                  style={{ 'backgroundImage': 'url' + '(' + this.props.image.url + ')' }}
+                  style={{ 'backgroundImage': `url(${this.props.image.url})` }}
                 >
                 </div>
                 <div className="job-box-title">
@@ -202,7 +202,7 @@ export class TalentBox extends Component {
                         <div className="left-col">
                           <div className="item-header">
                             <div className="item-photo circul-shape bg-cover item-photo--1"
-                              style={{ 'backgroundImage': 'url' + '(' + offer.job.user.image.url + ')' }}>
+                              style={{ 'backgroundImage': `url(${offer.job.user.image.url})` }}>
 
                             </div>
                             <div className="item-name blue-color">{ offer.job.user.full_name }</div>

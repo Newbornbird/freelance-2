@@ -17,7 +17,7 @@ class CheckboxExp extends Component {
         <div className="checkbox-list-block clearfix">
           <div className="checkbox-block">
             <input 
-              onClick = { (event) => {
+              onChange = { (event) => {
                  this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }
               name="intern" 
@@ -36,7 +36,7 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              onClick = { ( event ) => {
+              onChange = { ( event ) => {
                  this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }
               name="junior" 
@@ -46,7 +46,7 @@ class CheckboxExp extends Component {
                           (this.props.inputData[this.state.queryParamKey].indexOf('junior') >= 0 ? true : false) : false }
             >
             </input>
-            <label for="checkbox-1.2">
+            <label htmlFor="checkbox-1.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -55,7 +55,7 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input
-              onClick = { ( event ) => {
+              onChange = { ( event ) => {
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }
               name="senior" 
@@ -65,7 +65,7 @@ class CheckboxExp extends Component {
                           (this.props.inputData[this.state.queryParamKey].indexOf('senior') >= 0 ? true : false) : false }
             >
             </input>
-            <label for="checkbox-1.3">
+            <label htmlFor="checkbox-1.3">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -74,7 +74,7 @@ class CheckboxExp extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              onClick = { ( event ) => {
+              onChange = { ( event ) => {
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }
               name="expert" 
@@ -84,7 +84,7 @@ class CheckboxExp extends Component {
                           (this.props.inputData[this.state.queryParamKey].indexOf('expert') >= 0 ? true : false) : false }
             >
             </input>
-            <label for="checkbox-1.4">
+            <label htmlFor="checkbox-1.4">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

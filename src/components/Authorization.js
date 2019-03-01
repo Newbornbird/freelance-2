@@ -74,7 +74,7 @@ class Authorization extends Component {
   render() {
     return (
       <div style={{ 'width': '400px', 'margin': 'auto' }}>
-        <div style={ {'border': 'solid 2px red', 'padding': '10px', 'border-radius': '10px' } }>
+        <div style={ {'border': 'solid 2px red', 'padding': '10px', 'borderRadius': '10px' } }>
           <Form>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <Label for="firstName" className="mr-sm-2">Name</Label>

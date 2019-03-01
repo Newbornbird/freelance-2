@@ -24,10 +24,10 @@ class CheckboxProposal extends Component {
               name='i0_5' 
               type="checkbox" 
               id="checkbox-9.1"
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
-            <label for="checkbox-9.1">
+            <label htmlFor="checkbox-9.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -41,10 +41,10 @@ class CheckboxProposal extends Component {
               name='i5_10' 
               type="checkbox" 
               id="checkbox-9.2"
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
-            <label for="checkbox-9.2">
+            <label htmlFor="checkbox-9.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -58,10 +58,10 @@ class CheckboxProposal extends Component {
               name='i10_20' 
               type="checkbox" 
               id="checkbox-9.3"
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
-            <label for="checkbox-9.3">
+            <label htmlFor="checkbox-9.3">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -75,10 +75,10 @@ class CheckboxProposal extends Component {
               name='m_20' 
               type="checkbox" 
               id="checkbox-9.4"
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
-            <label for="checkbox-9.4">
+            <label htmlFor="checkbox-9.4">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -92,10 +92,10 @@ class CheckboxProposal extends Component {
               name="undefined" 
               type="checkbox" 
               id="checkbox-9.5"
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
             </input>
-            <label for="checkbox-9.5">
+            <label htmlFor="checkbox-9.5">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

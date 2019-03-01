@@ -15,11 +15,6 @@ import CheckboxAvailabilityTalent from './CheckboxAvailabilityTalent';
 import CheckboxPlaceTalent from './CheckboxPlaceTalent';
 
 class PanelCheckboxTalent extends Component {
-  constructor(props) {
-    super(props);
-    
-  }
-
   render() {
     return (
       <div className="panel panel-default">

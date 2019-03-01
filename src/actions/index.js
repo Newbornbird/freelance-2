@@ -1,7 +1,5 @@
 import axios from 'axios';
 import Auth from 'j-toker';
-import queryString from 'query-string';
-import JobBox from '../components/Search/JobBox';
 
 // AUTHORIZATION
 
@@ -41,8 +39,6 @@ export function SIGN_IN (email, password) {
 export function SIGN_OUT() {
   return dispatch => {
     Auth.signOut();
-    
-
     dispatch({
       type: 'SWITCH_SEARCH',
       payload: '/'
@@ -56,10 +52,7 @@ export function SIGN_OUT() {
       type: 'MAKE_REDIRECT_ACTIVE',
       payload: true
     })
-
-    // localStorage.clear();
   }
-  
 }
 
 export function MAKE_REDIRECT_UNACTIVE() {
@@ -544,7 +537,7 @@ export function MAKE_INACTIVE_CREATING_SKILL_TEST() {
   }
 }
 
-export function CHOOSE_PROMOTION(selectId, currentId, promotions) {
+export function CHOOSE_PROMOTION( selectId, currentId, promotions ) {
   return dispatch => {
 
     if ( selectId === currentId ) {
@@ -561,7 +554,7 @@ export function CHOOSE_PROMOTION(selectId, currentId, promotions) {
         }
       })
     } else {
-      let promotion = promotions.find( (prom) => prom.id == selectId );
+      let promotion = promotions.find( (prom) => prom.id === selectId );
 
       dispatch({
         type: 'CHOOSE_PROMOTION',
@@ -845,15 +838,12 @@ export function ADD_USERS_SKILLS(request) {
       { headers: { 'access-token': token, 'client': client, 'expiry': expiry, 'token-type': tokenType, 'uid': uid } }
     )
       .then(respond => {
-        console.log(respond)
 
         dispatch({
           type: 'GO_TO_THE_SOME_STEP',
           payload: 3
         })
-        
       })
-      
       .catch( (error) => {
         console.log(error);
       })

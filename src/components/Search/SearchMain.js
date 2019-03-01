@@ -17,7 +17,7 @@ import BtnStartNewPromotion from './BtnStartNewPromotion';
 import BtnTellOthers from './BtnTellOthers';
 import JobListFooter from './JobListFooter';
 import TalentList from './TalentList';
-import PostJob from '../PostJob.js/PostJob';
+import PostJob from '../PostJob';
 import { SWITCH_SEARCH, 
   GET_MORE, CHANGE_CHECKBOX_DATA_NAME,
   SORT, BIG_ACTION, CHANGE_INPUT_STRING_VALUE, 
@@ -107,7 +107,7 @@ export class SearchMain extends Component {
                       <Route path="/board/search/job" component={ JobList } />         
                     </Switch>) :
                     (<div className="noresults noresults--tallents">
-                      <img src="../../images/tallents@2x.png" />
+                      <img src="../../images/tallents@2x.png" alt="Have no results" />
                       <h2 className="blue-color">We didn’t find anybody</h2>
                       <p>Please try modifying your search to get more results.</p>
                     </div>)

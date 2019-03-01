@@ -22,12 +22,12 @@ class CheckboxAvailability extends Component {
               id="checkbox-6.1"
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey].indexOf('per_week_10') >= 0 ? true : false) : false }
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
 
             </input>
-            <label for="checkbox-6.1">
+            <label htmlFor="checkbox-6.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -41,11 +41,11 @@ class CheckboxAvailability extends Component {
               id="checkbox-6.2"
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey].indexOf('per_week_up_to_30') >= 0 ? true : false) : false }
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
-            <label for="checkbox-6.2">
+            <label htmlFor="checkbox-6.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -58,11 +58,11 @@ class CheckboxAvailability extends Component {
               type="checkbox" id="checkbox-6.3"
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
-            <label for="checkbox-6.3">
+            <label htmlFor="checkbox-6.3">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -76,11 +76,11 @@ class CheckboxAvailability extends Component {
               id="checkbox-6.4"
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey].indexOf('decide_later') >= 0 ? true : false) : false }
-              onClick={ (event) => { 
+              onChange={ (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
               } }>
             </input>
-            <label for="checkbox-6.4">
+            <label htmlFor="checkbox-6.4">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

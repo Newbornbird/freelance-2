@@ -48,15 +48,12 @@ class RightCol extends Component {
                                                 usersSkills = { this.props.usersSkills }
                                                 addingSkillsStatus = { this.props.addingSkillsStatus } 
                                                 GO_TO_THE_NEXT_STEP = { this.props.GO_TO_THE_NEXT_STEP }
-                                                chooseCategory = { this.chooseCategory }
-                                                chosenCategory = { this.state.chosenCategory } 
                                                 CHOOSE_CATEGORY_FOR_SKILLS = { this.props.CHOOSE_CATEGORY_FOR_SKILLS }
                                                 /> : 
             (this.props.addingSkillsStatus.step === 2) ? <Step2 
                                                 usersSkills = { this.props.usersSkills }
                                                 addingSkillsStatus = { this.props.addingSkillsStatus }
                                                 skill_tags = { this.props.skill_tags }
-                                                chosenCategory = { this.state.chosenCategory } 
                                                 CHANGE_USERS_SKILL_CATEGORIES = { this.props.CHANGE_USERS_SKILL_CATEGORIES }
                                                 CHANGE_USERS_SKILL_TAGS = { this.props.CHANGE_USERS_SKILL_TAGS }
                                                 GET_SKILL_TAGS = { this.props.GET_SKILL_TAGS }

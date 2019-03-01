@@ -28,10 +28,11 @@ class Location extends Component {
         <div className={ this.state.isOpen ? "filter-dropdown-block clearfix open" : "filter-dropdown-block clearfix" } >
           <button onClick={this.openCloseFilter} type="button" className="btn btn-default dropdown-toggle">
             <div className="flexbox justify-space-between">
-              <span className="text">{'Country ' + '(' + 
-                (this.props.inputData[this.state.queryParamKey] ?
-                this.props.inputData[this.state.queryParamKey].split(',').length : 'All')  
-                + ')'}</span>
+              <span className="text">
+                { `Country(
+                    ${(this.props.inputData[this.state.queryParamKey] ? this.props.inputData[this.state.queryParamKey].split(',').length : 'All')}  
+                )` }
+              </span>
               <span className="icon icon-down-arrow"></span>
             </div>
           </button>
@@ -49,14 +50,14 @@ class Location extends Component {
                         name={ location.name } 
                         type="checkbox" 
                         id={"checkbox-4." + (index + 1)}
-                        onClick={ (event) => { 
+                        onChange={ (event) => { 
                           this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
                         } }
                         checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey].indexOf(location.name) >= 0 ? true : false) : false }
                         >
                       </input>
-                      <label for={"checkbox-4." + (index + 1)}>
+                      <label htmlFor={"checkbox-4." + (index + 1)}>
                         <span className="filter-checkbox">
                           <span className="icon icon-check-mark"></span>
                         </span>

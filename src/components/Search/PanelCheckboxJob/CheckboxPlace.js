@@ -17,7 +17,7 @@ class CheckboxPlace extends Component {
         <div className="checkbox-list-block clearfix">
           <div className="checkbox-block">
             <input type="checkbox" id="checkbox-3.1"></input>
-            <label for="checkbox-3.1">
+            <label htmlFor="checkbox-3.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -26,7 +26,7 @@ class CheckboxPlace extends Component {
           </div>
           <div className="checkbox-block">
             <input type="checkbox" id="checkbox-3.2"></input>
-            <label for="checkbox-3.2">
+            <label htmlFor="checkbox-3.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

@@ -17,7 +17,7 @@ class CheckboxJobDelivery extends Component {
         <div className="checkbox-list-block clearfix">
           <div className="checkbox-block">
             <input type="checkbox" id="checkbox-10.1"></input>
-            <label for="checkbox-10.1">
+            <label htmlFor="checkbox-10.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -26,7 +26,7 @@ class CheckboxJobDelivery extends Component {
           </div>
           <div className="checkbox-block">
             <input type="checkbox" id="checkbox-10.2"></input>
-            <label for="checkbox-10.2">
+            <label htmlFor="checkbox-10.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

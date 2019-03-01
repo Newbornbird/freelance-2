@@ -22,11 +22,11 @@ class CheckboxSTSTalent extends Component {
               id="checkbox-3.1" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_5' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
               </input>
-            <label for="checkbox-3.1">
+            <label htmlFor="checkbox-3.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -40,11 +40,11 @@ class CheckboxSTSTalent extends Component {
               id="checkbox-3.2" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_5_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-3.2">
+            <label htmlFor="checkbox-3.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -58,11 +58,11 @@ class CheckboxSTSTalent extends Component {
               id="checkbox-3.3" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-3.3">
+            <label htmlFor="checkbox-3.3">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -76,11 +76,11 @@ class CheckboxSTSTalent extends Component {
               id="checkbox-3.4" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'l_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-3.4">
+            <label htmlFor="checkbox-3.4">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

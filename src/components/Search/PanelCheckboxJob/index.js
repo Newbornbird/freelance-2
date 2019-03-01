@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import queryString from 'query-string';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { CHANGE_CHECKBOX_DATA_ARR, 
@@ -19,11 +18,7 @@ import CheckboxProposal from './CheckboxProposal';
 import CheckboxJobDelivery from './CheckboxJobDelivery';
 
 class PanelCheckboxJob extends Component {
-  constructor(props) {
-    super(props); 
     
-  }
-  
   render() {
     return (
       <div className="panel panel-default">

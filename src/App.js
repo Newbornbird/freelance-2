@@ -7,7 +7,7 @@ import Skills from './components/Skills';
 import { Switch, Route } from 'react-router-dom';
 import Board from './components/Board';
 import Search from './components/Search/Search';
-import PostJob from './components/PostJob.js/PostJob';
+
 
 class App extends Component {
   render() {
@@ -17,7 +17,6 @@ class App extends Component {
         <Route exact path="/board" component={ Board } />
         <Route exact path="/board/skills" component={ Skills } />
         <Route path="/board/search" component={ Search } /> 
-        <Route path="/board/skills" component={ PostJob } />  
       </Switch>
     );
   }

@@ -45,7 +45,7 @@ class SortNav extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Newest">
+                  <label htmlFor="Newest">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Newest</span>
                   </label>
@@ -61,7 +61,7 @@ class SortNav extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Highest budget">
+                  <label htmlFor="Highest budget">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Highest budget</span>
                   </label>
@@ -77,7 +77,7 @@ class SortNav extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Relevance">
+                  <label htmlFor="Relevance">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Relevance</span>
                   </label>
@@ -93,7 +93,7 @@ class SortNav extends Component {
                       this.closeFilter(event); 
                     } }>
                   </input>
-                  <label for="Long term">
+                  <label htmlFor="Long term">
                     <span className="check-mark icon icon-check-mark"></span>
                     <span className="radio-text">Long term</span>
                   </label>

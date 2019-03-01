@@ -23,11 +23,11 @@ class CheckboxFRTalent extends Component {
               id="checkbox-4.1" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_5' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
               </input>
-            <label for="checkbox-4.1">
+            <label htmlFor="checkbox-4.1">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -41,11 +41,11 @@ class CheckboxFRTalent extends Component {
               id="checkbox-4.2" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_5_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-4.2">
+            <label htmlFor="checkbox-4.2">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -59,11 +59,11 @@ class CheckboxFRTalent extends Component {
               id="checkbox-4.3" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'i_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-4.3">
+            <label htmlFor="checkbox-4.3">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>
@@ -77,11 +77,11 @@ class CheckboxFRTalent extends Component {
               id="checkbox-4.4" 
               checked={ this.props.inputData[this.state.queryParamKey] ? 
                           (this.props.inputData[this.state.queryParamKey] === 'l_4' ? true : false) : false }
-              onClick = { (event) => { 
+              onChange = { (event) => { 
                 this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
               }}>
             </input>
-            <label for="checkbox-4.4">
+            <label htmlFor="checkbox-4.4">
               <span className="filter-checkbox">
                 <span className="icon icon-check-mark"></span>
               </span>

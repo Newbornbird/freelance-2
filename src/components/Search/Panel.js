@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import SortNav from './SortNav';
 import SortNavTalent from './SortNavTalent';
 
