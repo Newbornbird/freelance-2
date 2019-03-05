@@ -14,7 +14,7 @@ import meta from './meta';
 import statusPostJob from './statusPostJob';
 import skill_tags from './skill_tags';
 import usersSkills from './usersSkills';
-import addingSkillsStatus from './addingSkillsStatus'
+import addingSkillsStatus from './addingSkillsStatus';
 
 export default combineReducers({
   authorization,
@@ -32,5 +32,5 @@ export default combineReducers({
   requestForPostJob,
   statusPostJob,
   usersSkills,
-  addingSkillsStatus
-})
+  addingSkillsStatus,
+});

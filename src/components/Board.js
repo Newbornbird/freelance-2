@@ -6,12 +6,15 @@ class Board extends Component {
     return (
       <div>
         <ul>
-          <li><Link to='/board/skills'>Skills</Link></li>
-          <li><Link to='/board/search/job'>Searching</Link></li>
+          <li>
+            <Link to="/board/skills">Skills</Link>
+          </li>
+          <li>
+            <Link to="/board/search/job">Searching</Link>
+          </li>
         </ul>
       </div>
-
-    )
+    );
   }
 }
 

@@ -6,7 +6,7 @@ import SortNavTalent from './SortNavTalent';
 
 class Panel extends Component {
   render() {
-    let { meta, sort, inputData } = this.props;
+    const { meta, sort, inputData } = this.props;
     return (
       <div className="panel panel-default panel-gray job-boxes-nav">
         <nav className="flexbox justify-space-between">
@@ -16,38 +16,31 @@ class Panel extends Component {
               <li className="blue-color">UI design</li>
               <li className="blue-color">CSS/HTML</li>
               <li className="blue-color">
-                <span className="icon icon-plus-button"></span>
+                <span className="icon icon-plus-button" />
               </li>
             </ul>
           </div>
           <Switch>
-            <Route 
-              path="/board/search/talent" 
-              render={ props => 
-                <SortNavTalent 
-                  meta = { meta } 
-                  sort = { sort } 
-                  inputData = { inputData } /> } />
-            <Route 
-              path="/board/search/job" 
-              render={ props => 
-                <SortNav 
-                  meta = { meta } 
-                  sort = { sort } 
-                  inputData = { inputData } /> } />
-            
+            <Route
+              path="/board/search/talent"
+              render={props => <SortNavTalent meta={meta} sort={sort} inputData={inputData} />}
+            />
+            <Route
+              path="/board/search/job"
+              render={props => <SortNav meta={meta} sort={sort} inputData={inputData} />}
+            />
           </Switch>
         </nav>
       </div>
-    )
+    );
   }
-}  
+}
 
 Panel.propTypes = {
   meta: PropTypes.object,
   sort: PropTypes.func,
   pathName: PropTypes.string,
   inputData: PropTypes.object,
-}
+};
 
 export default Panel;
