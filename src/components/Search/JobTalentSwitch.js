@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class JobTalentSwitch extends Component {
 
   render() {
+    let { switchSearch } = this.props;
     return (
       <div className="panel panel-default panel-gray job-boxes-filter">
         <div className="search-filter radio-block flexbox justify-space-center">
@@ -17,7 +19,7 @@ class JobTalentSwitch extends Component {
             type="button" 
             className = {(window.location.pathname === '/board/search/job' ) ? 'btn radio-switcher clearfix left' : 'btn radio-switcher clearfix right'}
             onClick = { () => {
-              this.props.SWITCH_SEARCH(window.location.pathname)}
+              switchSearch(window.location.pathname)}
             }>
             <div className="circul-shape">
               <span className="icon icon-check-mark"></span>
@@ -33,6 +35,11 @@ class JobTalentSwitch extends Component {
       </div>
     )
   }
+}
+
+JobTalentSwitch.propTypes = {
+  pathName: PropTypes.string,
+  switchSearch: PropTypes.func
 }
 
 export default JobTalentSwitch;

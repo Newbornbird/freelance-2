@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import SortNav from './SortNav';
 import SortNavTalent from './SortNavTalent';
 
 class Panel extends Component {
   render() {
+    let { meta, sort, inputData } = this.props;
     return (
       <div className="panel panel-default panel-gray job-boxes-nav">
         <nav className="flexbox justify-space-between">
@@ -23,16 +25,16 @@ class Panel extends Component {
               path="/board/search/talent" 
               render={ props => 
                 <SortNavTalent 
-                  meta = { this.props.meta } 
-                  SORT = { this.props.SORT } 
-                  inputData = { this.props.inputData } /> } />
+                  meta = { meta } 
+                  sort = { sort } 
+                  inputData = { inputData } /> } />
             <Route 
               path="/board/search/job" 
               render={ props => 
                 <SortNav 
-                  meta = { this.props.meta } 
-                  SORT = { this.props.SORT } 
-                  inputData = { this.props.inputData } /> } />
+                  meta = { meta } 
+                  sort = { sort } 
+                  inputData = { inputData } /> } />
             
           </Switch>
         </nav>
@@ -41,5 +43,11 @@ class Panel extends Component {
   }
 }  
 
+Panel.propTypes = {
+  meta: PropTypes.object,
+  sort: PropTypes.func,
+  pathName: PropTypes.string,
+  inputData: PropTypes.object,
+}
 
 export default Panel;

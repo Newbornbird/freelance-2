@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxPosted extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class CheckboxPosted extends Component {
   }
 
   render() {
+    let { changeCheckboxDataSingle, inputData } = this.props;
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -20,10 +22,10 @@ class CheckboxPosted extends Component {
               name='i24' 
               type="checkbox" 
               id="checkbox-2.1" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i24') >= 0 ? true : false) : false } 
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i24') >= 0 ? true : false) : false } 
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) } }>
               </input>
             <label htmlFor="checkbox-2.1">
               <span className="filter-checkbox">
@@ -37,10 +39,10 @@ class CheckboxPosted extends Component {
               name='i1w' 
               type="checkbox" 
               id="checkbox-2.2" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i1w') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i1w') >= 0 ? true : false) : false }
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) } }>
             </input>
             <label htmlFor="checkbox-2.2">
               <span className="filter-checkbox">
@@ -54,10 +56,10 @@ class CheckboxPosted extends Component {
               name='i3d' 
               type="checkbox" 
               id="checkbox-2.3" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i3d') >= 0 ? true : false) : false } 
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i3d') >= 0 ? true : false) : false } 
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) } }>
             </input>
             <label htmlFor="checkbox-2.3">
               <span className="filter-checkbox">
@@ -71,10 +73,10 @@ class CheckboxPosted extends Component {
               name='m_1w' 
               type="checkbox" 
               id="checkbox-2.4" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('m_1w') >= 0 ? true : false) : false } 
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('m_1w') >= 0 ? true : false) : false } 
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } }>
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) } }>
             </input>
             <label htmlFor="checkbox-2.4">
               <span className="filter-checkbox">
@@ -87,6 +89,11 @@ class CheckboxPosted extends Component {
       </div>
     )
   }
+}
+
+CheckboxPosted.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataSingle: PropTypes.func,
 }
 
 export default CheckboxPosted;

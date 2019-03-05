@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxJDSTalent extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class CheckboxJDSTalent extends Component {
   }
 
   render() {
+    let { changeCheckboxDataSingle,  inputData } = this.props;
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -25,10 +27,10 @@ class CheckboxJDSTalent extends Component {
               name='i_100' 
               type="checkbox" 
               id="checkbox-2.1" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey] === 'i_100' ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey] === 'i_100' ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) 
               }}>
               </input>
             <label htmlFor="checkbox-2.1">
@@ -43,10 +45,10 @@ class CheckboxJDSTalent extends Component {
               name='m_95' 
               type="checkbox" 
               id="checkbox-2.2" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey] === 'm_95' ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey] === 'm_95' ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-2.2">
@@ -61,10 +63,10 @@ class CheckboxJDSTalent extends Component {
               name='i_85_95' 
               type="checkbox" 
               id="checkbox-2.3" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey] === 'i_85_95' ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey] === 'i_85_95' ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-2.3">
@@ -79,10 +81,10 @@ class CheckboxJDSTalent extends Component {
               name='l_85' 
               type="checkbox" 
               id="checkbox-2.4" 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey] === 'l_85' ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey] === 'l_85' ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-2.4">
@@ -96,6 +98,11 @@ class CheckboxJDSTalent extends Component {
       </div>
     )
   }
+}
+
+CheckboxJDSTalent.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataSingle: PropTypes.func,
 }
 
 export default CheckboxJDSTalent;

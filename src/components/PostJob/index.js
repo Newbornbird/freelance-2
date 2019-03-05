@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,8 +25,6 @@ import ProjectType from './ProjectType';
 import ContractGeneralNotes from './ContractGeneralNotes';
 import Finish from './Finish';
  
-
-
 class PostJob extends Component {
   constructor() {
     super();
@@ -39,10 +38,6 @@ class PostJob extends Component {
       chosenPromotion: '',
     }
   }
-
-  // makeCreateSkillTestActive = () => {
-  //   this.setState({ createSkillTest: !this.state.createSkillTest });
-  // }
 
   togglePromotionList = () => { 
     this.setState({ promotionList: !this.state.promotionList });
@@ -65,15 +60,6 @@ class PostJob extends Component {
     this.setState( { subCategoryList: false  } );
   }
 
-  // makeTrueHourlyPriceIsDisabled = () => {
-  //   this.setState({ hourlyPriceIsDisabled: true })
-
-  // }
-
-  // makeFalseHourlyPriceIsDisabled = () => {
-  //   this.setState({ hourlyPriceIsDisabled: false })
-  // }
-
   togglePeriodTypeList = () => {
     this.setState({ periodTypeIsOpened: !this.state.periodTypeIsOpened })
   }
@@ -82,60 +68,50 @@ class PostJob extends Component {
     this.setState({ consent: !this.state.consent })
   }
 
-  // CloseModal = () => {
-  //   this.setState({ showModal: false });
-  // }
-
-  // choosePromotion = (id) => {
-  //   if (id === this.state.chosenPromotion) {
-  //     this.setState( { chosenPromotion: '' } );
-  //     this.setState({ createSkillTest: false });
-  //   } else {
-  //       this.setState({ chosenPromotion: id });
-  //       this.setState({ createSkillTest: false });
-  //   } 
-  // }
-
   componentDidMount() {
-    this.props.GET_SKILLS();
-    this.props.GET_PROMOTIONS();
+    this.props.getSkills();
+    this.props.getPromotions();
   }
 
   render() {
+    let { promotions, statusPostJob, closeModal, skills,  requestForPostJob, changeStrInpForPostJob,
+      chooseCategory, chooseSkillCategory,  getSkillTags, openSkillTagsList,  addSkillTag,  deleteSkillTag,
+      makeActiveCreatingSkillTest,  makeInActiveCreatingSkillTest,  changeActivePromotionCategory,  
+      choosePromotion,  changeCheckboxForPostJob, postJob, skill_tags  } = this.props
     if( this.props.promotions.categories ) {
       return(
         <Modal 
-          open={ this.props.statusPostJob.modal } 
-          onClose={ this.props.CLOSE_MODAL } 
+          open={ statusPostJob.modal } 
+          onClose={ closeModal } 
           styles={ { modal: { 'borderRadius': '5px' } } }> 
           <div className="post-job-title blue-color">Post a Job</div>
           <div className="post-job-form panel panel-default" 
             style={ { 'overflow': 'visible' } } 
             onClick={ () => {  } }>
             <JobTitleDescription 
-              CHANGE_STR_INP_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
-              requestForPostJob = { this.props.requestForPostJob }
+              changeStrInpForPostJob = { changeStrInpForPostJob }
+              requestForPostJob = { requestForPostJob }
             />
             <ChooseSkillCategory 
-              skills = { this.props.skills }
-              requestForPostJob = { this.props.requestForPostJob }
-              skill_tags = { this.props.skill_tags }
-              CHOOSE_CATEGORY = { this.props.CHOOSE_CATEGORY }
-              CHOOSE_SKILL_CATEGORY = { this.props.CHOOSE_SKILL_CATEGORY }
-              GET_SKILL_TAGS = { this.props.GET_SKILL_TAGS }
-              OPEN_SKILL_TAGS_LIST = { this.props.OPEN_SKILL_TAGS_LIST }
-              ADD_SKILL_TAG = { this.props.ADD_SKILL_TAG }
-              DELETE_SKILL_TAG = { this.props.DELETE_SKILL_TAG }
+              skills = { skills }
+              requestForPostJob = { requestForPostJob }
+              skill_tags = { skill_tags }
+              chooseCategory = { chooseCategory }
+              chooseSkillCategory = { chooseSkillCategory }
+              getSkillTags = { getSkillTags }
+              openSkillTagsList = { openSkillTagsList }
+              addSkillTag = { addSkillTag }
+              deleteSkillTag = { deleteSkillTag }
             />
             <CreateChooseSkillTest 
-              statusPostJob = { this.props.statusPostJob }
-              requestForPostJob = { this.props.requestForPostJob }
-              promotions = { this.props.promotions }
-              MAKE_ACTIVE_CREATING_SKILL_TEST = { this.props.MAKE_ACTIVE_CREATING_SKILL_TEST }
-              MAKE_INACTIVE_CREATING_SKILL_TEST = { this.props.MAKE_INACTIVE_CREATING_SKILL_TEST }
-              CHANGE_STR_INP_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
-              CHANGE_ACTIVE_PROMOTION_CATEGORY = { this.props.CHANGE_ACTIVE_PROMOTION_CATEGORY }
-              CHOOSE_PROMOTION = { this.props.CHOOSE_PROMOTION }
+              statusPostJob = { statusPostJob }
+              requestForPostJob = { requestForPostJob }
+              promotions = { promotions }
+              makeActiveCreatingSkillTest = { makeActiveCreatingSkillTest }
+              makeInActiveCreatingSkillTest = { makeInActiveCreatingSkillTest }
+              changeStrInpForPostJob = { changeStrInpForPostJob }
+              changeActivePromotionCategory = { changeActivePromotionCategory }
+              choosePromotion = { choosePromotion }
               changeActiveCategory = { this.changeActiveCategory }
               togglePromotionList = { this.togglePromotionList }
               toggleSubCategoryList = { this.toggleSubCategoryList }
@@ -143,49 +119,47 @@ class PostJob extends Component {
               promotionList = { this.state.promotionList }
               subCategoryList = { this.state.subCategoryList }
               activeSubCategory = { this.state.activeSubCategory }
-
-              
             />
             <div className="form-block">
               <div className="form-block-wrapper flexbox justify-space-between">
                 <JobPayment 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_STR_INP_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_CHECKBOX_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeStrInpForPostJob = { changeStrInpForPostJob }
+                  changeCheckboxForPostJob = { changeCheckboxForPostJob }
                 />
                 <JobPrice 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_STR_INP_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeStrInpForPostJob = { changeStrInpForPostJob }
                 />
               </div>
               <div className="form-block-wrapper">
                 <TimeToCompleteTheJob 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_CHECKBOX_FOR_POSTJOB }
-                  CHANGE_STR_INP_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeCheckboxForPostJob = { changeCheckboxForPostJob }
+                  changeStrInpForPostJob = { changeStrInpForPostJob }
                   togglePeriodTypeList = { this.togglePeriodTypeList }
                   periodTypeIsOpened = { this.state.periodTypeIsOpened } 
                 />
               </div>
               <div className="form-block-wrapper flexbox justify-space-between">
                 <TalentCommitment 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_CHECKBOX_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeCheckboxForPostJob = { changeCheckboxForPostJob }
                 />
                 <TalentLevel 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_CHECKBOX_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeCheckboxForPostJob = { changeCheckboxForPostJob }
                   
                 />
                 <ProjectType 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_CHECKBOX_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeCheckboxForPostJob = { changeCheckboxForPostJob }
                 />
               </div>
               <div className="form-block-wrapper">
                 <ContractGeneralNotes 
-                  requestForPostJob = { this.props.requestForPostJob }
-                  CHANGE_CHECKBOX_FOR_POSTJOB = { this.props.CHANGE_STR_INP_FOR_POSTJOB }
+                  requestForPostJob = { requestForPostJob }
+                  changeStrInpForPostJob = { changeStrInpForPostJob }
                 />
               </div>
               <div className="form-block-wrapper">
@@ -197,13 +171,13 @@ class PostJob extends Component {
               <div className="form-block-wrapper btn-block">
                 <button 
                   disabled={  this.state.consent && 
-                              this.props.requestForPostJob.title && 
-                              this.props.requestForPostJob.description &&
-                              this.props.requestForPostJob.price &&
-                              this.props.requestForPostJob.promotion_title &&
-                              this.props.requestForPostJob.promotion_description ? false : true } 
+                              requestForPostJob.title && 
+                              requestForPostJob.description &&
+                              requestForPostJob.price &&
+                              requestForPostJob.promotion_title &&
+                              requestForPostJob.promotion_description ? false : true } 
                   className="btn btn-blue btn-bold"
-                  onClick={ () => { this.props.POST_JOB( this.props.requestForPostJob ) } }>Post</button>
+                  onClick={ () => { postJob( requestForPostJob ) } }>Post</button>
               </div>
             </div>
           </div>
@@ -213,6 +187,31 @@ class PostJob extends Component {
       <div>Загрузка данных</div>
     )
   }
+}
+
+PostJob.propTypes = {
+  skills: PropTypes.array,
+  promotions: PropTypes.object,
+  requestForPostJob: PropTypes.object,
+  statusPostJob: PropTypes.object,
+  skill_tags: PropTypes.object,
+  getSkills: PropTypes.func,
+  getPromotions: PropTypes.func,
+  chooseCategory: PropTypes.func,
+  chooseSkillCategory: PropTypes.func,
+  choosePromotion: PropTypes.func,
+  changeActivePromotionCategory: PropTypes.func,
+  changeStrInpForPostJob: PropTypes.func,
+  changeCheckboxForPostJob: PropTypes.func,
+  makeActiveCreatingSkillTest: PropTypes.func,
+  makeInActiveCreatingSkillTest: PropTypes.func,
+  getSkillTags: PropTypes.func,
+  addSkillTag: PropTypes.func,
+  deleteSkillTag: PropTypes.func,
+  postJob: PropTypes.func,
+  closeModal: PropTypes.func,
+  openModal: PropTypes.func,
+  openSkillTagsList: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -227,23 +226,23 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    GET_SKILLS: bindActionCreators(GET_SKILLS, dispatch),
-    GET_PROMOTIONS: bindActionCreators(GET_PROMOTIONS, dispatch),
-    CHOOSE_CATEGORY: bindActionCreators(CHOOSE_CATEGORY, dispatch),
-    CHOOSE_SKILL_CATEGORY: bindActionCreators(CHOOSE_SKILL_CATEGORY, dispatch),
-    CHOOSE_PROMOTION: bindActionCreators(CHOOSE_PROMOTION, dispatch),
-    CHANGE_ACTIVE_PROMOTION_CATEGORY: bindActionCreators(CHANGE_ACTIVE_PROMOTION_CATEGORY, dispatch),
-    CHANGE_STR_INP_FOR_POSTJOB: bindActionCreators(CHANGE_STR_INP_FOR_POSTJOB, dispatch),
-    CHANGE_CHECKBOX_FOR_POSTJOB: bindActionCreators(CHANGE_CHECKBOX_FOR_POSTJOB, dispatch),
-    MAKE_ACTIVE_CREATING_SKILL_TEST: bindActionCreators(MAKE_ACTIVE_CREATING_SKILL_TEST, dispatch),
-    MAKE_INACTIVE_CREATING_SKILL_TEST: bindActionCreators(MAKE_INACTIVE_CREATING_SKILL_TEST, dispatch),
-    GET_SKILL_TAGS: bindActionCreators(GET_SKILL_TAGS, dispatch),
-    ADD_SKILL_TAG: bindActionCreators(ADD_SKILL_TAG, dispatch),
-    DELETE_SKILL_TAG: bindActionCreators(DELETE_SKILL_TAG, dispatch),
-    POST_JOB: bindActionCreators(POST_JOB, dispatch),
-    CLOSE_MODAL: bindActionCreators(CLOSE_MODAL, dispatch),
-    OPEN_MODAL: bindActionCreators(OPEN_MODAL, dispatch),
-    OPEN_SKILL_TAGS_LIST: bindActionCreators(OPEN_SKILL_TAGS_LIST, dispatch)
+    getSkills: bindActionCreators(GET_SKILLS, dispatch),
+    getPromotions: bindActionCreators(GET_PROMOTIONS, dispatch),
+    chooseCategory: bindActionCreators(CHOOSE_CATEGORY, dispatch),
+    chooseSkillCategory: bindActionCreators(CHOOSE_SKILL_CATEGORY, dispatch),
+    choosePromotion: bindActionCreators(CHOOSE_PROMOTION, dispatch),
+    changeActivePromotionCategory: bindActionCreators(CHANGE_ACTIVE_PROMOTION_CATEGORY, dispatch),
+    changeStrInpForPostJob: bindActionCreators(CHANGE_STR_INP_FOR_POSTJOB, dispatch),
+    changeCheckboxForPostJob: bindActionCreators(CHANGE_CHECKBOX_FOR_POSTJOB, dispatch),
+    makeActiveCreatingSkillTest: bindActionCreators(MAKE_ACTIVE_CREATING_SKILL_TEST, dispatch),
+    makeInActiveCreatingSkillTest: bindActionCreators(MAKE_INACTIVE_CREATING_SKILL_TEST, dispatch),
+    getSkillTags: bindActionCreators(GET_SKILL_TAGS, dispatch),
+    addSkillTag: bindActionCreators(ADD_SKILL_TAG, dispatch),
+    deleteSkillTag: bindActionCreators(DELETE_SKILL_TAG, dispatch),
+    postJob: bindActionCreators(POST_JOB, dispatch),
+    closeModal: bindActionCreators(CLOSE_MODAL, dispatch),
+    openModal: bindActionCreators(OPEN_MODAL, dispatch),
+    openSkillTagsList: bindActionCreators(OPEN_SKILL_TAGS_LIST, dispatch)
   }
 }
 

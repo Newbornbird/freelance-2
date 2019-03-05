@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 class LocationTalent extends Component {
@@ -15,10 +16,11 @@ class LocationTalent extends Component {
   }
 
   componentDidMount() {
-    this.props.GET_LOCATIONS();
+    this.props.getLocations();
   }
 
   render() {
+    let { changeCheckboxDataArr, locations, inputData } = this.props
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -29,7 +31,7 @@ class LocationTalent extends Component {
             <div className="flexbox justify-space-between">
               <span className="text">
                 { `Country( 
-                    ${(this.props.inputData[this.state.queryParamKey] ? this.props.inputData[this.state.queryParamKey].split(',').length : 'All')}  
+                    ${(inputData[this.state.queryParamKey] ? inputData[this.state.queryParamKey].split(',').length : 'All')}  
                 )`}
               </span>
               <span className="icon icon-down-arrow"></span>
@@ -42,7 +44,7 @@ class LocationTalent extends Component {
             <div className="dropdown-list-wrapper">
               <div className="checkbox-list-block">
 
-              { this.props.locations.map( (location, index) => {
+              { locations.map( (location, index) => {
                   return(
                     <div className="checkbox-block" key={ index }>
                       <input 
@@ -50,10 +52,10 @@ class LocationTalent extends Component {
                         type="checkbox" 
                         id={"checkbox-5." + (index + 1)}
                         onChange={ (event) => { 
-                          this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                          changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
                         } }
-                        checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf(location.name) >= 0 ? true : false) : false }>
+                        checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf(location.name) >= 0 ? true : false) : false }>
                       </input>
                       <label htmlFor={"checkbox-5." + (index + 1)}>
                         <span className="filter-checkbox">
@@ -71,6 +73,13 @@ class LocationTalent extends Component {
       </div>
     )
   }
+}
+
+LocationTalent.propTypes = {
+  inputData: PropTypes.object,
+  locations: PropTypes.array,
+  getLocations: PropTypes.func,
+  changeCheckboxDataArr: PropTypes.func,
 }
 
 export default LocationTalent;

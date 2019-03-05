@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ProjectType extends Component {
   render() {
+    let { requestForPostJob,  changeCheckboxForPostJob } = this.props;
     return (
       <div className="form-block-section col-30">
         <div className="form-block-header">
@@ -16,8 +18,8 @@ class ProjectType extends Component {
               name="one_time" 
               id="quantity-1" 
               value="quantity-1" 
-              checked={ this.props.requestForPostJob.time_type === 'one_time' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'time_type') } }
+              checked={ requestForPostJob.time_type === 'one_time' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'time_type') } }
               />
             <label htmlFor="quantity-1">
               <span className="checkbox-circle">
@@ -32,8 +34,8 @@ class ProjectType extends Component {
               name="long_term" 
               id="quantity-3" 
               value="quantity-3"
-              checked={ this.props.requestForPostJob.time_type === 'long_term' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'time_type') } }
+              checked={ requestForPostJob.time_type === 'long_term' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'time_type') } }
               />
             <label htmlFor="quantity-3">
               <span className="checkbox-circle">
@@ -48,8 +50,8 @@ class ProjectType extends Component {
               name="short" 
               id="quantity-5" 
               value="quantity-5"
-              checked={ this.props.requestForPostJob.time_type === 'short' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'time_type') } }
+              checked={ requestForPostJob.time_type === 'short' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'time_type') } }
               />
             <label htmlFor="quantity-5">
               <span className="checkbox-circle">
@@ -64,8 +66,8 @@ class ProjectType extends Component {
               name="not_sure" 
               id="quantity-infinity" 
               value="quantity-infinity" 
-              checked={ this.props.requestForPostJob.time_type === 'not_sure' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'time_type') } }
+              checked={ requestForPostJob.time_type === 'not_sure' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'time_type') } }
               />
             <label htmlFor="quantity-infinity">
               <span className="checkbox-circle">
@@ -78,6 +80,11 @@ class ProjectType extends Component {
       </div>
     )
   }
+}
+
+ProjectType.propTypes = {
+  requestForPostJob: PropTypes.object,
+  changeCheckboxForPostJob: PropTypes.func,
 }
 
 export default ProjectType;

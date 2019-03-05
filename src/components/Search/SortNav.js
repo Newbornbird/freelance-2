@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class SortNav extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class SortNav extends Component {
   }
 
   render() {
+    let { meta, sort,  inputData } = this.props;
     return (
       <div className="sort-nav" key='job'>
         <span className="sort-nav-title">Sort By</span>
@@ -41,7 +43,7 @@ class SortNav extends Component {
                     value="newest" 
                     checked=""
                     onChange={ (event) => { 
-                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      sort(inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
@@ -57,7 +59,7 @@ class SortNav extends Component {
                     id="Highest budget" 
                     value="budget"
                     onChange={ (event) => { 
-                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      sort(inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
@@ -73,7 +75,7 @@ class SortNav extends Component {
                     id="Relevance" 
                     value="relevance"
                     onChange={ (event) => { 
-                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      sort(inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
@@ -89,7 +91,7 @@ class SortNav extends Component {
                     id="Long term" 
                     value="longterm"
                     onChange={ (event) => { 
-                      this.props.SORT(this.props.inputData, this.state.queryParamKey, event);
+                      sort(inputData, this.state.queryParamKey, event);
                       this.closeFilter(event); 
                     } }>
                   </input>
@@ -104,11 +106,17 @@ class SortNav extends Component {
         </button>
         <span className="sort-result">
           Result: 
-        <span className="sort-result-numb">{ this.props.meta.total_count }</span>
+        <span className="sort-result-numb">{ meta.total_count }</span>
         </span>
       </div>
     )
   }
+}
+
+SortNav.propTypes = {
+  meta: PropTypes.object,
+  sort: PropTypes.func,
+  inputData: PropTypes.object,
 }
 
 export default SortNav;

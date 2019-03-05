@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,6 +17,13 @@ import { GET_USERS_SKILLS, GET_SKILLS,
 
 class Skills extends Component {
   render() {
+		let { skills,	skill_tags,	usersSkills,
+			addingSkillsStatus,	getUsersSkills,	getSkills,	
+			changeUsersSkillCategories,	
+			changeUsersSkillTags,	getSkillTags,	openSkillTagsList,	
+			addUsersSkills,	goToTheNextStep,	goToThePreviousStep,	
+			deleteUsersSkills,	chooseCategoryForSkills,	editUsersSkills,	
+			deleteSkillTagForSkills,	closeSkillTagsList } = this.props
     return (
       <div className='wrapper'>
 				<Navigation/>
@@ -26,25 +34,24 @@ class Skills extends Component {
 								<div className="flexbox">
 									<LeftCol />
 									<RightCol 
-										skills = { this.props.skills }
-										skill_tags = { this.props.skill_tags }
-										addingSkillsStatus = { this.props.addingSkillsStatus }
-										GET_SKILLS = { this.props.GET_SKILLS }
-										GET_USERS_SKILLS = { this.props.GET_USERS_SKILLS }
-		                CHANGE_USERS_SKILL_CATEGORIES = { this.props.CHANGE_USERS_SKILL_CATEGORIES }
-										CHANGE_USERS_SKILL_TAGS = { this.props.CHANGE_USERS_SKILL_TAGS }
-										GET_SKILL_TAGS = { this.props.GET_SKILL_TAGS }
-										ADD_SKILL_TAG = { this.props.ADD_SKILL_TAG }
-										usersSkills = { this.props.usersSkills }
-										OPEN_SKILL_TAGS_LIST = { this.props.OPEN_SKILL_TAGS_LIST }
-										ADD_USERS_SKILLS = { this.props.ADD_USERS_SKILLS }
-										GO_TO_THE_NEXT_STEP = { this.props.GO_TO_THE_NEXT_STEP }
-										GO_TO_THE_PREVIOUS_STEP = { this.props.GO_TO_THE_PREVIOUS_STEP }
-										DELETE_USERS_SKILLS = { this.props.DELETE_USERS_SKILLS }
-										CHOOSE_CATEGORY_FOR_SKILLS = { this.props.CHOOSE_CATEGORY_FOR_SKILLS }
-										EDIT_USERS_SKILLS = { this.props.EDIT_USERS_SKILLS }
-										DELETE_SKILL_TAG_FOR_SKILLS = { this.props.DELETE_SKILL_TAG_FOR_SKILLS }
-										CLOSE_SKILL_TAGS_LIST = { this.props.CLOSE_SKILL_TAGS_LIST }
+										skills = { skills }
+										skill_tags = { skill_tags }
+										addingSkillsStatus = { addingSkillsStatus }
+										getSkills = { getSkills }
+										getUsersSkills = { getUsersSkills }
+		                changeUsersSkillCategories = { changeUsersSkillCategories }
+										changeUsersSkillTags = { changeUsersSkillTags }
+										getSkillTags = { getSkillTags }
+										usersSkills = { usersSkills }
+										openSkillTagsList = { openSkillTagsList }
+										addUsersSkills = { addUsersSkills }
+										goToTheNextStep = { goToTheNextStep }
+										goToThePreviousStep = { goToThePreviousStep }
+										deleteUsersSkills = { deleteUsersSkills }
+										chooseCategoryForSkills = { chooseCategoryForSkills }
+										editUsersSkills = { editUsersSkills }
+										deleteSkillTagForSkills = { deleteSkillTagForSkills }
+										closeSkillTagsList = { closeSkillTagsList }
 									/>
 								</div> 
 							</div>
@@ -54,6 +61,27 @@ class Skills extends Component {
 			</div>
     )
   }
+}
+
+Skills.propTypes = {
+  skills: PropTypes.array,
+	skill_tags: PropTypes.object,
+	usersSkills: PropTypes.array,
+	addingSkillsStatus: PropTypes.object,
+	getUsersSkills: PropTypes.func,
+	getSkills: PropTypes.func,
+	changeUsersSkillCategories: PropTypes.func,
+	changeUsersSkillTags: PropTypes.func,
+	getSkillTags: PropTypes.func,
+	openSkillTagsList: PropTypes.func,
+	addUsersSkills: PropTypes.func,
+	goToTheNextStep: PropTypes.func,
+	goToThePreviousStep: PropTypes.func,
+	deleteUsersSkills: PropTypes.func,
+	chooseCategoryForSkills: PropTypes.func,
+	editUsersSkills: PropTypes.func,
+	deleteSkillTagForSkills: PropTypes.func,
+	closeSkillTagsList: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -67,21 +95,21 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-		GET_USERS_SKILLS: bindActionCreators(GET_USERS_SKILLS, dispatch),
-		GET_SKILLS: bindActionCreators(GET_SKILLS, dispatch),
-		GET_PROMOTIONS: bindActionCreators(GET_PROMOTIONS, dispatch),
-		CHANGE_USERS_SKILL_CATEGORIES: bindActionCreators(CHANGE_USERS_SKILL_CATEGORIES, dispatch),
-		CHANGE_USERS_SKILL_TAGS: bindActionCreators(CHANGE_USERS_SKILL_TAGS, dispatch),
-		GET_SKILL_TAGS: bindActionCreators(GET_SKILL_TAGS, dispatch),
-		OPEN_SKILL_TAGS_LIST: bindActionCreators(OPEN_SKILL_TAGS_LIST, dispatch),
-		ADD_USERS_SKILLS: bindActionCreators(ADD_USERS_SKILLS, dispatch),
-		GO_TO_THE_NEXT_STEP: bindActionCreators(GO_TO_THE_NEXT_STEP, dispatch),
-		GO_TO_THE_PREVIOUS_STEP: bindActionCreators(GO_TO_THE_PREVIOUS_STEP, dispatch),
-		DELETE_USERS_SKILLS: bindActionCreators(DELETE_USERS_SKILLS, dispatch),
-		CHOOSE_CATEGORY_FOR_SKILLS: bindActionCreators(CHOOSE_CATEGORY_FOR_SKILLS, dispatch),
-		EDIT_USERS_SKILLS: bindActionCreators(EDIT_USERS_SKILLS, dispatch),
-		DELETE_SKILL_TAG_FOR_SKILLS: bindActionCreators(DELETE_SKILL_TAG_FOR_SKILLS, dispatch),
-		CLOSE_SKILL_TAGS_LIST: bindActionCreators(CLOSE_SKILL_TAGS_LIST, dispatch)
+		getUsersSkills: bindActionCreators(GET_USERS_SKILLS, dispatch),
+		getSkills: bindActionCreators(GET_SKILLS, dispatch),
+		getPromotions: bindActionCreators(GET_PROMOTIONS, dispatch),
+		changeUsersSkillCategories: bindActionCreators(CHANGE_USERS_SKILL_CATEGORIES, dispatch),
+		changeUsersSkillTags: bindActionCreators(CHANGE_USERS_SKILL_TAGS, dispatch),
+		getSkillTags: bindActionCreators(GET_SKILL_TAGS, dispatch),
+		openSkillTagsList: bindActionCreators(OPEN_SKILL_TAGS_LIST, dispatch),
+		addUsersSkills: bindActionCreators(ADD_USERS_SKILLS, dispatch),
+		goToTheNextStep: bindActionCreators(GO_TO_THE_NEXT_STEP, dispatch),
+		goToThePreviousStep: bindActionCreators(GO_TO_THE_PREVIOUS_STEP, dispatch),
+		deleteUsersSkills: bindActionCreators(DELETE_USERS_SKILLS, dispatch),
+		chooseCategoryForSkills: bindActionCreators(CHOOSE_CATEGORY_FOR_SKILLS, dispatch),
+		editUsersSkills: bindActionCreators(EDIT_USERS_SKILLS, dispatch),
+		deleteSkillTagForSkills: bindActionCreators(DELETE_SKILL_TAG_FOR_SKILLS, dispatch),
+		closeSkillTagsList: bindActionCreators(CLOSE_SKILL_TAGS_LIST, dispatch)
   }
 }
 

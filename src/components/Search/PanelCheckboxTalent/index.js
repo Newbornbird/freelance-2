@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,37 +21,47 @@ class PanelCheckboxTalent extends Component {
       <div className="panel panel-default">
         <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
         <CheckboxExpTalent 
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          changeCheckboxDataArr = { this.props.changeCheckboxDataArr }
           inputData = { this.props.inputData } />
         <CheckboxJDSTalent
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          changeCheckboxDataSingle = { this.props.changeCheckboxDataSingle }
           inputData = { this.props.inputData } />
         <CheckboxSTSTalent
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          changeCheckboxDataSingle = { this.props.changeCheckboxDataSingle }
           inputData = { this.props.inputData } />
         <CheckboxFRTalent
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
+          changeCheckboxDataSingle = { this.props.changeCheckboxDataSingle }
           inputData = { this.props.inputData } />
         <LocationTalent
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
-          GET_LOCATIONS = { this.props.GET_LOCATIONS }
+          changeCheckboxDataArr = { this.props.changeCheckboxDataArr }
+          getLocations = { this.props.getLocations }
           locations = { this.props.locations }
           inputData = { this.props.inputData } />
         <LanguageTalent
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
-          GET_LANGUAGES = { this.props.GET_LANGUAGES }
+          changeCheckboxDataArr = { this.props.changeCheckboxDataArr }
+          getLanguages = { this.props.getLanguages }
           languages = { this.props.languages }
           inputData = { this.props.inputData } />
         <CheckboxAvailabilityTalent
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          changeCheckboxDataArr = { this.props.changeCheckboxDataArr }
           inputData = { this.props.inputData } />
         <CheckboxPlaceTalent
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
+          changeCheckboxDataArr = { this.props.changeCheckboxDataArr }
           inputData = { this.props.inputData } />
-        
       </div>
     )
   }
+}
+
+PanelCheckboxTalent.propTypes = {
+  inputData: PropTypes.object,
+  locations: PropTypes.array,
+  languages: PropTypes.array,
+  getLocations: PropTypes.func,
+  getLanguages: PropTypes.func,
+  changeCheckboxDataArr: PropTypes.func,
+  changeCheckboxDataSingle: PropTypes.func,
+  bigAction: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -63,11 +74,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    GET_LOCATIONS:  bindActionCreators(GET_LOCATIONS, dispatch),
-    GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch),
-    CHANGE_CHECKBOX_DATA_ARR:  bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch), 
-    CHANGE_CHECKBOX_DATA_SINGLE:  bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
-    BIG_ACTION:  bindActionCreators(BIG_ACTION, dispatch)
+    getLocations:  bindActionCreators(GET_LOCATIONS, dispatch),
+    getLanguages: bindActionCreators(GET_LANGUAGES, dispatch),
+    changeCheckboxDataArr:  bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch), 
+    changeCheckboxDataSingle:  bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
+    bigAction:  bindActionCreators(BIG_ACTION, dispatch)
   }
 }
 

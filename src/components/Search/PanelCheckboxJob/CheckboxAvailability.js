@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxAvailability extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class CheckboxAvailability extends Component {
   }
 
   render() {
+    let { changeCheckboxDataArr,  inputData } = this.props
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -20,10 +22,10 @@ class CheckboxAvailability extends Component {
               name='per_week_10'  
               type="checkbox" 
               id="checkbox-6.1"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_10') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_10') >= 0 ? true : false) : false }
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }>
 
             </input>
@@ -39,10 +41,10 @@ class CheckboxAvailability extends Component {
               name='per_week_up_to_30' 
               type="checkbox" 
               id="checkbox-6.2"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_up_to_30') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_up_to_30') >= 0 ? true : false) : false }
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }>
             </input>
             <label htmlFor="checkbox-6.2">
@@ -56,10 +58,10 @@ class CheckboxAvailability extends Component {
             <input 
               name='per_week_more_than_30' 
               type="checkbox" id="checkbox-6.3"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }>
             </input>
             <label htmlFor="checkbox-6.3">
@@ -74,10 +76,10 @@ class CheckboxAvailability extends Component {
               name='decide_later' 
               type="checkbox" 
               id="checkbox-6.4"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('decide_later') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('decide_later') >= 0 ? true : false) : false }
               onChange={ (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }>
             </input>
             <label htmlFor="checkbox-6.4">
@@ -91,6 +93,11 @@ class CheckboxAvailability extends Component {
       </div>
     )
   }
+}
+
+CheckboxAvailability.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataArr: PropTypes.func,
 }
 
 export default CheckboxAvailability;

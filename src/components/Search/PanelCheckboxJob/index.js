@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,43 +21,56 @@ import CheckboxJobDelivery from './CheckboxJobDelivery';
 class PanelCheckboxJob extends Component {
     
   render() {
+    let { changeCheckboxDataArr,  inputData,  getLocations, locations, getLanguages,  
+      languages,  changeInputDataPayment, changeCheckboxDataSingle } = this.props
     return (
       <div className="panel panel-default">
         <button className="btn btn-bg-transparent close-btn icon-btn"><span className="glyphicon glyphicon-remove"></span></button>
         <CheckboxExp
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
-          inputData = { this.props.inputData } />
+          changeCheckboxDataArr = { changeCheckboxDataArr } 
+          inputData = { inputData } />
         <CheckboxPosted
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
-          inputData = { this.props.inputData } />
+          changeCheckboxDataSingle = { changeCheckboxDataSingle }
+          inputData = { inputData } />
         <CheckboxPlace />
         <Location
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
-          GET_LOCATIONS = { this.props.GET_LOCATIONS }
-          locations = { this.props.locations }
-          inputData = {this.props.inputData} />
+          changeCheckboxDataArr = { changeCheckboxDataArr }
+          getLocations = { getLocations }
+          locations = { locations }
+          inputData = { inputData } />
         <Language
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR }
-          GET_LANGUAGES = { this.props.GET_LANGUAGES }
-          languages = { this.props.languages }
-          inputData = {this.props.inputData} />
+          changeCheckboxDataArr = { changeCheckboxDataArr }
+          getLanguages = { getLanguages }
+          languages = { languages }
+          inputData = { inputData } />
         <CheckboxAvailability
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
-          inputData = {this.props.inputData} />
+          changeCheckboxDataArr = { changeCheckboxDataArr } 
+          inputData = { inputData } />
         <CheckboxPayment
-          CHANGE_CHECKBOX_DATA_ARR = { this.props.CHANGE_CHECKBOX_DATA_ARR } 
-          CHANGE_INPUT_DATA_PAYMENT = { this.props.CHANGE_INPUT_DATA_PAYMENT }
-          inputData = {this.props.inputData} />
+          changeCheckboxDataArr = { changeCheckboxDataArr } 
+          changeInputDataPayment = { changeInputDataPayment }
+          inputData = { inputData } />
         <CheckboxBudget
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
-          inputData = {this.props.inputData} />
+          changeCheckboxDataSingle = { changeCheckboxDataSingle }
+          inputData = { inputData } />
         <CheckboxProposal
-          CHANGE_CHECKBOX_DATA_SINGLE = { this.props.CHANGE_CHECKBOX_DATA_SINGLE }
-          inputData = { this.props.inputData } />
+          changeCheckboxDataSingle = { changeCheckboxDataSingle }
+          inputData = { inputData } />
         <CheckboxJobDelivery />  
       </div>
     )
   }
+}
+
+PanelCheckboxJob.propTypes = {
+  inputData: PropTypes.object,
+  locations: PropTypes.array,
+  languages: PropTypes.array,
+  changeCheckboxDataArr: PropTypes.func,
+  changeCheckboxDataSingle: PropTypes.func,
+  changeInputDataPayment: PropTypes.func,
+  getLocations: PropTypes.func,
+  getLanguages: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -69,12 +83,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    CHANGE_CHECKBOX_DATA_ARR: bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch),
-    CHANGE_CHECKBOX_DATA_SINGLE: bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
-    CHANGE_INPUT_DATA_PAYMENT: bindActionCreators(CHANGE_INPUT_DATA_PAYMENT, dispatch),
-    BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch),
-    GET_LOCATIONS:  bindActionCreators(GET_LOCATIONS, dispatch),
-    GET_LANGUAGES: bindActionCreators(GET_LANGUAGES, dispatch)
+    changeCheckboxDataArr: bindActionCreators(CHANGE_CHECKBOX_DATA_ARR, dispatch),
+    changeCheckboxDataSingle: bindActionCreators(CHANGE_CHECKBOX_DATA_SINGLE, dispatch),
+    changeInputDataPayment: bindActionCreators(CHANGE_INPUT_DATA_PAYMENT, dispatch),
+    bigAction: bindActionCreators(BIG_ACTION, dispatch),
+    getLocations:  bindActionCreators(GET_LOCATIONS, dispatch),
+    getLanguages: bindActionCreators(GET_LANGUAGES, dispatch)
   }
 
 }

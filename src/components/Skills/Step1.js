@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 class Step1 extends Component {
   render() {
+    let { usersSkills,  addingSkillsStatus, goToTheNextStep,  chooseCategoryForSkills } = this.props;
     return (
       <div className="step-1">
             <div className="skill-block skill-cat">
               <div className="skill-block-title">Choose  Your Skill Category</div>
               <div className="skill-block-list">
                 <form>
-                  { this.props.usersSkills[0] ? this.props.usersSkills.map( ( category, index ) => (
+                  { usersSkills[0] ? usersSkills.map( ( category, index ) => (
                     <div className="checkbox-block" key = { index }>
                       <input 
                         type="checkbox" 
                         id={ "cat-" + index }
                         name = { category.name }
-                        checked={ this.props.addingSkillsStatus.chosenCategory.name === category.name }
-                        onChange={ (event) => { this.props.CHOOSE_CATEGORY_FOR_SKILLS(event, category.id) } }
+                        checked={ addingSkillsStatus.chosenCategory.name === category.name }
+                        onChange={ (event) => { chooseCategoryForSkills(event, category.id) } }
                         />
                       <label htmlFor={ "cat-" + index }>
                         <span className="checkbox-circle">
@@ -32,7 +33,7 @@ class Step1 extends Component {
                 type="button" 
                 className="btn btn-blue btn-bold step-2-toggler step-toggler"
                 disabled={ !this.props.addingSkillsStatus.chosenCategory.name }
-                onClick={ () => { this.props.GO_TO_THE_NEXT_STEP(this.props.addingSkillsStatus.step) } }>
+                onClick={ () => { goToTheNextStep( addingSkillsStatus.step ) } }>
                 Next
               </button>
             </div>
@@ -41,4 +42,11 @@ class Step1 extends Component {
   }
 }
 
+Step1.propTypes = {
+  usersSkills: PropTypes.array,
+	addingSkillsStatus: PropTypes.object,
+	goToTheNextStep: PropTypes.func,
+  chooseCategoryForSkills: PropTypes.func
+}
+	
 export default Step1;

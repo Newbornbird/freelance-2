@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 class SkillTagItem extends Component {
@@ -6,7 +7,6 @@ class SkillTagItem extends Component {
     super(props);
     this.state = {
       isActive: false,
-      
     }
   }
 
@@ -20,9 +20,9 @@ class SkillTagItem extends Component {
 
 
   render() {
+    let { addSkillTag, requestForPostJob, skill_tags, name, index } = this.props;
     return (
         <li 
-          // key={ index }
           style={ this.state.isActive ? 
             {
               backgroundColor: '#f5f5f5', 
@@ -37,15 +37,23 @@ class SkillTagItem extends Component {
               cursor: 'pointer' 
             } }
             onClick={ () => { 
-              this.props.ADD_SKILL_TAG( this.props.requestForPostJob.skill_tags, this.props.skill_tags.skill_tags[this.props.index] ) 
+              addSkillTag( requestForPostJob.skill_tags, skill_tags.skill_tags[index] ) 
             } }
             onMouseOver = { this.makeActive }
             onMouseOut = { this.makeInActive }>
-          { this.props.name.toUpperCase() }
+          { name.toUpperCase() }
         </li> 
      
     )
   }
+}
+
+SkillTagItem.propTypes = {
+  addSkillTag: PropTypes.func,
+  requestForPostJob: PropTypes.object,
+  skill_tags: PropTypes.object,
+  name: PropTypes.string,
+  index: PropTypes.number
 }
 
 export default SkillTagItem;

@@ -18,10 +18,11 @@ class Navigation extends Component {
   }
   
   render() {
+    let { authorization,  signOut } = this.props;
     return(
       <nav className="main-top-nav flexbox justify-space-between">
         <div className="logo">
-          <a className="logo-link" href="index.html"><img src={logo} height="39" width="auto" alt='logo'/></a>
+          <a className="logo-link" href="index.html"><img src={ logo } height="39" width="auto" alt='logo'/></a>
         </div>
         <div type="button" className="humburger-icon">
           <button type="button" className="btn btn-bg-transparent">
@@ -71,21 +72,21 @@ class Navigation extends Component {
           <div className="user-box" onClick={ this.toggleMenu }>
             <div 
               className="user-photo" 
-              style={ this.props.authorization.userData ? 
-                        { 'backgroundImage': 'url(' + this.props.authorization.userData.image.url + ')' } : {  } }
+              style={ authorization.userData ? 
+                        { 'backgroundImage': 'url(' + authorization.userData.image.url + ')' } : {  } }
             >
               <i className="notif"></i>
             </div>
             <div className="user-box-nav dropdown">
             <span className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              { this.props.authorization.userData.full_name }
+              { authorization.userData.full_name }
               <span className="caret">
               </span>
             </span>
             <ul className="dropdown-menu" style={ this.state.menuIsOpen ? { 'display': 'block' } : {  } }>
               <li><a data-toggle="modal" data-target="#sign-up-modal" style={ { 'cursor': 'pointer' } }>USER SETTINGS</a></li>
               <li><a data-toggle="modal" data-target="#massege-dialogs-modal" style={ { 'cursor': 'pointer' } }>PAYMENT ACCOUNT</a></li>
-              <li onClick={ this.props.SIGN_OUT } >
+              <li onClick={ signOut } >
                 <a style={ { 'cursor': 'pointer' } }>
                   LOG OUT
                 </a>
@@ -108,7 +109,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SIGN_OUT: bindActionCreators(SIGN_OUT, dispatch)
+    signOut: bindActionCreators(SIGN_OUT, dispatch)
   }
 }
 

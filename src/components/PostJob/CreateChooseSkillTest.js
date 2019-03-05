@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CreateChooseSkillTest extends Component {
   render() {
+    let { statusPostJob,  requestForPostJob,  promotions, makeActiveCreatingSkillTest, makeInActiveCreatingSkillTest, 
+      changeStrInpForPostJob,  changeActivePromotionCategory,  choosePromotion,  changeActiveCategory, 
+      togglePromotionList, toggleSubCategoryList, changeActiveSubCategory, promotionList, 
+      subCategoryList, activeSubCategory } = this.props;
     return (
       <div className="form-block">
               <div className="form-block-wrapper promo-sample-block">
@@ -12,8 +17,8 @@ class CreateChooseSkillTest extends Component {
                       name="promo-sample" 
                       id="promo-cr" 
                       value="promo-cr" 
-                      checked={ this.props.statusPostJob.createSkillTest }  
-                      onChange={ this.props.MAKE_ACTIVE_CREATING_SKILL_TEST }
+                      checked={ statusPostJob.createSkillTest }  
+                      onChange={ makeActiveCreatingSkillTest }
                       />
                     <label htmlFor="promo-cr">
                       <span className="checkbox-sqw">
@@ -24,7 +29,7 @@ class CreateChooseSkillTest extends Component {
                   </div>
                   <div className="post-job-inputs">
                     <span 
-                      style={ this.props.statusPostJob.createSkillTest ? { 'color': 'red' } : { 'display': 'none' } }>
+                      style={ statusPostJob.createSkillTest ? { 'color': 'red' } : { 'display': 'none' } }>
                       Please enter your skill test title and description
                     </span>
                     <input 
@@ -32,23 +37,23 @@ class CreateChooseSkillTest extends Component {
                       name='promotion_title' 
                       placeholder="Skill Test Title" 
                       className="job-title form-control" 
-                      disabled={ !this.props.statusPostJob.createSkillTest } 
+                      disabled={ !statusPostJob.createSkillTest } 
                       style={ 
-                        ( !this.props.statusPostJob.createSkillTest || this.props.requestForPostJob.promotion_title) ? {  } :
+                        ( !statusPostJob.createSkillTest || requestForPostJob.promotion_title) ? {  } :
                         { 'backgroundColor': '#fff1f5', 'border': '2px solid #cb001f' }  }
-                      value={ this.props.statusPostJob.createSkillTest ? this.props.requestForPostJob.promotion_title : "Skill Test Title" } 
-                      onChange={ (event) => { this.props.CHANGE_STR_INP_FOR_POSTJOB(event)  } }/>
+                      value={ statusPostJob.createSkillTest ? requestForPostJob.promotion_title : "Skill Test Title" } 
+                      onChange={ (event) => { changeStrInpForPostJob(event)  } }/>
                     <textarea
                       name='promotion_description'
-                      value={ this.props.statusPostJob.createSkillTest ? this.props.requestForPostJob.promotion_description : "Skill Test Description" } 
+                      value={ statusPostJob.createSkillTest ? requestForPostJob.promotion_description : "Skill Test Description" } 
                       placeholder="Skill Test Description" 
                       className="form-control job-descr" 
                       rows="4" 
-                      disabled={ !this.props.statusPostJob.createSkillTest }
+                      disabled={ !statusPostJob.createSkillTest }
                       style={ 
-                        ( !this.props.statusPostJob.createSkillTest || this.props.requestForPostJob.promotion_description) ? {  } :
+                        ( !statusPostJob.createSkillTest || requestForPostJob.promotion_description) ? {  } :
                         { 'backgroundColor': '#fff1f5', 'border': '2px solid #cb001f' }  }
-                      onChange={ (event) => { this.props.CHANGE_STR_INP_FOR_POSTJOB(event)  } }>
+                      onChange={ (event) => { changeStrInpForPostJob(event)  } }>
                     </textarea>
                   </div> 
                   {/* <button class="btn btn-bold btn-blue">Create Promotion</button> */}
@@ -60,8 +65,8 @@ class CreateChooseSkillTest extends Component {
                       name="promo-sample" 
                       id="promo-ch" 
                       value="promo-ch" 
-                      checked={ !this.props.statusPostJob.createSkillTest }  
-                      onChange={ this.props.MAKE_INACTIVE_CREATING_SKILL_TEST } />
+                      checked={ !statusPostJob.createSkillTest }  
+                      onChange={ makeInActiveCreatingSkillTest } />
                     <label htmlFor="promo-ch">
                       <span className="checkbox-sqw">
                         <span className="icon icon-check-mark"></span>
@@ -69,21 +74,21 @@ class CreateChooseSkillTest extends Component {
                       <span className="radio-text">or choose existing skill test</span>
                     </label>
                   </div>
-                  <span style={ !this.props.requestForPostJob.promotion_title && !this.props.statusPostJob.createSkillTest ? { 'color': 'red' } : { 'display': 'none' } }>
+                  <span style={ !requestForPostJob.promotion_title && !statusPostJob.createSkillTest ? { 'color': 'red' } : { 'display': 'none' } }>
                     You need to choose one of skill test
                   </span>
                   <div className="promo-block-form">
                     <div className="promo-block-form-header flexbox justify-space-between">
                       <div className="filter-nav flexbox justify-space-between">
                         <div 
-                          className={ this.props.promotionList ? "my-select-box form-control open" : "my-select-box form-control"}
+                          className={ promotionList ? "my-select-box form-control open" : "my-select-box form-control"}
                           >
-                          <span className="my-select-result flexbox justify-space-between" onClick={ this.props.togglePromotionList }>
+                          <span className="my-select-result flexbox justify-space-between" onClick={ togglePromotionList }>
                             <span className="text">
-                              { this.props.statusPostJob.activePromotionCategory ? 
-                                  (this.props.statusPostJob.activePromotionCategory.length > 22 ?
-                                    this.props.statusPostJob.activePromotionCategory.substring( 0, 22 ) + '...' : 
-                                      this.props.statusPostJob.activePromotionCategory) : 
+                              { statusPostJob.activePromotionCategory ? 
+                                  (statusPostJob.activePromotionCategory.length > 22 ?
+                                    statusPostJob.activePromotionCategory.substring( 0, 22 ) + '...' : 
+                                      statusPostJob.activePromotionCategory) : 
                                         'Category' }
                             
                               {/* { this.props.requestForPostJob.promotion_title ? 
@@ -96,17 +101,17 @@ class CreateChooseSkillTest extends Component {
                           </span>
                           <div className="my-select-options">
                             <div className="radio-block">
-                                { this.props.promotions.categories.map( (category, index) => (
+                                { promotions.categories.map( (category, index) => (
                                     <div className="radio" key={ index }>
                                       <input 
                                         type="radio"  
                                         name={ category.name }
                                         id={ category.id + "-term" }
                                         onChange={ () => {
-                                          this.props.CHANGE_ACTIVE_PROMOTION_CATEGORY(category.name );
-                                          this.props.changeActiveCategory();
+                                          changeActivePromotionCategory(category.name );
+                                          changeActiveCategory();
                                         } }  
-                                        checked={ this.props.requestForPostJob.promotion_title === category.name } />
+                                        checked={ requestForPostJob.promotion_title === category.name } />
                                       <label htmlFor={ category.id + "-term" } >
                                         <span className="radio-text">{ category.name }</span>
                                       </label>
@@ -115,22 +120,22 @@ class CreateChooseSkillTest extends Component {
                             </div>	
                           </div>
                         </div>
-                        <div className={ this.props.subCategoryList ? "my-select-box form-control open" : "my-select-box form-control" } >
-                          <span className="my-select-result flexbox justify-space-between" onClick={ this.props.toggleSubCategoryList }>
+                        <div className={ subCategoryList ? "my-select-box form-control open" : "my-select-box form-control" } >
+                          <span className="my-select-result flexbox justify-space-between" onClick={ toggleSubCategoryList }>
                             <span className="text">
-                                { this.props.activeSubCategory ? 
-                                    (this.props.activeSubCategory.length > 22 ?
-                                      this.props.activeSubCategory.substring(0,22) + '...' : 
-                                        this.props.activeSubCategory) : 'Sub Category' }
+                                { activeSubCategory ? 
+                                    (activeSubCategory.length > 22 ?
+                                      activeSubCategory.substring(0,22) + '...' : 
+                                        activeSubCategory) : 'Sub Category' }
                             </span> 
                             <span className="caret"></span>
                           </span>
                           <div className="my-select-options">
                             <div className="radio-block">
-                              { this.props.statusPostJob.activePromotionCategory ? 
-                                  this.props.promotions.categories
+                              { statusPostJob.activePromotionCategory ? 
+                                  promotions.categories
                                     .find(
-                                      category => category.name === this.props.statusPostJob.activePromotionCategory
+                                      category => category.name === statusPostJob.activePromotionCategory
                                     )
                                     .skill_categories.map( (subCategory, index) => (
                                   <div className="radio" key={index}>
@@ -140,9 +145,9 @@ class CreateChooseSkillTest extends Component {
                                       id={ index + "-torm" } 
                                       value={ index + "-torm" } 
                                       onChange={ (event) => { 
-                                        this.props.changeActiveSubCategory(event) 
+                                        changeActiveSubCategory(event) 
                                       } }
-                                      checked={ subCategory.name === this.props.activeSubCategory } />
+                                      checked={ subCategory.name === activeSubCategory } />
                                     <label htmlFor={ index + "-torm" }>
                                       <span className="radio-text">{ subCategory.name }</span>
                                     </label> 
@@ -154,17 +159,17 @@ class CreateChooseSkillTest extends Component {
                       </div>
                       <div className="results-numb">
                         <span className="numb">
-                        { this.props.statusPostJob.activePromotionCategory ? 
-                            this.props.promotions.promotions.filter( 
-                              promotion => promotion.title === this.props.statusPostJob.activePromotionCategory ).length :
-                                this.props.promotions.promotions.length }
+                        { statusPostJob.activePromotionCategory ? 
+                            promotions.promotions.filter( 
+                              promotion => promotion.title === statusPostJob.activePromotionCategory ).length :
+                                promotions.promotions.length }
                         </span> results
                       </div>
                     </div>
                     <div className="promo-block-form-body">
-                    { this.props.statusPostJob.activePromotionCategory ?
-                        this.props.promotions.promotions
-                          .filter( promotion => promotion.title === this.props.statusPostJob.activePromotionCategory )
+                    { statusPostJob.activePromotionCategory ?
+                        promotions.promotions
+                          .filter( promotion => promotion.title === statusPostJob.activePromotionCategory )
                             .map( (prom, index) => (
                               <div className="checkbox-block" key={ index } >
                                 <input 
@@ -175,13 +180,13 @@ class CreateChooseSkillTest extends Component {
                                 <label 
                                   htmlFor={ "skill-test-" + index } 
                                   onClick={ () => {
-                                    this.props.CHOOSE_PROMOTION(prom.id, this.props.requestForPostJob.promotion.id, this.props.promotions.promotions); 
+                                    choosePromotion(prom.id, requestForPostJob.promotion.id, promotions.promotions); 
                                   } } >
                                   <div className="panel-block flexbox"  >
                                     <span className="checkbox-circle checkbox-sqw">
                                       <span 
                                         className="icon icon-check-mark" 
-                                        style={ this.props.requestForPostJob.promotion.id === prom.id ? 
+                                        style={ requestForPostJob.promotion.id === prom.id ? 
                                           { 'visibility': 'visible', 'fontSize': '10px' } : { 'visibility': 'hidden' } }>
                                         
                                       </span>
@@ -209,7 +214,7 @@ class CreateChooseSkillTest extends Component {
                                   </div>
                                 </label>
                               </div>
-                            ) ) : this.props.promotions.promotions.map((prom, index) => (
+                            ) ) : promotions.promotions.map((prom, index) => (
                               <div className="checkbox-block" key={ index } >
                                 <input
                                   value={ prom.id } 
@@ -218,12 +223,12 @@ class CreateChooseSkillTest extends Component {
                                 />
                                 <label htmlFor={ "skill-test-" + index } 
                                   onClick={ () => {
-                                    this.props.CHOOSE_PROMOTION(prom.id, this.props.requestForPostJob.promotion.id, this.props.promotions.promotions)
+                                    choosePromotion(prom.id, requestForPostJob.promotion.id, promotions.promotions)
                                   } }>
                                   <div className="panel-block flexbox"  >
                                     <span className="checkbox-circle checkbox-sqw">
                                       <span className="icon icon-check-mark" 
-                                        style={ this.props.requestForPostJob.promotion.id === prom.id ? 
+                                        style={ requestForPostJob.promotion.id === prom.id ? 
                                           { 'visibility': 'visible', 'fontSize': '10px' } : { 'visibility': 'hidden' } }>
 
                                       </span>
@@ -257,4 +262,22 @@ class CreateChooseSkillTest extends Component {
   }
 }
 
+CreateChooseSkillTest.propTypes = {
+  promotions: PropTypes.object,
+  requestForPostJob: PropTypes.object,
+  statusPostJob: PropTypes.object,
+  choosePromotion: PropTypes.func,
+  changeActivePromotionCategory: PropTypes.func,
+  changeStrInpForPostJob: PropTypes.func,
+  makeActiveCreatingSkillTest: PropTypes.func,
+  makeInActiveCreatingSkillTest: PropTypes.func,
+  changeActiveCategory: PropTypes.func,
+  togglePromotionList: PropTypes.func,
+  toggleSubCategoryList: PropTypes.func,
+  changeActiveSubCategory: PropTypes.func,
+  promotionList: PropTypes.bool,
+  subCategoryList: PropTypes.bool,
+  activeSubCategory: PropTypes.string
+}
+  
 export default CreateChooseSkillTest;

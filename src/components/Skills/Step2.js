@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SkillTagItemForSkills from './SkillTagItemForSkills';
 
-
 class Step2 extends Component {
-  
   render() {
+    let { usersSkills,  addingSkillsStatus, skill_tags,  changeUsersSkillCategories,
+      changeUsersSkillTags, getSkillTags, openSkillTagsList,  deleteSkillTagForSkills,  closeSkillTagsList } = this.props;
     return (
       <div className="step-2">
         <div className="skill-subcat">
           <div className="flexbox justify-space-between">
             <div className="skill-block">
-              <div className="skill-block-title">{ this.props.addingSkillsStatus.chosenCategory.name }</div>
+              <div className="skill-block-title">{ addingSkillsStatus.chosenCategory.name }</div>
               <div className="skill-block-list">
                 <form>
-                  { this.props.usersSkills
-                    .find( skill => skill.name === this.props.addingSkillsStatus.chosenCategory.name )
+                  { usersSkills
+                    .find( skill => skill.name === addingSkillsStatus.chosenCategory.name )
                     .skill_categories.map( (category, index) => (
                       <div className="checkbox-block" key={ index }>
                         <input 
@@ -22,9 +23,9 @@ class Step2 extends Component {
                           id={"math-" + index}
                           checked={ category.selected }
                           onChange={ (event) => { 
-                            this.props.CHANGE_USERS_SKILL_CATEGORIES( 
-                              this.props.addingSkillsStatus.chosenCategory.id,
-                              this.props.usersSkills,
+                            changeUsersSkillCategories( 
+                              addingSkillsStatus.chosenCategory.id,
+                              usersSkills,
                               index,
                               event
                             ) 
@@ -47,11 +48,11 @@ class Step2 extends Component {
                   type="text" 
                   className="form-control" 
                   placeholder="Write new skill"
-                  onChange={ (event) => { this.props.GET_SKILL_TAGS(event) } }
-                  onFocus={ () => { this.props.OPEN_SKILL_TAGS_LIST() } }
+                  onChange={ (event) => { getSkillTags(event) } }
+                  onFocus={ () => { openSkillTagsList() } }
                   />
               </form>
-              <ul style={ this.props.skill_tags.skill_tags.length && this.props.skill_tags.dropDownMenu ? 
+              <ul style={ skill_tags.skill_tags.length && skill_tags.dropDownMenu ? 
               {
                 boxShadow: '0 0 10px rgba(0,0,0,0.5)',
                 width: '275px', 
@@ -67,27 +68,27 @@ class Step2 extends Component {
                 display: 'none'
               }
                 }>
-                { this.props.skill_tags.skill_tags.length ? 
-                    this.props.skill_tags.skill_tags.map( (skill_tag, index) => ( 
+                { skill_tags.skill_tags.length ? 
+                    skill_tags.skill_tags.map( (skill_tag, index) => ( 
                       <SkillTagItemForSkills  
-                        CHANGE_USERS_SKILL_TAGS = { this.props.CHANGE_USERS_SKILL_TAGS }
-                        addingSkillsStatus = { this.props.addingSkillsStatus }
-                        usersSkills = { this.props.usersSkills }
+                        changeUsersSkillTags = { changeUsersSkillTags }
+                        addingSkillsStatus = { addingSkillsStatus }
+                        usersSkills = { usersSkills }
                         key={ index }
-                        skill_tags = { this.props.skill_tags }
+                        skill_tags = { skill_tags }
                         name = { skill_tag.name }
                         index = { index } />
                         
                   ) ) : ''}
               </ul>
               <div className="skill-tags-block clearfix">
-                { this.props.usersSkills[this.props.addingSkillsStatus.chosenCategory.id - 1].skill_tags.length ? 
-                    this.props.usersSkills[this.props.addingSkillsStatus.chosenCategory.id - 1].skill_tags.map( (skill_tag, index) => (
+                { usersSkills[addingSkillsStatus.chosenCategory.id - 1].skill_tags.length ? 
+                    usersSkills[addingSkillsStatus.chosenCategory.id - 1].skill_tags.map( (skill_tag, index) => (
                   <div className="skill-tag" key={index}
-                    onClick={ () => { this.props.DELETE_SKILL_TAG_FOR_SKILLS(
-                      this.props.addingSkillsStatus.chosenCategory.id, 
-                      this.props.usersSkills, 
-                      this.props.skill_tags.skill_tags[this.props.index]
+                    onClick={ () => { deleteSkillTagForSkills(
+                      addingSkillsStatus.chosenCategory.id, 
+                      usersSkills, 
+                      skill_tags.skill_tags[index]
                     ) } }>
                     { skill_tag.name }
                   </div>
@@ -99,6 +100,18 @@ class Step2 extends Component {
       </div>
     )
   }
+}
+
+Step2.propTypes = {
+  skill_tags: PropTypes.object,
+	usersSkills: PropTypes.array,
+	addingSkillsStatus: PropTypes.object,
+	changeUsersSkillCategories: PropTypes.func,
+	changeUsersSkillTags: PropTypes.func,
+	getSkillTags: PropTypes.func,
+	openSkillTagsList: PropTypes.func,
+	deleteUsersSkills: PropTypes.func,
+	closeSkillTagsList: PropTypes.func
 }
 
 export default Step2;

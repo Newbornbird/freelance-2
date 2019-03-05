@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import noResults from '../../images/tallents@2x.png';
 import queryString from 'query-string';
 import Form from './Form';
 import JobPostStatus from './JobPostStatus';
@@ -34,56 +36,59 @@ export class SearchMain extends Component {
   componentDidUpdate(prevProps) {
     if(prevProps.location.search !== this.props.location.search || prevProps.location.pathname !== this.props.location.pathname) {
       let parseString = queryString.parse(window.location.search);
-      this.props.BIG_ACTION(parseString, window.location.pathname);
+      this.props.bigAction(parseString, window.location.pathname);
     }
   }
 
   componentDidMount() {
     let parseString = queryString.parse(window.location.search);
-    this.props.BIG_ACTION(parseString, window.location.pathname);
+    this.props.bigAction(parseString, window.location.pathname);
   }
 
   render() {
+    let { pathName, inputData, redirectIsActive,  meta, inputStringValue,  jobs, talents, 
+      authorization, switchSearch,  getMore,  sort, changeCheckboxDataName,  bigAction,  
+      changeInputStringValue, openModal, hideMessageSuccessPosting } = this.props;
     return (
       <div className="content">
-        { this.props.redirectIsActive ? <Redirect to={{
-              pathname: this.props.pathName,
-              search: queryString.stringify(this.props.inputData, { encode: false })
+        { redirectIsActive ? <Redirect to={{
+              pathname: pathName,
+              search: queryString.stringify(inputData, { encode: false })
         }} /> : ''}
         <PostJob />
         <div className="container-fluid">
           <div className="row content-header flexbox">
             <div className="col-xs-2 left-sidebar">
-              <Hello userName = { this.props.authorization.userData.first_name } />
+              <Hello userName = { authorization.userData.first_name } />
               
             </div>
             <div className="col-xs-10">
               <Form 
-                inputData = { this.props.inputData }
-                CHANGE_CHECKBOX_DATA_NAME = { this.props.CHANGE_CHECKBOX_DATA_NAME } 
-                CHANGE_INPUT_STRING_VALUE = { this.props.CHANGE_INPUT_STRING_VALUE }
-                q = { this.props.inputStringValue['q'] }
+                inputData = { inputData }
+                changeCheckboxDataName = { changeCheckboxDataName } 
+                changeInputStringValue = { changeInputStringValue }
+                q = { inputStringValue['q'] }
               />
               <JobPostStatus 
-                HIDE_MESSAGE_SUCCESS_POSTING = { this.props.HIDE_MESSAGE_SUCCESS_POSTING }
-                successMessage = { this.props.inputStringValue.successMessage }
+                hideMessageSuccessPosting = { hideMessageSuccessPosting }
+                successMessage = { inputStringValue.successMessage }
                 />
             </div>
           </div>
           <div className="row job-boxes-header flexbox">
             <div className="col-xs-2 left-sidebar">
               <JobTalentSwitch
-                pathName = {this.props.pathName}
-                SWITCH_SEARCH = { this.props.SWITCH_SEARCH }
+                pathName = { pathName }
+                switchSearch = { switchSearch }
               />
               <JobTalentButton/>
             </div>
             <div className="col-xs-10">
               <Panel 
-                meta = { this.props.meta }
-                SORT = { this.props.SORT }
-                pathName = { this.props.pathName }
-                inputData = { this.props.inputData }
+                meta = { meta }
+                sort = { sort }
+                pathName = { pathName }
+                inputData = { inputData }
               />
             </div>
           </div>
@@ -100,27 +105,27 @@ export class SearchMain extends Component {
                 "col-xs-10 container-fluid job-boxes--talents"}>
               <div className="flexbox row">
                 <div className="col-xs-12">
-                  { (this.props.talents.length && window.location.pathname === '/board/search/talent') || 
-                    (this.props.jobs.length && window.location.pathname === '/board/search/job') ?
+                  { (talents.length && window.location.pathname === '/board/search/talent') || 
+                    (jobs.length && window.location.pathname === '/board/search/job') ?
                     (<Switch>
                       <Route path="/board/search/talent" component={ TalentList } />
                       <Route path="/board/search/job" component={ JobList } />         
                     </Switch>) :
                     (<div className="noresults noresults--tallents">
-                      <img src="../../images/tallents@2x.png" alt="Have no results" />
+                      <img src={ noResults } alt="Have no results" />
                       <h2 className="blue-color">We didn’t find anybody</h2>
                       <p>Please try modifying your search to get more results.</p>
                     </div>)
                   }
                     <JobListFooter
-                      meta={this.props.meta}
-                      inputData={ this.props.inputData }
-                      GET_MORE = { this.props.GET_MORE }
+                      meta={meta}
+                      inputData={ inputData }
+                      getMore = { getMore }
                       
                     />
                 </div>
                 <div className="col-xs-3">
-                  <BtnStartNewProject OPEN_MODAL={ this.props.OPEN_MODAL }/>
+                  <BtnStartNewProject openModal={ openModal }/>
                   <BtnStartNewPromotion />
                   <BtnTellOthers />
                 </div>
@@ -148,15 +153,34 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    SWITCH_SEARCH: bindActionCreators(SWITCH_SEARCH, dispatch),
-    GET_MORE: bindActionCreators(GET_MORE, dispatch),
-    SORT: bindActionCreators(SORT, dispatch),
-    CHANGE_CHECKBOX_DATA_NAME: bindActionCreators(CHANGE_CHECKBOX_DATA_NAME, dispatch),
-    BIG_ACTION: bindActionCreators(BIG_ACTION, dispatch),
-    CHANGE_INPUT_STRING_VALUE: bindActionCreators(CHANGE_INPUT_STRING_VALUE, dispatch),
-    OPEN_MODAL: bindActionCreators(OPEN_MODAL, dispatch),
-    HIDE_MESSAGE_SUCCESS_POSTING: bindActionCreators(HIDE_MESSAGE_SUCCESS_POSTING, dispatch)
+    switchSearch: bindActionCreators(SWITCH_SEARCH, dispatch),
+    getMore: bindActionCreators(GET_MORE, dispatch),
+    sort: bindActionCreators(SORT, dispatch),
+    changeCheckboxDataName: bindActionCreators(CHANGE_CHECKBOX_DATA_NAME, dispatch),
+    bigAction: bindActionCreators(BIG_ACTION, dispatch),
+    changeInputStringValue: bindActionCreators(CHANGE_INPUT_STRING_VALUE, dispatch),
+    openModal: bindActionCreators(OPEN_MODAL, dispatch),
+    hideMessageSuccessPosting: bindActionCreators(HIDE_MESSAGE_SUCCESS_POSTING, dispatch)
   }
+}
+
+SearchMain.propTypes = {
+  pathName: PropTypes.string,
+  inputData: PropTypes.object,
+  redirectIsActive: PropTypes.bool,
+  meta: PropTypes.object,
+  inputStringValue: PropTypes.object,
+  jobs: PropTypes.array,
+  talents: PropTypes.array,
+  authorization: PropTypes.object,
+  switchSearch: PropTypes.func,
+  getMore: PropTypes.func,
+  sort: PropTypes.func,
+  changeCheckboxDataName: PropTypes.func,
+  bigAction: PropTypes.func,
+  changeInputStringValue: PropTypes.func,
+  openModal: PropTypes.func,
+  hideMessageSuccessPosting: PropTypes.func
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchMain));

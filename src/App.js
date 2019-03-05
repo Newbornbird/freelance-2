@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/media.css'
 import './styles/styles.css';
 import './App.css';
-import Authorization from './components/Authorization';
+import Authorization from './components/Authorization'
 import Skills from './components/Skills';
 import { Switch, Route } from 'react-router-dom';
 import Board from './components/Board';

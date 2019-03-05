@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   constructor(props) {
@@ -9,8 +10,8 @@ class Form extends Component {
       queryParamValue: ''
     }
   }
-
   render() {
+    let { inputData,  changeCheckboxDataName, changeInputStringValue,  q } = this.props;
     return(
       <div className="search-form">
         <form 
@@ -18,15 +19,15 @@ class Form extends Component {
           role="search"
           onSubmit={ (event) => {
             event.preventDefault();
-            this.props.CHANGE_CHECKBOX_DATA_NAME(this.props.inputData, this.props.q);
+            changeCheckboxDataName(inputData, q);
           } }>
           <input 
             name="q" 
             type="text" 
             className="form-control" 
             placeholder="Search"
-            onChange={ (event) => { this.props.CHANGE_INPUT_STRING_VALUE(event) } }
-            value={ this.props.q }  
+            onChange={ (event) => { changeInputStringValue(event) } }
+            value={ q }  
             />
           <div className="search-filter radio-block">
           <div className="radio">
@@ -46,7 +47,7 @@ class Form extends Component {
           style={{ 'border': 'none', 'background': 'none', }} 
           type="submit" 
           className="btn-search"
-          onClick = { () => { this.props.CHANGE_CHECKBOX_DATA_NAME(this.props.inputData, this.props.q) } }>
+          onClick = { () => { changeCheckboxDataName(inputData, q) } }>
           <i className="icon icon-loupe">
           </i>
         </button>
@@ -54,6 +55,13 @@ class Form extends Component {
       </div>
     )
   }
+}
+
+Form.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataName: PropTypes.func,
+  changeInputStringValue: PropTypes.func,
+  q: PropTypes.string,
 }
 
 export default Form;

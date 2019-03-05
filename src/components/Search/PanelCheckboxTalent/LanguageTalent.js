@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class LanguageTalent extends Component {
   constructor(props) {
@@ -14,10 +15,11 @@ class LanguageTalent extends Component {
   }
 
   componentDidMount() {
-    this.props.GET_LANGUAGES();
+    this.props.getLanguages();
   }
 
   render() {
+    let { changeCheckboxDataArr, languages, inputData } = this.props
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -27,8 +29,8 @@ class LanguageTalent extends Component {
           <button onClick={this.openCloseFilter} type="button" className="btn btn-default dropdown-toggle">
             <div className="flexbox justify-space-between">
               <span className="text">{ `Languages(
-                ${(this.props.inputData[this.state.queryParamKey] ?
-                this.props.inputData[this.state.queryParamKey].split(',').length : 'All')}  
+                ${(inputData[this.state.queryParamKey] ?
+                inputData[this.state.queryParamKey].split(',').length : 'All')}  
                 )` }</span>
               <span className="icon icon-down-arrow"></span>
             </div>
@@ -39,7 +41,7 @@ class LanguageTalent extends Component {
             </div>
             <div className="dropdown-list-wrapper">
               <div className="checkbox-list-block">
-                { this.props.languages.map( (language, index) => {
+                { languages.map( (language, index) => {
                     return (
                       <div className="checkbox-block" key={ index }>
                         <input 
@@ -47,10 +49,10 @@ class LanguageTalent extends Component {
                           type="checkbox" 
                           id={ "checkbox-6." + (index + 1) }
                           onChange={ (event) => { 
-                            this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                            changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
                           } }
-                          checked={ this.props.inputData[this.state.queryParamKey] ? 
-                                    (this.props.inputData[this.state.queryParamKey].indexOf(language.name) >= 0 ? true : false) : false }>
+                          checked={ inputData[this.state.queryParamKey] ? 
+                                    (inputData[this.state.queryParamKey].indexOf(language.name) >= 0 ? true : false) : false }>
                         </input>
                           <label htmlFor={ "checkbox-6." + (index + 1) }>
                             <span className="filter-checkbox">
@@ -68,6 +70,13 @@ class LanguageTalent extends Component {
       </div>
     )
   }
+}
+
+LanguageTalent.propTypes = {
+  inputData: PropTypes.object,
+  languages: PropTypes.array,
+  getLanguages: PropTypes.func,
+  changeCheckboxDataArr: PropTypes.func
 }
 
 export default LanguageTalent;

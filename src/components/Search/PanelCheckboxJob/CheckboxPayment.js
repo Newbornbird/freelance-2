@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxPayment extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class CheckboxPayment extends Component {
   }
 
   render() {
+    let { changeCheckboxDataArr,  changeInputDataPayment, inputData } = this.props
     return (
       <div className="filter-block">
       <div className="filter-title">
@@ -27,10 +29,10 @@ class CheckboxPayment extends Component {
             name="fixed_price" 
             type="checkbox" 
             id="checkbox-7.1"
-            checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('fixed_price') >= 0 ? true : false) : false }
+            checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('fixed_price') >= 0 ? true : false) : false }
             onChange={ (event) => {
-              this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+              changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
             } }>
           </input>
           <label htmlFor="checkbox-7.1">
@@ -45,10 +47,10 @@ class CheckboxPayment extends Component {
             name="hourly" 
             type="checkbox" 
             id="checkbox-7.2"
-            checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('hourly') >= 0 ? true : false) : false }
+            checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('hourly') >= 0 ? true : false) : false }
             onChange={ (event) => {
-              this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+              changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
             } }>
           </input>
           <label htmlFor="checkbox-7.2">
@@ -61,7 +63,7 @@ class CheckboxPayment extends Component {
       </div>
       <div 
         className="filter-inputs flexbox justify-space-between" 
-        style={ this.props.inputData['payment'] === 'fixed_price' ? {'display': 'none'} : {  } } >
+        style={ inputData['payment'] === 'fixed_price' ? {'display': 'none'} : {  } } >
         <input 
           name="p_from" 
           type="text" 
@@ -81,7 +83,7 @@ class CheckboxPayment extends Component {
       </div>
       <button 
         onClick={ ()=> { 
-          this.props.CHANGE_INPUT_DATA_PAYMENT(this.state['p_from'], this.state['p_to'], this.props.inputData) 
+          changeInputDataPayment(this.state['p_from'], this.state['p_to'], inputData) 
         }}
         style={{"width": "100%"}} className="btn btn-primary">
         Find
@@ -89,6 +91,12 @@ class CheckboxPayment extends Component {
     </div>
     )
   }
+}
+
+CheckboxPayment.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataArr: PropTypes.func,
+  changeInputDataPayment: PropTypes.func,
 }
 
 export default CheckboxPayment;

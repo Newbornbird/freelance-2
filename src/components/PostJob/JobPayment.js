@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class JobPayment extends Component {
   render() {
+    let { requestForPostJob,  changeStrInpForPostJob, changeCheckboxForPostJob } = this.props;
     return (
       <div className="form-block-section">
         <div className="form-block-header">
@@ -16,8 +18,8 @@ class JobPayment extends Component {
               name="fixed_price" 
               id="fixed-payment" 
               value="fixed-payment" 
-              checked={ this.props.requestForPostJob.payment === 'fixed_price' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'payment') } } />
+              checked={ requestForPostJob.payment === 'fixed_price' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'payment') } } />
             <label htmlFor="fixed-payment">
               <span className="checkbox-circle">
                 <span className="icon icon-check-mark"></span>
@@ -31,8 +33,8 @@ class JobPayment extends Component {
               name="hourly" 
               id="hourly-payment" 
               value="hourly-payment" 
-              checked={ this.props.requestForPostJob.payment === 'hourly' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'payment') } } />
+              checked={ requestForPostJob.payment === 'hourly' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'payment') } } />
             <label htmlFor="hourly-payment">
               <span className="checkbox-circle">
                 <span className="icon icon-check-mark"></span>
@@ -42,10 +44,10 @@ class JobPayment extends Component {
                 <input 
                   type="text"
                   name='hourly_price' 
-                  value={ this.props.requestForPostJob['hourly_price'] } 
+                  value={ requestForPostJob['hourly_price'] } 
                   className="form-control"  
-                  disabled={ this.props.requestForPostJob.payment === 'fixed_price' } 
-                  onChange={ (event) => { this.props.CHANGE_STR_INP_FOR_POSTJOB(event) } }
+                  disabled={ requestForPostJob.payment === 'fixed_price' } 
+                  onChange={ (event) => { changeStrInpForPostJob(event) } }
                   />
                 $ / hour
               </span>
@@ -55,6 +57,12 @@ class JobPayment extends Component {
       </div>
     )
   }
+}
+
+JobPayment.propTypes = {
+  requestForPostJob: PropTypes.object,
+  changeStrInpForPostJob: PropTypes.func,
+  changeCheckboxForPostJob: PropTypes.func,
 }
 
 export default JobPayment;

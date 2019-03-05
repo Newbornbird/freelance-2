@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class JobPostStatus extends Component {
   render() {
+    let { hideMessageSuccessPosting,  successMessage } = this.props;
     return (
-      <div className="job-post-status flexbox justify-space-between" style={ this.props.successMessage ? {  } : { 'display': 'none' } }>
+      <div className="job-post-status flexbox justify-space-between" style={ successMessage ? {  } : { 'display': 'none' } }>
         <div>
           <span className="status-text"><em>Job was posted successfully</em></span>
           <a href={ window.location.pathname }>Preview</a>
@@ -11,9 +13,8 @@ class JobPostStatus extends Component {
         </div>
         <button 
           className="btn btn-bg-transparent close-btn icon-btn"
-          onClick={ this.props.HIDE_MESSAGE_SUCCESS_POSTING }>
+          onClick={ hideMessageSuccessPosting }>
           <span className="glyphicon glyphicon-remove">
-
           </span>
         </button>
       </div>
@@ -21,6 +22,9 @@ class JobPostStatus extends Component {
   }
 }
   
-
+JobPostStatus.propTypes = {
+  hideMessageSuccessPosting: PropTypes.func,
+  successMessage: PropTypes.bool
+}
 
 export default JobPostStatus;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxBudget extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class CheckboxBudget extends Component {
   }
 
   render() {
+    let { changeCheckboxDataSingle, inputData } = this.props;
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -34,13 +36,13 @@ class CheckboxBudget extends Component {
               <div className="checkbox-list-block">
                 <div className="checkbox-block">
                   <input
-                    checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i0_100') >= 0 ? true : false) : false } 
+                    checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i0_100') >= 0 ? true : false) : false } 
                     name='i0_100' 
                     type="checkbox" 
                     id="checkbox-8.1"
                     onChange={ (event) => {  
-                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event) } } >
+                      changeCheckboxDataSingle(this.state.queryParamKey, inputData, event) } } >
                   </input>
                     <label htmlFor="checkbox-8.1">
                       <span className="filter-checkbox">
@@ -51,13 +53,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i100_300') >= 0 ? true : false) : false }  
+                    checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i100_300') >= 0 ? true : false) : false }  
                     name="i100_300" 
                     type="checkbox" 
                     id="checkbox-8.2"
                     onChange={ (event) => { 
-                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
+                      changeCheckboxDataSingle(this.state.queryParamKey, inputData, event)
                     } }>
                   </input>
                     <label htmlFor="checkbox-8.2">
@@ -69,13 +71,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('i300_1000') >= 0 ? true : false) : false } 
+                    checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('i300_1000') >= 0 ? true : false) : false } 
                     name="i300_1000" 
                     type="checkbox" 
                     id="checkbox-8.3"
                     onChange={ (event) => {  
-                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
+                      changeCheckboxDataSingle(this.state.queryParamKey, inputData, event)
                     } }>
                   </input>
                     <label htmlFor="checkbox-8.3">
@@ -87,13 +89,13 @@ class CheckboxBudget extends Component {
                 </div>
                 <div className="checkbox-block">
                   <input
-                    checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('more_1000') >= 0 ? true : false) : false } 
+                    checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('more_1000') >= 0 ? true : false) : false } 
                     name="more_1000" 
                     type="checkbox" 
                     id="checkbox-8.4"
                     onChange={ (event) => {  
-                      this.props.CHANGE_CHECKBOX_DATA_SINGLE(this.state.queryParamKey, this.props.inputData, event)
+                      changeCheckboxDataSingle(this.state.queryParamKey, inputData, event)
                     } }>
                   </input>
                     <label htmlFor="checkbox-8.4">
@@ -105,13 +107,13 @@ class CheckboxBudget extends Component {
                 </div> 
                 <div className="checkbox-block">
                   <input
-                    checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('undefined') >= 0 ? true : false) : false }  
+                    checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('undefined') >= 0 ? true : false) : false }  
                     name="undefined" 
                     type="checkbox" 
                     id="checkbox-8.5"
                     onChange={ (event) => { 
-                      this.props.CHANGE_CHECKBOX_DATA_JOB_SINGLE(this.state.queryParamKey, this.props.inputData, event)
+                      changeCheckboxDataSingle(this.state.queryParamKey, inputData, event)
                     } }>
                   </input>
                     <label htmlFor="checkbox-8.5">
@@ -128,6 +130,11 @@ class CheckboxBudget extends Component {
       </div>
     )
   }
+}
+
+CheckboxBudget.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataSingle: PropTypes.func
 }
 
 export default CheckboxBudget;

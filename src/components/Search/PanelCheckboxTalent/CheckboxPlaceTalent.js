@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react';import PropTypes from 'prop-types';
 class CheckboxPlaceTalent extends Component {
   constructor() {
     super();
@@ -9,6 +8,7 @@ class CheckboxPlaceTalent extends Component {
   }
 
   render() {
+    let { changeCheckboxDataArr,  inputData } = this.props;
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -21,10 +21,10 @@ class CheckboxPlaceTalent extends Component {
               type="checkbox" 
               id="checkbox-8.1"
               onChange={ (event) => {
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('online') >= 0 ? true : false) : false }>
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('online') >= 0 ? true : false) : false }>
 
             </input>
             <label htmlFor="checkbox-8.1">
@@ -40,10 +40,10 @@ class CheckboxPlaceTalent extends Component {
               type="checkbox" 
               id="checkbox-8.2"
               onChange={ (event) => {
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               } }
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('onsite') >= 0 ? true : false) : false }>
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('onsite') >= 0 ? true : false) : false }>
             </input>
             <label htmlFor="checkbox-8.2">
               <span className="filter-checkbox">
@@ -56,6 +56,11 @@ class CheckboxPlaceTalent extends Component {
       </div>
     )
   }
+}
+
+CheckboxPlaceTalent.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataArr: PropTypes.func
 }
 
 export default CheckboxPlaceTalent;

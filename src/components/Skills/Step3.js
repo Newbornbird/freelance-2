@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Step3 extends Component {
 
   componentDidMount() {
-    this.props.GET_USERS_SKILLS();
+    this.props.getUsersSkills();
   }
 
   render() {
+    let { usersSkills,  deleteUsersSkills,  editUsersSkills, getUsersSkills } = this.props
     return (
       <div className="step-3">
-        { this.props.usersSkills
+        { usersSkills
           .filter( ( skill ) => skill.selected === true )
           .map( (skill) => (
             <div className="skill-subcat skill-subcat--item" key={ skill.id }>
@@ -45,12 +47,12 @@ class Step3 extends Component {
               <div className="skill-block-footer" style={ { fontSize: '13px', color: '#15a4fa' } }>
                 <button 
                   style={ { background: 'none', border: 'none' } } 
-                  onClick = { () => { this.props.DELETE_USERS_SKILLS(skill.id, this.props.usersSkills) } }>
+                  onClick = { () => { deleteUsersSkills(skill.id, usersSkills) } }>
                   Delete
                 </button>
                 <button 
                   style={ { background: 'none', border: 'none' } } 
-                  onClick = { () => { this.props.EDIT_USERS_SKILLS(skill.name, skill.id) } }>
+                  onClick = { () => { editUsersSkills(skill.name, skill.id) } }>
                   Edit
                 </button>
               </div>
@@ -100,6 +102,14 @@ class Step3 extends Component {
       </div>
     )
   }
+}
+
+Step3.propTypes = {
+  usersSkills: PropTypes.array,
+	addingSkillsStatus: PropTypes.object,
+	getUsersSkills: PropTypes.func,
+	editUsersSkills: PropTypes.func,
+	deleteSkillTagForSkills: PropTypes.func
 }
 
 export default Step3;

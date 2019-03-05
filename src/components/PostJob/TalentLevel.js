@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TalentLevel extends Component {
   render() {
+    let { requestForPostJob,  changeCheckboxForPostJob } = this.props;
     return (
       <div className="form-block-section">
         <div className="form-block-header">
@@ -16,8 +18,8 @@ class TalentLevel extends Component {
               name="intern" 
               id="level-int" 
               value="level-int" 
-              checked={ this.props.requestForPostJob.level === 'intern' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'level') } }
+              checked={ requestForPostJob.level === 'intern' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'level') } }
               />
             <label htmlFor="level-int">
               <span className="checkbox-circle">
@@ -32,8 +34,8 @@ class TalentLevel extends Component {
               name="junior" 
               id="level-jun" 
               value="level-jun"
-              checked={ this.props.requestForPostJob.level === 'junior' } 
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'level') } }
+              checked={ requestForPostJob.level === 'junior' } 
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'level') } }
               />
             <label htmlFor="level-jun">
               <span className="checkbox-circle">
@@ -48,8 +50,8 @@ class TalentLevel extends Component {
               name="senior" 
               id="level-sen" 
               value="level-sen" 
-              checked={ this.props.requestForPostJob.level === 'senior' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'level') } }
+              checked={ requestForPostJob.level === 'senior' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'level') } }
               />
             <label htmlFor="level-sen">
               <span className="checkbox-circle">
@@ -64,8 +66,8 @@ class TalentLevel extends Component {
               name="expert" 
               id="level-exp" 
               value="level-exp"
-              checked={ this.props.requestForPostJob.level === 'expert' }
-              onChange={ (event) => { this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'level') } }
+              checked={ requestForPostJob.level === 'expert' }
+              onChange={ (event) => { changeCheckboxForPostJob(event, 'level') } }
               />
             <label htmlFor="level-exp">
               <span className="checkbox-circle">
@@ -78,6 +80,11 @@ class TalentLevel extends Component {
       </div>
     )
   }
+}
+
+TalentLevel.propTypes = {
+  requestForPostJob: PropTypes.object,
+  changeCheckboxForPostJob: PropTypes.func,
 }
 
 export default TalentLevel;

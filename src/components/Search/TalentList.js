@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TalentBox from './TalentBox';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -56,6 +57,10 @@ class TalentList extends Component {
       </div>
     )
   }
+}
+
+TalentList.propTypes = {
+  talents: PropTypes.array
 }
 
 const mapStateToProps = (state) => {

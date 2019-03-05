@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Finish extends Component {
   render() {
+    let { consent,  toggleConsent } = this.props;
     return (
       <div className="form-block-section finish-block col-100">
         <div className="form-block-header">
@@ -10,15 +12,15 @@ class Finish extends Component {
           </div>
         </div>
         <div className="checkbox-block">
-          <span style={ this.props.consent ? { 'display': 'none' } : { 'color': 'red' }}>
+          <span style={ consent ? { 'display': 'none' } : { 'color': 'red' }}>
             You need to agree with terms of use to continue
           </span>
           <br/>
           <input 
             type="checkbox" 
             id="terms-agree" 
-            checked={ this.props.consent }
-            onChange={ this.props.toggleConsent }
+            checked={ consent }
+            onChange={ toggleConsent }
             />
           <label htmlFor="terms-agree">
             <span className="checkbox-circle">
@@ -30,6 +32,11 @@ class Finish extends Component {
       </div>
     )
   }
+}
+
+Finish.propTypes = {
+  consent: PropTypes.bool,
+  toggleConsent: PropTypes.func,
 }
 
 export default Finish;

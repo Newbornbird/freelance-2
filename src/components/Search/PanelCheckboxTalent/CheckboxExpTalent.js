@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxExpTalent extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class CheckboxExpTalent extends Component {
   }
 
   render() {
+    let { changeCheckboxDataArr,  inputData } = this.props;
     return (
       <div className="filter-block">   
         <div className="filter-title">
@@ -17,10 +19,10 @@ class CheckboxExpTalent extends Component {
         <div className="checkbox-list-block clearfix">
           <div className="checkbox-block">
             <input
-              checked = { this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('intern') >= 0 ? true : false) : false } 
+              checked = { inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('intern') >= 0 ? true : false) : false } 
               onChange = { (event) => {
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event)
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
               }} 
               name="intern" 
               type="checkbox" 
@@ -36,10 +38,10 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('junior') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('junior') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}
               name="junior" 
               type="checkbox" 
@@ -53,10 +55,10 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('senior') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('senior') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}
               name="senior" 
               type="checkbox" 
@@ -71,10 +73,10 @@ class CheckboxExpTalent extends Component {
           </div>
           <div className="checkbox-block">
             <input 
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('expert') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('expert') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}
               name="expert" 
               type="checkbox" 
@@ -91,6 +93,11 @@ class CheckboxExpTalent extends Component {
       </div>
     )
   }
+}
+
+CheckboxExpTalent.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataArr: PropTypes.func,
 }
 
 export default CheckboxExpTalent;

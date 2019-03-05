@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ContractGeneralNotes extends Component {
   render() {
+    let { requestForPostJob, changeStrInpForPostJob } = this.props;
     return (
       <div className="form-block-section col-100">
         <div className="form-block-header">
@@ -14,13 +16,18 @@ class ContractGeneralNotes extends Component {
             className="form-control comments-area" 
             name='contract_general_notes'
             placeholder="Enter here Comments for the contract"
-            value={ this.props.requestForPostJob.contract_general_notes }
-            onChange={ (event) => { this.props.CHANGE_STR_INP_FOR_POSTJOB(event) } }>
+            value={ requestForPostJob.contract_general_notes }
+            onChange={ (event) => { changeStrInpForPostJob(event) } }>
           </textarea>
         </div>
       </div>
     )
   }
+}
+
+ContractGeneralNotes.propTypes = {
+  requestForPostJob: PropTypes.object,
+  changeStrInpForPostJob: PropTypes.func,
 }
 
 export default ContractGeneralNotes;

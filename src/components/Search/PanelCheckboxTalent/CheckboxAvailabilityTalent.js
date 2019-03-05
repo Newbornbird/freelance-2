@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CheckboxAvailabilityTalent extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class CheckboxAvailabilityTalent extends Component {
   }
 
   render() {
+    let { changeCheckboxDataArr,  inputData } = this.props;
     return (
       <div className="filter-block">
         <div className="filter-title">
@@ -20,10 +22,10 @@ class CheckboxAvailabilityTalent extends Component {
               name='per_week_up_to_20'  
               type="checkbox" 
               id="checkbox-7.1"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_up_to_20') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_up_to_20') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}>
 
             </input>
@@ -39,10 +41,10 @@ class CheckboxAvailabilityTalent extends Component {
               name='per_week_30' 
               type="checkbox" 
               id="checkbox-7.2"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_30') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_30') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-7.2">
@@ -56,10 +58,10 @@ class CheckboxAvailabilityTalent extends Component {
             <input 
               name='per_week_more_than_30' 
               type="checkbox" id="checkbox-7.3"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_more_than_30') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-7.3">
@@ -74,10 +76,10 @@ class CheckboxAvailabilityTalent extends Component {
               name='per_week_full_time' 
               type="checkbox" 
               id="checkbox-7.4"
-              checked={ this.props.inputData[this.state.queryParamKey] ? 
-                          (this.props.inputData[this.state.queryParamKey].indexOf('per_week_full_time') >= 0 ? true : false) : false }
+              checked={ inputData[this.state.queryParamKey] ? 
+                          (inputData[this.state.queryParamKey].indexOf('per_week_full_time') >= 0 ? true : false) : false }
               onChange = { (event) => { 
-                this.props.CHANGE_CHECKBOX_DATA_ARR(this.state.queryParamKey, this.props.inputData, event) 
+                changeCheckboxDataArr(this.state.queryParamKey, inputData, event) 
               }}>
             </input>
             <label htmlFor="checkbox-7.4">
@@ -91,6 +93,11 @@ class CheckboxAvailabilityTalent extends Component {
       </div>
     )
   }
+}
+
+CheckboxAvailabilityTalent.propTypes = {
+  inputData: PropTypes.object,
+  changeCheckboxDataArr: PropTypes.func
 }
 
 export default CheckboxAvailabilityTalent;

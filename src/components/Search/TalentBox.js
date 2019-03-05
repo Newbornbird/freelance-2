@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as moment from 'moment';
 export class TalentBox extends Component {
   
   render() {
+    let { availability, closeActiveModal, makeModalActive, activeModal, styleForModal, country, 
+      full_name, id,  image,  languages,  last_seen_at, offers,  place_to_work,  saved_count,
+      price,  profession, promotions,  skill_tags, total_hours, total_jobs,  total_rate } = this.props;
     return (
-      <div className="job-box-block" onClick={ () => { this.props.makeModalActive(this.props.id) } }>
-        <div className={ this.props.activeModal === this.props.id ? 
+      <div className="job-box-block" onClick={ () => { makeModalActive(id) } }>
+        <div className={ activeModal === id ? 
           "panel panel-default job-box awarded left-details open" :
           "panel panel-default job-box awarded left-details" }>
           <div className="job-box-header flexbox justify-space-between">
             <div className="job-box-photo-block">
               <div 
                 className="job-box-photo bg-cover circul-shape" 
-                style={ this.props.image.url ? { 'backgroundImage': `url(${this.props.image.url})` } : { } }
+                style={ image.url ? { 'backgroundImage': `url(${image.url})` } : { } }
                 >
                 <i className="notif"></i>
                 <i className="award">
@@ -21,7 +25,7 @@ export class TalentBox extends Component {
               </div>
             </div>
             <div className="job-box-title">
-              <div className="job-box-name blue-color">{ this.props.full_name }</div>
+              <div className="job-box-name blue-color">{ full_name }</div>
               <div className="job-box-prof">
                 {/* { this.props.profession ? this.props.profession : '' } */}
               </div>
@@ -29,33 +33,33 @@ export class TalentBox extends Component {
             </div>
             <div className="job-box-rate">
               <span className="icon icon-star-full"></span>
-              <span className="rate-result">{ this.props.total_rate ? this.props.total_rate : 'N/A'}</span>
+              <span className="rate-result">{ total_rate ? total_rate : 'N/A'}</span>
             </div>
           </div>
           <div className="job-box-body flexbox justify-space-between">
             <div className="job-box-tips">
               <div className="tip">
                   <span className="icon icon-award"></span>
-                  <span className="text">{ this.props.total_rate ? this.props.total_rate : '95%'}</span>
+                  <span className="text">{ total_rate ? total_rate : '95%'}</span>
                 </div>
                 <div className="tip">
                   <span className="icon icon-jobs"></span>
                   <span className="text">
-                    { this.props.total_jobs ? this.props.total_jobs : ''}
+                    { total_jobs ? total_jobs : ''}
                     h / j
                   </span>
                 </div>
                 <div className="tip">
                   <span className="icon icon-location"></span>
-                  <span className="text">{ this.props.country ? this.props.country : 'N/A' }</span>
+                  <span className="text">{ country ? country : 'N/A' }</span>
                 </div>
                 <div className="tip">
                   <span className="icon icon-clock-1"></span>
-                  <span className="text">{ this.props.total_hours ? this.props.total_hours : 'N/A'}</span>
+                  <span className="text">{ total_hours ? total_hours : 'N/A'}</span>
                 </div>
                 <div className="tip">
                   <span className="icon icon-wallet"></span>
-                  <span className="text">{ this.props.price ? '$' + this.props.price : 'N/A'}</span>
+                  <span className="text">{ price ? '$' + price : 'N/A'}</span>
                 </div>
             </div>
             <div className="job-box-deskr">
@@ -63,16 +67,16 @@ export class TalentBox extends Component {
                 No Introduction set yet
               </div>
               <div className="skill-tags-block clearfix">
-                { this.props.skill_tags.map( tag => (<div key={ tag.id } className="skill-tag">{ tag.name }</div>) ) }
+                { skill_tags.map( tag => (<div key={ tag.id } className="skill-tag">{ tag.name }</div>) ) }
               </div>
             </div>
           </div>
           <div className="job-box-footer flexbox justify-space-between" style={{ 'minHeight': '80px' }}>
             <div className="additional-info blue-color"> 
-              { this.props.promotions[0] ? this.props.promotions[0].title : 'The user has not promoted himself yet' }
+              { promotions[0] ? promotions[0].title : 'The user has not promoted himself yet' }
               <br/>
               <span style={{ 'fontSize': '13px', 'color': '#4b5053', 'fontWeight': 'normal' }}>
-                {  this.props.promotions[0] ? this.props.promotions[0].description : '' }
+                {  promotions[0] ? promotions[0].description : '' }
               </span> 
             </div>
             <button className="btn btn-blue btn-bold">Free</button>
@@ -82,11 +86,11 @@ export class TalentBox extends Component {
         <div className="caret-block">
           <span className="caret-top"></span>
         </div>
-        <div className="panel panel-default job-box-details" style={ this.props.styleForModal }>
+        <div className="panel panel-default job-box-details" style={ styleForModal }>
           <button 
             className="btn btn-bg-transparent close-btn icon-btn"
             onClick={ (event) => { 
-              this.props.closeActiveModal();
+              closeActiveModal();
               event.stopPropagation() } }>
             <span className="glyphicon glyphicon-remove">
 
@@ -96,13 +100,13 @@ export class TalentBox extends Component {
             <div className="about-block-wrapper">
               <div className="photo-block">
                 <div className="job-box-photo bg-cover circul-shape" 
-                  style={{ 'backgroundImage': `url(${this.props.image.url})` }}
+                  style={{ 'backgroundImage': `url(${image.url})` }}
                 >
                 </div>
                 <div className="job-box-title">
-                  <div className="job-box-name blue-color">{ this.props.full_name }</div>
+                  <div className="job-box-name blue-color">{ full_name }</div>
                   <div className="job-box-prof">
-                    { this.props.profession ? this.props.profession.title  : ''}
+                    { profession ? profession.title  : ''}
                   </div>
                 </div>
               </div>
@@ -111,12 +115,12 @@ export class TalentBox extends Component {
                   Available 
                 </div>
                 <div className="text">
-                  { this.props.availability ?  this.props.availability : ''}
+                  { availability ?  availability : ''}
                 </div>
               </div>
               <div className="info-block">
                 <div className="text">
-                  { this.props.total_hours }  hrs / { this.props.total_jobs } jobs
+                  { total_hours }  hrs / { total_jobs } jobs
                 </div>
               </div>
               <div className="info-block">
@@ -124,8 +128,8 @@ export class TalentBox extends Component {
                   Languages 
                 </div>
                 <div className="text">
-                { this.props.languages[0] ? 
-                  this.props.languages.map( (lang, index) => { 
+                { languages[0] ? 
+                  languages.map( (lang, index) => { 
                     return <span key={ index }>lang<span>fluent</span></span> } ) : '' }
                 </div>
               </div>
@@ -134,7 +138,7 @@ export class TalentBox extends Component {
                   Place of Work 
                 </div>
                 <div className="text">
-                  { this.props.place_to_work ? this.props.place_to_work : '' }
+                  { place_to_work ? place_to_work : '' }
                 </div>
               </div>
               <div className="info-block info-block--btns">
@@ -186,18 +190,18 @@ export class TalentBox extends Component {
                   <div className="stat-block">
                     <span className="icon icon-calendar2"></span>
                     <span className="stat-title blue-color">LAST ACTIVE</span>
-                    <span className="stat-info">{ moment(this.props.last_seen_at).fromNow() }</span>
+                    <span className="stat-info">{ moment(last_seen_at).fromNow() }</span>
                   </div>
                   <div className="stat-block">
                     <span className="icon icon-saved"></span>
                     <span className="stat-title blue-color">SAVED</span>
-                    <span className="stat-info">{ this.props.saved_count ? this.props.saved_count : '0'}</span>
+                    <span className="stat-info">{ saved_count ? saved_count : '0'}</span>
                   </div>
                 </div>
               </div>
               <div className="job-details-right-body">
-                { this.props.offers[0] ?
-                    this.props.offers.map( (offer, index) => (
+                { offers[0] ?
+                    offers.map( (offer, index) => (
                       <div className="feedback-item flexbox" key={ index }>
                         <div className="left-col">
                           <div className="item-header">
@@ -274,8 +278,8 @@ export class TalentBox extends Component {
 
               </div>
               <div className="other-details">
-                { this.props.promotions[0] ? 
-                this.props.promotions.map( 
+                { promotions[0] ? 
+                promotions.map( 
                     (prom, index) => (
                     <div className="panel flexbox justify-space-between panel-blue" key={ index } 
                       style={ index % 2 === 0 ? {  } : { 'backgroundColor': '#ffeecd' } }>
@@ -303,6 +307,32 @@ export class TalentBox extends Component {
       </div>
     )
   }
+}
+
+TalentBox.propTypes = {
+  closeActiveModal: PropTypes.func,
+  makeModalActive: PropTypes.func,
+  activeModal: PropTypes.string,
+  availability: PropTypes.string,
+  styleForModal: PropTypes.object,
+  country: PropTypes.string,
+  experience: PropTypes.string,
+  favorited: PropTypes.bool,
+  full_name: PropTypes.string,
+  id: PropTypes.number,
+  image: PropTypes.string,
+  languages: PropTypes.string,
+  last_seen_at: PropTypes.string,
+  media: PropTypes.object,
+  offers: PropTypes.string,
+  place_to_work: PropTypes.string,
+  price: PropTypes.string,
+  profession: PropTypes.string,
+  promotions: PropTypes.array,
+  skill_tags: PropTypes.array,
+  total_hours: PropTypes.number,
+  total_jobs: PropTypes.number,
+  total_rate: PropTypes.number
 }
 
 export default TalentBox;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import JobBox from './JobBox';
@@ -26,7 +27,7 @@ class JobList extends Component {
           <JobBox
             closeActiveModal = { this.closeActiveModal }
             makeModalActive = { this.makeModalActive }
-            activeModal = { this.state.activeModal }
+            activeModal = { this.state.number }
             styleForModal = { index % 2 ? { 'left': '-109%' } : {  } }
             commitment = { job.commitment } 
             contract_general_notes = { job.contract_general_notes }
@@ -58,18 +59,15 @@ class JobList extends Component {
   }
 }
 
+JobList.propTypes = {
+  jobs: PropTypes.array
+}
+
 const mapStateToProps = (state) => {
   return {
     jobs: state.jobs
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    
-  }
-
-}
-
-export default withRouter (connect(mapStateToProps, mapDispatchToProps)(JobList));
+export default withRouter (connect(mapStateToProps)(JobList));
 

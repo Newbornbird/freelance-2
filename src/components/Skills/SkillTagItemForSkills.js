@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 
 class SkillTagItemForSkills extends Component {
@@ -6,7 +7,6 @@ class SkillTagItemForSkills extends Component {
     super(props);
     this.state = {
       isActive: false,
-      
     }
   }
 
@@ -20,6 +20,7 @@ class SkillTagItemForSkills extends Component {
 
 
   render() {
+    let { changeUsersSkillTags, addingSkillsStatus, usersSkills, skill_tags,  name, index } = this.props
     return (
         <li 
           style={ this.state.isActive ? 
@@ -36,19 +37,28 @@ class SkillTagItemForSkills extends Component {
               cursor: 'pointer' 
             } }
             onClick={ () => { 
-              this.props.CHANGE_USERS_SKILL_TAGS( 
-                this.props.addingSkillsStatus.chosenCategory.id, 
-                this.props.usersSkills, 
-                this.props.skill_tags.skill_tags[this.props.index]
+              changeUsersSkillTags( 
+                addingSkillsStatus.chosenCategory.id, 
+                usersSkills, 
+                skill_tags.skill_tags[index]
                ) 
             } }
             onMouseOver = { this.makeActive }
             onMouseOut = { this.makeInActive }>
-          { this.props.name.toUpperCase() + 1 }
+          { name.toUpperCase() + 1 }
         </li> 
      
     )
   }
+}
+
+SkillTagItemForSkills.propTypes = {
+  changeUsersSkillTags: PropTypes.func,
+  addingSkillsStatus: PropTypes.object,
+  usersSkills: PropTypes.array,
+  skill_tags: PropTypes.object,
+  name: PropTypes.number,
+  index: PropTypes.object,
 }
 
 export default SkillTagItemForSkills;

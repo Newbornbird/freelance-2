@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TimeToCompleteTheJob extends Component {
   render() {
+    let { requestForPostJob, changeCheckboxForPostJob,  changeStrInpForPostJob, 
+      togglePeriodTypeList,  periodTypeIsOpened } = this.props;
     return (
       <div className="form-block-section job-time-block col-100">
         <div className="form-block-header">
@@ -30,15 +33,15 @@ class TimeToCompleteTheJob extends Component {
               'borderRadius': '30px',
               'borderBottomRightRadius': '0',
               'borderTopRightRadius': '0' } }
-              value={ this.props.requestForPostJob.period }
-              onChange={ (event) => { this.props.CHANGE_STR_INP_FOR_POSTJOB(event) } }
+              value={ requestForPostJob.period }
+              onChange={ (event) => { changeStrInpForPostJob(event) } }
             />
           <button className="btn btn-bg-transparent">
-            <div className={ this.props.periodTypeIsOpened ? "my-select-box open" : "my-select-box" }>
-                <span className="my-select-result" onClick={ this.props.togglePeriodTypeList }>
+            <div className={ periodTypeIsOpened ? "my-select-box open" : "my-select-box" }>
+                <span className="my-select-result" onClick={ togglePeriodTypeList }>
                   <span className="text" >
-                    { this.props.requestForPostJob.period > 1 ? 
-                      this.props.requestForPostJob.period_type.toUpperCase() + 'S' : this.props.requestForPostJob.period_type.toUpperCase()}
+                    { requestForPostJob.period > 1 ? 
+                      requestForPostJob.period_type.toUpperCase() + 'S' : requestForPostJob.period_type.toUpperCase()}
                   </span> 
                   <span className="caret"></span>
                 </span>
@@ -51,8 +54,8 @@ class TimeToCompleteTheJob extends Component {
                       id="d-term" value="d-term" 
                       checked=""
                       onChange={ (event) => { 
-                        this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'period_type');
-                        this.props.togglePeriodTypeList();
+                        changeCheckboxForPostJob(event, 'period_type');
+                        togglePeriodTypeList();
                           } }
                       />
                     <label htmlFor="d-term">
@@ -66,8 +69,8 @@ class TimeToCompleteTheJob extends Component {
                       id="w-term" 
                       value="w-term" 
                       onChange={ (event) => { 
-                        this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'period_type');
-                        this.props.togglePeriodTypeList() } }
+                        changeCheckboxForPostJob(event, 'period_type');
+                        togglePeriodTypeList() } }
                       />
                     <label htmlFor="w-term">
                       <span className="radio-text">Week</span>
@@ -80,8 +83,8 @@ class TimeToCompleteTheJob extends Component {
                       id="m-term" 
                       value="m-term" 
                       onChange={ (event) => { 
-                        this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'period_type');
-                        this.props.togglePeriodTypeList() } }
+                        changeCheckboxForPostJob(event, 'period_type');
+                        togglePeriodTypeList() } }
                       />
                     <label htmlFor="m-term">
                       <span className="radio-text"> Month</span>
@@ -94,8 +97,8 @@ class TimeToCompleteTheJob extends Component {
                       id="y-term" 
                       value="y-term" 
                       onChange={ (event) => { 
-                        this.props.CHANGE_CHECKBOX_FOR_POSTJOB(event, 'period_type');
-                        this.props.togglePeriodTypeList() } }
+                        changeCheckboxForPostJob(event, 'period_type');
+                        togglePeriodTypeList() } }
                       />
                     <label htmlFor="y-term">
                       <span className="radio-text">Year</span>
@@ -110,6 +113,14 @@ class TimeToCompleteTheJob extends Component {
       </div>
     )
   }
+}
+
+TimeToCompleteTheJob.propTypes = {
+  requestForPostJob: PropTypes.object,
+  changeStrInpForPostJob: PropTypes.func,
+  changeCheckboxForPostJob: PropTypes.func,
+  togglePeriodTypeList: PropTypes.func,
+  periodTypeIsOpened: PropTypes.bool
 }
 
 export default TimeToCompleteTheJob;
