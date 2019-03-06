@@ -23,6 +23,7 @@ class Authorization extends Component {
       email: '',
       password: '',
       isLogin: false,
+      signUpActive: true,
     };
   }
 
@@ -33,6 +34,8 @@ class Authorization extends Component {
   };
 
   handleRegistrationClick = () => {
+    this.setState({ signUpActive: false });
+
     Auth.emailSignUp({
       first_name: this.state.firstName,
       last_name: this.state.lastName,
@@ -45,6 +48,7 @@ class Authorization extends Component {
           last_name: '',
           email: '',
           password: '',
+          signUpActive: true,
         });
       })
       .catch(resp => {
@@ -54,6 +58,7 @@ class Authorization extends Component {
           email: '',
           password: '',
           errors: resp.data.errors,
+          signUpActive: true,
         });
       });
   };
@@ -70,6 +75,7 @@ class Authorization extends Component {
           lastName={this.state.lastName}
           email={this.state.email}
           password={this.state.password}
+          signUpActive={this.state.signUpActive}
           handleChange={this.handleChange}
           handleRegistrationClick={this.handleRegistrationClick}
         />

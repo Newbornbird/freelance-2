@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 class SignUp extends Component {
   render() {
     // handleChange = event => {};
-    const { firstName, lastName, email, password, handleChange, handleRegistrationClick } = this.props;
+    const { firstName, lastName, email, password, handleChange, handleRegistrationClick, signUpActive } = this.props;
     return (
       <div style={{ border: 'solid 2px red', padding: '10px', borderRadius: '10px' }}>
         <Form>
@@ -65,7 +65,7 @@ class SignUp extends Component {
               }}
             />
           </FormGroup>
-          <Button className='mt-4' onClick={handleRegistrationClick}>
+          <Button disabled={!signUpActive} className='mt-4' onClick={handleRegistrationClick}>
             Зарегистрироваться
           </Button>
         </Form>
