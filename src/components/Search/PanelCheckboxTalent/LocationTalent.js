@@ -21,12 +21,12 @@ class LocationTalent extends Component {
   render() {
     const { changeCheckboxDataArr, locations, inputData } = this.props;
     return (
-      <div className="filter-block">
-        <div className="filter-title">Location:</div>
+      <div className='filter-block'>
+        <div className='filter-title'>Location:</div>
         <div className={this.state.isOpen ? 'filter-dropdown-block clearfix open' : 'filter-dropdown-block clearfix'}>
-          <button onClick={this.openCloseFilter} type="button" className="btn btn-default dropdown-toggle">
-            <div className="flexbox justify-space-between">
-              <span className="text">
+          <button onClick={this.openCloseFilter} type='button' className='btn btn-default dropdown-toggle'>
+            <div className='flexbox justify-space-between'>
+              <span className='text'>
                 {`Country( 
                     ${
                       inputData[this.state.queryParamKey]
@@ -35,25 +35,26 @@ class LocationTalent extends Component {
                     }  
                 )`}
               </span>
-              <span className="icon icon-down-arrow" />
+              <span className='icon icon-down-arrow' />
             </div>
           </button>
-          <div className="dropdown-list">
-            <div className="caret-block">
-              <span className="caret-top" />
+          <div className='dropdown-list'>
+            <div className='caret-block'>
+              <span className='caret-top' />
             </div>
-            <div className="dropdown-list-wrapper">
-              <div className="checkbox-list-block">
+            <div className='dropdown-list-wrapper'>
+              <div className='checkbox-list-block'>
                 {locations.map((location, index) => (
-                  <div className="checkbox-block" key={index}>
+                  <div className='checkbox-block' key={index}>
                     <input
                       name={location.name}
-                      type="checkbox"
+                      type='checkbox'
                       id={'checkbox-5.' + (index + 1)}
-                        onChange={ (event) => { 
-                          changeCheckboxDataArr(this.state.queryParamKey, inputData, event)
-                        } }
-                        checked={ inputData[this.state.queryParamKey] ? 
+                      onChange={event => {
+                        changeCheckboxDataArr(this.state.queryParamKey, inputData, event);
+                      }}
+                      checked={
+                        inputData[this.state.queryParamKey]
                           ? inputData[this.state.queryParamKey].indexOf(location.name) >= 0
                             ? true
                             : false
@@ -61,12 +62,12 @@ class LocationTalent extends Component {
                       }
                     />
                     <label htmlFor={'checkbox-5.' + (index + 1)}>
-                        <span className="filter-checkbox">
-                          <span className="icon icon-check-mark"></span>
-                        </span>
-                        <span className="checkbox-text">{ location.name }</span>
+                      <span className='filter-checkbox'>
+                        <span className='icon icon-check-mark' />
+                      </span>
+                      <span className='checkbox-text'>{location.name}</span>
                     </label>
-                    </div>
+                  </div>
                 ))}
               </div>
             </div>

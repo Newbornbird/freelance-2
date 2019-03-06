@@ -68,13 +68,12 @@ export class SearchMain extends Component {
       getMore,
       sort,
       changeCheckboxDataName,
-      bigAction,
       changeInputStringValue,
       openModal,
       hideMessageSuccessPosting,
     } = this.props;
     return (
-      <div className="content">
+      <div className='content'>
         {redirectIsActive ? (
           <Redirect
             to={{
@@ -86,12 +85,12 @@ export class SearchMain extends Component {
           ''
         )}
         <PostJob />
-        <div className="container-fluid">
-          <div className="row content-header flexbox">
-            <div className="col-xs-2 left-sidebar">
+        <div className='container-fluid'>
+          <div className='row content-header flexbox'>
+            <div className='col-xs-2 left-sidebar'>
               <Hello userName={authorization.userData.first_name} />
             </div>
-            <div className="col-xs-10">
+            <div className='col-xs-10'>
               <Form
                 inputData={inputData}
                 changeCheckboxDataName={changeCheckboxDataName}
@@ -104,20 +103,20 @@ export class SearchMain extends Component {
               />
             </div>
           </div>
-          <div className="row job-boxes-header flexbox">
-            <div className="col-xs-2 left-sidebar">
+          <div className='row job-boxes-header flexbox'>
+            <div className='col-xs-2 left-sidebar'>
               <JobTalentSwitch pathName={pathName} switchSearch={switchSearch} />
               <JobTalentButton />
             </div>
-            <div className="col-xs-10">
+            <div className='col-xs-10'>
               <Panel meta={meta} sort={sort} pathName={pathName} inputData={inputData} />
             </div>
           </div>
-          <div className="row main-content flexbox">
-            <div className="col-xs-2 left-sidebar">
+          <div className='row main-content flexbox'>
+            <div className='col-xs-2 left-sidebar'>
               <Switch>
-                <Route path="/board/search/talent" component={PanelCheckboxTalent} />
-                <Route path="/board/search/job" component={PanelCheckboxJob} />
+                <Route path='/board/search/talent' component={PanelCheckboxTalent} />
+                <Route path='/board/search/job' component={PanelCheckboxJob} />
               </Switch>
             </div>
             <div
@@ -127,24 +126,24 @@ export class SearchMain extends Component {
                   : 'col-xs-10 container-fluid job-boxes--talents'
               }
             >
-              <div className="flexbox row">
-                <div className="col-xs-12">
+              <div className='flexbox row'>
+                <div className='col-xs-12'>
                   {(talents.length && window.location.pathname === '/board/search/talent') ||
                   (jobs.length && window.location.pathname === '/board/search/job') ? (
                     <Switch>
-                      <Route path="/board/search/talent" component={TalentList} />
-                      <Route path="/board/search/job" component={JobList} />
+                      <Route path='/board/search/talent' component={TalentList} />
+                      <Route path='/board/search/job' component={JobList} />
                     </Switch>
                   ) : (
-                    <div className="noresults noresults--tallents">
-                      <img src={noResults} alt="Have no results" />
-                      <h2 className="blue-color">We didn’t find anybody</h2>
+                    <div className='noresults noresults--tallents'>
+                      <img src={noResults} alt='Have no results' />
+                      <h2 className='blue-color'>We didn’t find anybody</h2>
                       <p>Please try modifying your search to get more results.</p>
                     </div>
                   )}
                   <JobListFooter meta={meta} inputData={inputData} getMore={getMore} />
                 </div>
-                <div className="col-xs-3">
+                <div className='col-xs-3'>
                   <BtnStartNewProject openModal={openModal} />
                   <BtnStartNewPromotion />
                   <BtnTellOthers />

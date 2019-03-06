@@ -82,7 +82,7 @@ class Authorization extends Component {
           {/* { this.isLogin ? <Button onClick = { this.handleSighOut }>Выйти</Button> : <div></div>} */}
           {/* <Button onClick = { this.getJobs }>Get</Button> */}
         </div>
-        {this.props.authorization.isLogin ? <Redirect to="/board" /> : <div>Нужно залогиниться</div>}
+        {this.props.authorization.isLogin ? <Redirect to='/board' /> : <div>Нужно залогиниться</div>}
         {/* { this.state.isLogin ? (<Redirect to={{ pathname: "/login", search: "?utm=your+face", state: { referrer: 1 } }}/>) : <div>Нужно залогиниться</div> } */}
         {/* { !this.state.isLogin ? <Redirect to="/"/> : <div></div> }  */}
       </div>

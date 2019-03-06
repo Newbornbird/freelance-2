@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class SignUp extends Component {
   render() {
-    handleChange = event => {};
+    // handleChange = event => {};
     const { firstName, lastName, email, password, handleChange, handleRegistrationClick } = this.props;
     return (
       <div style={{ border: 'solid 2px red', padding: '10px', borderRadius: '10px' }}>

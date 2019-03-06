@@ -13,22 +13,21 @@ class Step2 extends Component {
       getSkillTags,
       openSkillTagsList,
       deleteSkillTagForSkills,
-      closeSkillTagsList,
     } = this.props;
     return (
-      <div className="step-2">
-        <div className="skill-subcat">
-          <div className="flexbox justify-space-between">
-            <div className="skill-block">
-              <div className="skill-block-title">{addingSkillsStatus.chosenCategory.name}</div>
-              <div className="skill-block-list">
+      <div className='step-2'>
+        <div className='skill-subcat'>
+          <div className='flexbox justify-space-between'>
+            <div className='skill-block'>
+              <div className='skill-block-title'>{addingSkillsStatus.chosenCategory.name}</div>
+              <div className='skill-block-list'>
                 <form>
                   {usersSkills
                     .find(skill => skill.name === addingSkillsStatus.chosenCategory.name)
                     .skill_categories.map((category, index) => (
-                      <div className="checkbox-block" key={index}>
+                      <div className='checkbox-block' key={index}>
                         <input
-                          type="checkbox"
+                          type='checkbox'
                           id={`math-${index}`}
                           checked={category.selected}
                           onChange={event => {
@@ -36,22 +35,22 @@ class Step2 extends Component {
                           }}
                         />
                         <label htmlFor={`math-${index}`}>
-                          <span className="checkbox-circle">
-                            <span className="icon icon-check-mark" />
+                          <span className='checkbox-circle'>
+                            <span className='icon icon-check-mark' />
                           </span>
-                          <span className="checkbox-text">{category.name}</span>
+                          <span className='checkbox-text'>{category.name}</span>
                         </label>
                       </div>
                     ))}
                 </form>
               </div>
             </div>
-            <div className="skill-sub-block">
-              <form className="form-group">
+            <div className='skill-sub-block'>
+              <form className='form-group'>
                 <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Write new skill"
+                  type='text'
+                  className='form-control'
+                  placeholder='Write new skill'
                   onChange={event => {
                     getSkillTags(event);
                   }}
@@ -93,11 +92,11 @@ class Step2 extends Component {
                     ))
                   : ''}
               </ul>
-              <div className="skill-tags-block clearfix">
+              <div className='skill-tags-block clearfix'>
                 {usersSkills[addingSkillsStatus.chosenCategory.id - 1].skill_tags.length
                   ? usersSkills[addingSkillsStatus.chosenCategory.id - 1].skill_tags.map((skill_tag, index) => (
                       <div
-                        className="skill-tag"
+                        className='skill-tag'
                         key={index}
                         onClick={() => {
                           deleteSkillTagForSkills(

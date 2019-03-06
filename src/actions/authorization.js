@@ -11,6 +11,10 @@ export function CHANGE_USERNAME_OR_PASSWORD(event) {
 
 export function SIGN_IN(email, password) {
   return dispatch => {
+    dispatch({
+      type: 'MAKE_SIGN_IN_INACTIVE',
+    });
+
     Auth.emailSignIn({
       email,
       password,
@@ -26,9 +30,16 @@ export function SIGN_IN(email, password) {
           type: 'CHANGE_USERNAME_OR_PASSWORD',
           payload: { email: '', password: '' },
         });
+
+        dispatch({
+          type: 'MAKE_SIGN_IN_ACTIVE',
+        });
       })
       .catch(resp => {
         console.log(resp);
+        dispatch({
+          type: 'MAKE_SIGN_IN_ACTIVE',
+        });
       });
   };
 }
